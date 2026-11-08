@@ -73,6 +73,20 @@ def extra_vals(real, seeded, flags) -> dict:
     }
 
 
+def fix_vals(run: Path) -> dict:
+    """Fix-and-recheck numbers (run.py writes <run>/fix/fix_and_recheck.json)."""
+    p = run / "fix" / "fix_and_recheck.json"
+    if not p.exists():
+        return {"fix_lines": "?", "fix_before": "?", "fix_after": "?", "fix_left": "not run"}
+    r = json.loads(p.read_text(encoding="utf-8"))
+    unchanged = set(r["spelling_groups_before"]) & set(r["spelling_groups_after"])
+    before = [g for g in r["spelling_groups_before"] if g not in unchanged]
+    after = [g for g in r["spelling_groups_after"] if g not in unchanged]
+    n = lambda gs: sum(len(g.split(", ")) for g in gs)
+    return {"fix_lines": r["lines_changed"], "fix_before": n(before), "fix_after": n(after),
+            "fix_left": "; ".join(" vs ".join(m.rsplit(" x", 1)[0] for m in g.split(", ")) for g in after) or "nothing"}
+
+
 def onecall_vals() -> dict:
     """The one-call baseline (eval/onecall_baseline.py): read from its saved outputs, never typed in."""
     got = {}
@@ -127,6 +141,7 @@ def main(run: Path) -> int:
         "canary": canary,
         **extra_vals(real, seeded, flags),
         **onecall_vals(),
+        **fix_vals(run),
         "code_found": real.get("code_only", {}).get("found", "?"),
         "model_added": real.get("distinct_gold_found", 0) - real.get("code_only", {}).get("found", 0),
         "tier_text": "; ".join(f"{t} {d['true']}/{d['n']}" for t, d in sorted(real.get("precision_by_tier", {}).items(),

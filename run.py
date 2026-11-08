@@ -32,6 +32,8 @@ def main() -> int:
     ap.add_argument("--gate", type=Path, default=None, help="check ONE new episode file against the show in --data")
     ap.add_argument("--fresh", action="store_true", help="ignore the saved cache: a real live run into a throwaway cache")
     ap.add_argument("--code-only", action="store_true", help="no model at all: parse + spelling-variant check + speaker labels, in seconds")
+    ap.add_argument("--apply", type=Path, default=None, metavar="FLAGS_JSON",
+                    help="patch the scripts for the spelling flags in FLAGS_JSON (editor's choice or the suggestion), then re-check; no model")
     a = ap.parse_args()
     if a.fresh:
         import os
@@ -44,6 +46,9 @@ def main() -> int:
         return gate(a.data, a.gate, a.out, a.review)
     if a.code_only:
         return code_only(a.data, a.out)
+    if a.apply:
+        import json
+        return fix_and_recheck(a.data, json.loads(a.apply.read_text(encoding="utf-8")), a.out, a.review)
     from scriptqa.llm import LLMError
     try:
         result = run(a.data, a.out, a.show, a.review, a.workers)
@@ -54,6 +59,7 @@ def main() -> int:
     if s.get("episodes_not_read") and len(s["episodes_not_read"]) == s["episodes"]:
         print("\nNo episode was read by the model. " + model_hint(str(s.get("extract_errors", [{}])[0].get("error", ""))))
         return 2
+    fix_and_recheck(a.data, result["flags"], a.out / "fix", a.review)
     if a.eval:
         from eval.evaluate import evaluate_all
         ok = evaluate_all(a.data, a.out, result, a.gold)
@@ -154,6 +160,31 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     gpath.write_text(json.dumps(rec, indent=1), encoding="utf-8")
     shutil.rmtree(work, ignore_errors=True)
     return 1 if (hits or ties) else 0
+
+
+def fix_and_recheck(data: Path, flags: list, out: Path, review: Path) -> int:
+    """Flag -> patch -> re-check for spelling flags, in code. Writes fix.diff, patched_scripts/ and fix_and_recheck.json."""
+    import yaml
+    from scriptqa.apply import apply_fixes
+    dec_path = review.parent / "decisions.yaml" if review else None
+    dec = (yaml.safe_load(dec_path.read_text(encoding="utf-8")) or {}) if dec_path and dec_path.exists() else {}
+    rec = apply_fixes(data, flags, (dec or {}).get("decisions") or {}, out)
+    rep = out.parent / "report.html"
+    if rep.exists():  # add the result to the editor's report (generated, not hand-written)
+        import html as _h
+        sec = ("<h2>Fix and re-check (spelling flags)</h2><p>Applying the suggested spellings "
+               f"({', '.join(_h.escape(p['keep']) for p in rec['plan'])}) changes <b>{rec['lines_changed']} script lines</b>: "
+               "see fix/fix.diff (patched copies in fix/patched_scripts). Re-running the spelling check on the patched copies leaves:</p><ul>"
+               + "".join(f"<li>{_h.escape(g)}</li>" for g in rec["spelling_groups_after"])
+               + "</ul><p><small>What is left needs an editor: decide whether these are one name, or dismiss the group. "
+               "Edit review/decisions.yaml (decision / canonical) and re-run to change what is applied.</small></p>")
+        t = rep.read_text(encoding="utf-8")
+        anchor = "<h2>Cleared by the model" if "<h2>Cleared by the model" in t else "</body>"
+        rep.write_text(t.replace(anchor, sec + anchor, 1), encoding="utf-8")
+    print(f"[fix] {len(rec['plan'])} spelling flag(s) patched, {rec['lines_changed']} script lines changed -> {out / 'fix.diff'}")
+    print(f"[fix] spelling groups before: {len(rec['spelling_groups_before'])}, after the patch: {len(rec['spelling_groups_after'])}"
+          + "".join(f"\n      still spelled several ways: {g}" for g in rec["spelling_groups_after"]))
+    return 0
 
 
 def code_only(data: Path, out: Path) -> int:
