@@ -121,5 +121,179 @@
     "baseline_hit": false
    }
   ]
+ },
+ "heldout": {
+  "real": {
+   "recall": 0.778,
+   "found": {
+    "surname_spelling": [
+     "F-41b9931a56"
+    ],
+    "village_name": [],
+    "eye_colour": [
+     "F-0b812b4ee7"
+    ],
+    "broken_arm_side": [
+     "F-40cae23b8e"
+    ],
+    "compass_material": [
+     "F-bc34954e79"
+    ],
+    "brother_cousin": [
+     "F-0c1e206621"
+    ],
+    "ship_name": [],
+    "scar_side": [
+     "F-2d05f64c7f"
+    ],
+    "woman_collision": [
+     "F-c4c71765a2"
+    ]
+   },
+   "coverage": {
+    "surname_spelling": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    },
+    "eye_colour": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    },
+    "broken_arm_side": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    },
+    "compass_material": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    },
+    "brother_cousin": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    },
+    "scar_side": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    }
+   },
+   "precision": 1.0,
+   "judged": [
+    {
+     "id": "F-0c1e206621",
+     "type": "CONTRADICTION",
+     "label": "true",
+     "why": "matches gold ['brother_cousin']"
+    },
+    {
+     "id": "F-41b9931a56",
+     "type": "CONTRADICTION",
+     "label": "true",
+     "why": "matches gold ['surname_spelling']"
+    },
+    {
+     "id": "F-c4c71765a2",
+     "type": "LABEL_COLLISION",
+     "label": "true",
+     "why": "matches gold ['woman_collision']"
+    },
+    {
+     "id": "F-0b812b4ee7",
+     "type": "CONTRADICTION",
+     "label": "true",
+     "why": "matches gold ['eye_colour']"
+    },
+    {
+     "id": "F-bc34954e79",
+     "type": "CONTRADICTION",
+     "label": "true",
+     "why": "matches gold ['compass_material']"
+    },
+    {
+     "id": "F-2d05f64c7f",
+     "type": "CONTRADICTION",
+     "label": "true",
+     "why": "matches gold ['scar_side']"
+    },
+    {
+     "id": "F-40cae23b8e",
+     "type": "CONTRADICTION",
+     "label": "true",
+     "why": "matches gold ['broken_arm_side']"
+    },
+    {
+     "id": "F-4cabc6e91d",
+     "type": "LABEL_ALIAS",
+     "label": "true",
+     "why": "all labels are gold Reyes"
+    }
+   ],
+   "n_flags_scored": 7,
+   "n_unlabelled": 0,
+   "alias_flag_precision": 1.0,
+   "n_alias_flags": 1,
+   "n_alias_unlabelled": 0,
+   "distinct_gold_found": 7,
+   "n_gold": 9,
+   "loss_stage": {
+    "surname_spelling": "flagged",
+    "village_name": "not extracted by the model",
+    "eye_colour": "flagged",
+    "broken_arm_side": "flagged",
+    "compass_material": "flagged",
+    "brother_cousin": "flagged",
+    "ship_name": "grouped, then cleared by the model as DIFFERENT_ENTITIES: The Gull and the Gannet are two different boats mentioned by Captain Reyes.",
+    "scar_side": "flagged",
+    "woman_collision": "flagged"
+   }
+  },
+  "aliases": {
+   "pairwise_precision": 1.0,
+   "pairwise_recall": 1.0,
+   "f1": 1.0,
+   "n_label_episodes": 12,
+   "split_errors": [],
+   "wrong_merges": []
+  },
+  "summary": {
+   "show": "held-out show",
+   "episodes": 5,
+   "elements": 31,
+   "facts_verified": 23,
+   "facts_dropped": 3,
+   "facts_repointed": 0,
+   "candidate_groups": 7,
+   "verdicts": {
+    "CONTRADICTION": 6,
+    "COMPATIBLE": 0,
+    "INTENTIONAL_CHANGE": 0,
+    "DIFFERENT_ENTITIES": 1,
+    "UNCLEAR": 0
+   },
+   "flags_total": 8,
+   "flags_contradiction": 6,
+   "flags_high": 2,
+   "flags_collision": 1,
+   "flags_alias": 1,
+   "flags_review": 0,
+   "characters": 5,
+   "review": {
+    "dismissed": 0,
+    "accepted": 0,
+    "open": 8
+   },
+   "human_alias_overrides": 0,
+   "episodes_not_read": [],
+   "extract_errors": []
+  },
+  "ci95": [
+   0.45,
+   0.94
+  ]
  }
 }

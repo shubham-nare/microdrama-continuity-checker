@@ -50,7 +50,8 @@ def verify_episode(raw: dict, ep: Episode) -> tuple[dict, dict]:
         stats["facts_ok" if status == "ok" else "facts_repointed"] += 1
         el = by_id[eid]
         facts.append({**f, "element_id": eid, "verified": status, "episode": ep.number, "scene": el.scene,
-                      "start": el.start, "end": el.end, "element_kind": el.kind, "speaker": el.speaker})
+                      "start": el.start, "end": el.end, "element_kind": el.kind, "speaker": el.speaker,
+                      "file": ep.file, "line": el.line})
     speakers = {e.speaker for e in ep.elements if e.speaker}
     labels = []
     for l in raw.get("labels", []):

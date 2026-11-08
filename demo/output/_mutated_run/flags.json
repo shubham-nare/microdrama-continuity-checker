@@ -30,7 +30,9 @@
     "where": "HEADER",
     "value": "Holloway",
     "quote": "Maren Holloway returns to her grandfather's lighthouse",
-    "odd": false
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 2
    },
    {
     "episode": 1,
@@ -39,7 +41,9 @@
     "where": "THE STRANGER (dialogue)",
     "value": "Holloway",
     "quote": "elongs to whoever keeps the light, Miss Holloway.\"",
-    "odd": false
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 34
    },
    {
     "episode": 2,
@@ -48,7 +52,9 @@
     "where": "ELIAS (dialogue)",
     "value": "Halloway",
     "quote": "\"He trusts the Halloway name. That's why he wants you here.\"",
-    "odd": true
+    "odd": true,
+    "file": "episode-002.txt",
+    "line": 30
    }
   ],
   "merged": [
@@ -93,7 +99,9 @@
     "where": "OLD MAN (dialogue)",
     "value": "Maren's Grandfather",
     "quote": "\"You came back, Maren. Your mother never did.\"",
-    "odd": false
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 18
    },
    {
     "episode": 3,
@@ -102,7 +110,9 @@
     "where": "OLD MAN (dialogue)",
     "value": "Harbor Master",
     "quote": "\"That keeper of yours, girl. I've seen his face on a wanted poster in Portland.\"",
-    "odd": false
+    "odd": false,
+    "file": "episode-003.txt",
+    "line": 18
    }
   ],
   "rank": 2,
@@ -140,7 +150,9 @@
     "where": "CAMERA",
     "value": "grey",
     "quote": "Maren's grey eyes narrowing at him",
-    "odd": false
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 38
    },
    {
     "episode": 2,
@@ -149,7 +161,9 @@
     "where": "CAMERA",
     "value": "grey",
     "quote": "Close-up of Maren's grey eyes",
-    "odd": false
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 26
    },
    {
     "episode": 3,
@@ -158,7 +172,9 @@
     "where": "CAMERA",
     "value": "blue",
     "quote": "Maren's blue eyes filling with doubt.",
-    "odd": true
+    "odd": true,
+    "file": "episode-003.txt",
+    "line": 26
    }
   ],
   "rank": 3,
@@ -200,7 +216,9 @@
     "where": "ELIAS (dialogue)",
     "value": "ELIAS",
     "quote": "\"My name is Elias. Your grandfather hired me two winters ago.\"",
-    "odd": false
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 18
    },
    {
     "episode": 1,
@@ -209,7 +227,9 @@
     "where": "THE STRANGER (dialogue)",
     "value": "THE STRANGER",
     "quote": "\"The deed belongs to whoever keeps the light, Miss Holloway.\"",
-    "odd": false
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 34
    }
   ],
   "rank": 4,

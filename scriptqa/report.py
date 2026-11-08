@@ -159,7 +159,7 @@ def write_flags_csv(flags: list[dict], path: Path) -> None:
         w.writerow(["rank", "id", "status", "severity", "type", "kind", "audible", "summary", "episodes", "suggested_fix",
                     "evidence (episode element timestamp value quote)", "reviewer_decision (dismiss/accept)", "canonical (if accept)"])
         for f in flags:
-            ev = " || ".join(f"ep{e['episode']} {e['element_id']} {e['timestamp']} {'*' if e['odd'] else ''}{e['value']}: \"{e['quote'][:100]}\""
+            ev = " || ".join(f"ep{e['episode']} line {e.get('line', '?')} {e['timestamp']} {'*' if e['odd'] else ''}{e['value']}: \"{e['quote'][:100]}\""
                              for e in f["evidence"])
             w.writerow([f.get("rank"), f["id"], f.get("status", "open"), f["severity"], f["type"], f["kind"], f["audible"], f["summary"],
                         " ".join(map(str, f["episodes"])), f["suggested_fix"], ev, "", ""])
@@ -198,6 +198,9 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
     e = html.escape
     out = [f"<!doctype html><meta charset=utf-8><title>Continuity report — {e(show)}</title><style>{CSS}</style>",
            f"<h1>Continuity report — {e(show)}</h1>",
+           (f"<p style='background:#fdecea;padding:8px;border-radius:6px'><b>{len(summary.get('episodes_not_read', []))} episode(s) were NOT read by the model</b> "
+            f"(episodes {', '.join(map(str, summary.get('episodes_not_read', [])))}): only the code-only name check covers them. Re-run to retry.</p>"
+            if summary.get("episodes_not_read") else ""),
            f"<p>{summary['episodes']} episodes · {summary['elements']} timed elements · "
            f"{summary['facts_verified']} verified facts · <b>{summary['flags_contradiction']} contradictions</b> "
            f"({summary['flags_high']} high) · {summary['flags_collision']} label collisions · {summary['flags_alias']} characters with several labels · "
@@ -219,9 +222,9 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                        + (f"<br><small><b>Per-episode gate would block it at ep{f['gate']['blocked_at_episode']}.</b> Not caught, the odd value(s) {e(', '.join(f['gate']['odd_values']))} reach "
                           f"{f['gate']['later_dialogue_lines']} later spoken line(s) and {f['gate']['later_camera_shots_in_affected_scenes']} camera shot(s) in affected scenes.</small>"
                           if f.get("gate", {}).get("blocked_at_episode") else "")
-                       + "<table><tr><th>ep</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
+                       + "<table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
             for ev in f["evidence"]:
-                out.append(f"<tr class='{'odd' if ev['odd'] else ''}'><td>{ev['episode']}</td><td>{ev['timestamp']}</td>"
+                out.append(f"<tr class='{'odd' if ev['odd'] else ''}'><td>{ev['episode']}</td><td>{ev.get('line', '')}</td><td>{ev['timestamp']}</td>"
                            f"<td>{e(str(ev['where']))}</td><td>{e(ev['value'])}</td><td class=q>“{e(ev['quote'][:200])}”</td></tr>")
             out.append("</table></div>")
     if cleared is not None:

@@ -1,0 +1,6 @@
+characters:
+  Reyes: [{label: THE SAILOR, episodes: all}, {label: CAPTAIN REYES, episodes: all}]
+  Iris: [{label: IRIS, episodes: all}]
+  Tom: [{label: TOM, episodes: all}]
+  Mother: [{label: WOMAN, episodes: [2]}]
+  Innkeeper: [{label: WOMAN, episodes: [5]}]

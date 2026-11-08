@@ -60,6 +60,12 @@
   "detail": "dismissed F-d3426089f1 -> status dismissed; other flags unchanged=True"
  },
  {
+  "n": 13,
+  "check": "held-out fictional show runs end to end; recall reported as-is (not a tuning target)",
+  "pass": true,
+  "detail": "found 7/9 planted errors (95% CI [0.45, 0.94]), actionable precision 1.0, alias F1 1.0; missed ['village_name', 'ship_name']"
+ },
+ {
   "n": 10,
   "check": "run log records calls, tokens, wall time, est. cost",
   "pass": true,

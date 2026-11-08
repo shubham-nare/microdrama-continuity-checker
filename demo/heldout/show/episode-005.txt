@@ -1,0 +1,34 @@
+EPISODE NUMBER: Episode 5
+EPISODE LOGLINE: At the village inn, the innkeeper warns Iris that the harbor master plans to seize the boat at dawn.
+CONTINUITY NOTES: Follows Episode 4; evening at the inn in Kestrel Cove.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: INT. KESTREL COVE INN – NIGHT
+Scene start: 00:00.00
+Scene end: 00:40.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Wide shot of the crowded inn. A stout innkeeper in a stained apron wipes the bar.
+
+**WOMAN (Low, Urgent):**
+Start: (00:04.50) | End: (00:08.00)
+"You didn't hear it from me, love. He takes the boat at dawn."
+
+**CAMERA:**
+Start: (00:08.00) | End: (00:12.00)
+Close-up of Iris's green eyes widening in the firelight.
+
+**IRIS (Resolved):**
+Start: (00:12.50) | End: (00:15.00)
+"Then we sail tonight."
+
+**SOUND FX:**
+Start: (00:38.00) | End: (00:40.00)
+Thunder rolls over the bay, cliffhanger sting.
+
+--- SCRIPT END ---

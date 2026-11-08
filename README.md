@@ -10,6 +10,12 @@ Each flag quotes the script with the episode, element ID and timestamp, and code
 
 What it catches today, and what it misses, is measured and reported in `outputs/<run>/eval.json` and in the solution doc. It does not catch everything.
 
+## Before a live run (e.g. a new show)
+```bash
+python run.py --preflight --data path/to/new_show     # checks format, model, key with one probe call, estimates calls/time
+```
+If an episode's model call fails, the run continues. The episode is listed as "not read" in the report, and the code-only name check still covers it.
+
 ## Run
 ```bash
 pip install -r requirements.txt
@@ -38,3 +44,10 @@ Responses are cached in `.cache/`, so a re-run is free and gives identical outpu
 
 ## Confidentiality
 The Kuku screenplays (`data/`) and every output that quotes them (`outputs/`) are git-ignored and never committed.
+
+## How this was built (AI use)
+The code was written with Claude Code. `CLAUDE.md`, `PROMPTS.md` and `.claude/agents/` are the harness I used:
+- a planning prompt
+- an improvement loop where every iteration ran the full pack, the automatic checks and an independent "critic" reviewer, plus a "fresh-eyes" reviewer and a "contrarian" for ideas
+
+The decisions, failures and fixes from that loop are summarised in the solution doc. The full logs are in the private outputs bundle. `demo/heldout/` is a fictional show written after the rules were final, used only as a held-out test.

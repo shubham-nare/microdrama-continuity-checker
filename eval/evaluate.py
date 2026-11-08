@@ -522,6 +522,26 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
         add(12, "human loop: an editor's dismiss decision is applied on the next run (stable flag ids, 0 live calls)",
             ok_hl, f"dismissed {target['id']} -> status {st.get(target['id'])}; other flags unchanged={set(st) == {f['id'] for f in flags}}")
     shutil.rmtree(hl_dir, ignore_errors=True)
+    # 13 held-out fictional show (written in iter 7, never used for tuning): run and report as-is
+    held_dir = ROOT / "demo" / "heldout"
+    if (held_dir / "show").exists():
+        saved = GOLD_DIR
+        try:
+            GOLD_DIR = held_dir / "gold"
+            hres = run_pipeline(held_dir / "show", out / "heldout_run", "held-out show", None, 3, log=lambda *a: None)
+            hreal = score_real(hres["flags"])
+            hreal["loss_stage"] = loss_stages(hres)
+            hal = score_aliases(hres["res"].get("model_assign", hres["res"]["assign"]))
+            ev["heldout"] = {"real": hreal, "aliases": hal, "summary": hres["summary"],
+                             "ci95": wilson(hreal.get("distinct_gold_found", 0), hreal.get("n_gold", 0))}
+            add(13, "held-out fictional show runs end to end; recall reported as-is (not a tuning target)", True,
+                f"found {hreal.get('distinct_gold_found')}/{hreal.get('n_gold')} planted errors "
+                f"(95% CI {ev['heldout']['ci95']}), actionable precision {hreal.get('precision')}, alias F1 {hal['f1']}; "
+                f"missed {[k for k, v in hreal['found'].items() if not v]}")
+        except Exception as e:
+            add(13, "held-out fictional show runs end to end", False, f"crashed: {e}")
+        finally:
+            GOLD_DIR = saved
     rl = json.loads((out / "run_log.json").read_text(encoding="utf-8"))
     add(10, "run log records calls, tokens, wall time, est. cost",
         all(k in rl for k in ("usage", "wall_seconds", "est_cost_usd_paid_tier")),

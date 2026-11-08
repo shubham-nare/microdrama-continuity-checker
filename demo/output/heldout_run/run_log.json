@@ -1,0 +1,80 @@
+{
+ "usage": {
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "fallback": "gemini-3.1-flash-lite",
+  "calls_total": 7,
+  "calls_live": 0,
+  "calls_cached": 7,
+  "in_tokens": 6612,
+  "out_tokens": 3909,
+  "live_seconds": 0,
+  "models_used": [
+   "gemini-3.5-flash-lite"
+  ]
+ },
+ "wall_seconds": 0.1,
+ "est_cost_usd_paid_tier": 0.0022,
+ "price_assumption_per_M": [
+  0.1,
+  0.4
+ ],
+ "calls": [
+  {
+   "tag": "extract:ep1",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 994,
+   "out_tokens": 747,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep2",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 971,
+   "out_tokens": 697,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep3",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 881,
+   "out_tokens": 418,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep4",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 952,
+   "out_tokens": 610,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep5",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 875,
+   "out_tokens": 335,
+   "seconds": 0.0
+  },
+  {
+   "tag": "resolve",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 1014,
+   "out_tokens": 560,
+   "seconds": 0.0
+  },
+  {
+   "tag": "adjudicate:1",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 925,
+   "out_tokens": 542,
+   "seconds": 0.0
+  }
+ ]
+}

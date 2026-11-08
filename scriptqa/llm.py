@@ -74,6 +74,8 @@ class LLM:
                     return result
                 except ValidationError as e:  # model returned JSON that breaks the schema: retry once more
                     last_err = e
+                except LLMError:
+                    raise  # configuration problem (missing key, unknown provider): retrying won't help
                 except Exception as e:  # rate limit / transient
                     last_err = e
                     msg = str(e)

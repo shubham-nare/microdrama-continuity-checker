@@ -1,0 +1,83 @@
+{
+ "characters": {
+  "Captain Reyes": {
+   "id": "captain_reyes",
+   "canonical": "Captain Reyes",
+   "reason": "The unnamed sailor in episode 1 is revealed to be Captain Reyes in episode 2.",
+   "labels": {
+    "CAPTAIN REYES": [
+     2,
+     4
+    ],
+    "THE SAILOR": [
+     1
+    ]
+   }
+  },
+  "Iris": {
+   "id": "iris",
+   "canonical": "Iris",
+   "reason": "Iris Marlowe appears consistently across all episodes as the main character trying to sell her father's boat.",
+   "labels": {
+    "IRIS": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  },
+  "Iris's mother": {
+   "id": "iris_s_mother",
+   "canonical": "Iris's mother",
+   "reason": "Labeled as Iris's mother in the notes for episode 2.",
+   "labels": {
+    "WOMAN": [
+     2
+    ]
+   }
+  },
+  "The innkeeper": {
+   "id": "the_innkeeper",
+   "canonical": "The innkeeper",
+   "reason": "Described as a stout innkeeper in episode 5.",
+   "labels": {
+    "WOMAN": [
+     5
+    ]
+   }
+  },
+  "Tom": {
+   "id": "tom",
+   "canonical": "Tom",
+   "reason": "Tom Marlowe is Iris's relative/associate who injures his arm in episode 2/3.",
+   "labels": {
+    "TOM": [
+     1,
+     3
+    ]
+   }
+  }
+ },
+ "collisions": [
+  {
+   "label": "WOMAN",
+   "characters": {
+    "Iris's mother": [
+     2
+    ],
+    "The innkeeper": [
+     5
+    ]
+   }
+  }
+ ],
+ "subject_map": {
+  "iris": "Iris",
+  "tom": "Tom",
+  "captain reyes": "Captain Reyes",
+  "iris's mother": "Iris's mother"
+ },
+ "problems": []
+}

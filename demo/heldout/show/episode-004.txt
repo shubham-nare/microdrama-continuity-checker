@@ -1,0 +1,42 @@
+EPISODE NUMBER: Episode 4
+EPISODE LOGLINE: Reyes confesses he owes the same debt, and Iris must decide whether to trust him with the boat.
+CONTINUITY NOTES: Follows Episode 3; the next morning at the harbor office.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: INT. HARBOR OFFICE – DAY
+Scene start: 00:00.00
+Scene end: 00:45.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Medium shot of Captain Reyes rubbing the scar over his left eyebrow as he faces Iris.
+
+**CAPTAIN REYES (Ashamed):**
+Start: (00:04.50) | End: (00:08.00)
+"The debt is half mine. Your father covered for me on the Gannet."
+
+**IRIS (Angry):**
+Start: (00:08.50) | End: (00:12.00)
+"You let a dead man carry your debt, Captain?"
+
+**CAMERA:**
+Start: (00:12.00) | End: (00:16.00)
+Close-up of the brass compass at Iris's throat as she clutches it.
+
+**IRIS (Quiet):**
+Start: (00:16.50) | End: (00:20.00)
+"My cousin Tom thinks you're a good man. I don't."
+
+**CAPTAIN REYES (Firm):**
+Start: (00:20.50) | End: (00:23.00)
+"Then let me prove it, Miss Marlow."
+
+**SOUND FX:**
+Start: (00:43.00) | End: (00:45.00)
+A door slams, cliffhanger sting.
+
+--- SCRIPT END ---

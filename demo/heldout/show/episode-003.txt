@@ -1,0 +1,34 @@
+EPISODE NUMBER: Episode 3
+EPISODE LOGLINE: With Tom's arm in a sling, Iris finds her father's logbook hidden in the cabin and a debt she never knew about.
+CONTINUITY NOTES: Follows Episode 2; two days later in Kestrel Bay.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: INT. BOAT CABIN – NIGHT
+Scene start: 00:00.00
+Scene end: 00:40.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Medium shot of Tom in the doorway, his right arm bound in a white sling.
+
+**TOM (Wincing):**
+Start: (00:04.50) | End: (00:07.00)
+"Doc says six weeks. Did you find it?"
+
+**CAMERA:**
+Start: (00:07.00) | End: (00:11.00)
+Close-up of Iris's hazel eyes scanning a water-stained logbook by lamplight.
+
+**IRIS (Stunned):**
+Start: (00:11.50) | End: (00:15.00)
+"Dad owed the Kestrel Bay harbor master four thousand dollars."
+
+**SOUND FX:**
+Start: (00:38.00) | End: (00:40.00)
+Footsteps on the deck above, cliffhanger sting.
+
+--- SCRIPT END ---

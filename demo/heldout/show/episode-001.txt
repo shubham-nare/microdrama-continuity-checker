@@ -1,0 +1,42 @@
+EPISODE NUMBER: Episode 1
+EPISODE LOGLINE: Iris Marlowe returns to the fishing village of Kestrel Bay to sell her late father's boat, and meets a weathered sailor who refuses to leave it.
+CONTINUITY NOTES: First episode. Fictional held-out test show written for this tool; not Kuku content.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: EXT. KESTREL BAY HARBOR – DAWN
+Scene start: 00:00.00
+Scene end: 00:45.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Wide shot of Iris walking the wet pier, her long red hair whipping in the wind, a silver compass hanging from a chain at her throat.
+
+**IRIS (Determined):**
+Start: (00:04.50) | End: (00:07.50)
+"I'm selling the boat, Tom. Whatever Dad wanted."
+
+**TOM (Pleading):**
+Start: (00:08.00) | End: (00:11.00)
+"You can't, Iris. It's the last thing of his we have."
+
+**IRIS (Softening):**
+Start: (00:11.50) | End: (00:14.00)
+"My brother Tom always did love lost causes."
+
+**CAMERA:**
+Start: (00:14.00) | End: (00:18.00)
+Close-up of Iris's hazel eyes narrowing as a figure stirs on the deck of the boat.
+
+**THE SAILOR (Gruff):**
+Start: (00:18.50) | End: (00:22.00)
+"Nobody sells this boat while I'm aboard, Miss Marlowe."
+
+**SOUND FX:**
+Start: (00:43.00) | End: (00:45.00)
+Gulls scream over a sudden swell, cliffhanger sting.
+
+--- SCRIPT END ---

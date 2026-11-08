@@ -115,6 +115,7 @@ def build_name_groups(name_groups: list[dict], eps_by_num: dict) -> list[dict]:
                               "element_id": o["element_id"] or f"E{o['episode']:03d}-HEADER",
                               "element_kind": el.kind if el else "HEADER", "speaker": el.speaker if el else None,
                               "start": el.start if el else 0.0, "is_change": False, "canon": "(name spelling)",
+                              "file": eps_by_num[o["episode"]].file, "line": el.line if el else 2,
                               "count": m["count"], "all_episodes": m["episodes"]})
         out.append({"source": "names", "kind": "NAME", "subject": "(name spelling)",
                     "attribute": "/".join(m["name"] for m in g["members"]), "items": items})
@@ -206,6 +207,7 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
             "episode": it["episode"], "element_id": it["element_id"], "timestamp": fmt_ts(it.get("start", 0.0)),
             "where": f"{it['speaker']} (dialogue)" if it.get("element_kind") == "DIALOGUE" else it.get("element_kind"),
             "value": it["value"], "quote": it["quote"], "odd": i in odd_idx,
+            "file": it.get("file"), "line": it.get("line"),
         } for i, it in enumerate(g["items"])]
         audible = any(e["where"] and "dialogue" in e["where"] for e in evidence if e["odd"]) or \
             (not odd and any(e["where"] and "dialogue" in e["where"] for e in evidence))
@@ -249,7 +251,8 @@ def label_flags(res: dict, eps_by_num: dict) -> list[dict]:
             el = first_line(c["label"], es[0])
             if el:
                 ev.append({"episode": es[0], "element_id": el.id, "timestamp": fmt_ts(el.start),
-                           "where": f"{el.speaker} (dialogue)", "value": char, "quote": el.text[:160], "odd": False})
+                           "where": f"{el.speaker} (dialogue)", "value": char, "quote": el.text[:160], "odd": False,
+                           "file": eps_by_num[es[0]].file, "line": el.line})
         fp = hashlib.sha1(f"collision|{c['label']}".encode()).hexdigest()[:10]
         flags.append({"id": f"F-{fp}", "type": "LABEL_COLLISION", "kind": "LABEL", "source": "resolve",
                       "subject": c["label"], "attribute": "speaker label",
@@ -267,7 +270,8 @@ def label_flags(res: dict, eps_by_num: dict) -> list[dict]:
             el = first_line(lab, es[0])
             if el:
                 ev.append({"episode": es[0], "element_id": el.id, "timestamp": fmt_ts(el.start),
-                           "where": f"{el.speaker} (dialogue)", "value": lab, "quote": el.text[:160], "odd": False})
+                           "where": f"{el.speaker} (dialogue)", "value": lab, "quote": el.text[:160], "odd": False,
+                           "file": eps_by_num[es[0]].file, "line": el.line})
         fp = hashlib.sha1(f"alias|{canon}".encode()).hexdigest()[:10]
         flags.append({"id": f"F-{fp}", "type": "LABEL_ALIAS", "kind": "LABEL", "source": "resolve",
                       "subject": canon, "attribute": "speaker labels", "severity": "info", "audible": False,

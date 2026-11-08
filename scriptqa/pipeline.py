@@ -60,8 +60,20 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
     log(f"[parse] {len(eps)} episodes, {sum(len(e.elements) for e in eps)} elements")
 
     # 1. extract (model reads), 2. verify (code checks quotes)
+    failed = []
+
+    def safe_extract(ep):
+        try:
+            return extract_episode(llm, ep)
+        except Exception as e:  # quota, schema, network: keep going, report the episode as not read
+            failed.append({"episode": ep.number, "error": str(e)[:200]})
+            return {"labels": [], "facts": []}
+
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        raws = list(ex.map(lambda ep: extract_episode(llm, ep), eps))
+        raws = list(ex.map(safe_extract, eps))
+    if failed:
+        log(f"[extract] WARNING: {len(failed)} episode(s) NOT READ by the model: {sorted(f['episode'] for f in failed)} "
+            "(the code-only name check still covers them)")
     facts, hints, vstats = [], [], {}
     for ep, raw in zip(eps, raws):
         v, st = verify_episode(raw, ep)
@@ -102,6 +114,7 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
         "flags_collision": count("LABEL_COLLISION"), "flags_alias": count("LABEL_ALIAS"), "flags_review": count("REVIEW"),
         "characters": len(res["characters"]),
         "review": review_stats, "human_alias_overrides": res.get("human_overrides", 0),
+        "episodes_not_read": sorted(f["episode"] for f in failed), "extract_errors": failed,
     }
     dump(out / "flags.json", flags)
     report.write_flags_csv(flags, out / "flags.csv")

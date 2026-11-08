@@ -1,0 +1,42 @@
+EPISODE NUMBER: Episode 2
+EPISODE LOGLINE: The sailor reveals he is Captain Reyes, her father's old partner, while Tom breaks his arm trying to drag the boat ashore.
+CONTINUITY NOTES: Picks up from Episode 1 on the boat deck.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: EXT. BOAT DECK – MORNING
+Scene start: 00:00.00
+Scene end: 00:50.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Medium shot of the sailor stepping into the light. A pale scar cuts across his right eyebrow.
+
+**CAPTAIN REYES (Steady):**
+Start: (00:04.50) | End: (00:08.00)
+"Name's Reyes. Captain Reyes. I sailed the Gull with your father for twenty years."
+
+**IRIS (Cold):**
+Start: (00:08.50) | End: (00:11.00)
+"Then you know the Gull is mine now, Captain."
+
+**ACTION:**
+Start: (00:11.00) | End: (00:16.00)
+Tom slips on the wet ramp hauling the mooring line and falls hard. He clutches his left arm, which hangs broken.
+
+**WOMAN (Worried, Calling from the pier):**
+Start: (00:16.50) | End: (00:19.00)
+"Tom! Iris, get your brother off that ramp!"
+
+**CAMERA:**
+Start: (00:19.00) | End: (00:23.00)
+Wide shot of Iris's mother hurrying down the pier in a grey shawl.
+
+**SOUND FX:**
+Start: (00:48.00) | End: (00:50.00)
+A rope snaps, cliffhanger sting.
+
+--- SCRIPT END ---

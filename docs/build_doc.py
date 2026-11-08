@@ -67,6 +67,11 @@ def main(run: Path) -> int:
         "seed_ci": "–".join(f"{round(100 * x)}%" for x in seeded.get("ci95", [0, 0])),
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
+        "held_found": (e.get("heldout") or {}).get("real", {}).get("distinct_gold_found", "n/a"),
+        "held_n": (e.get("heldout") or {}).get("real", {}).get("n_gold", "n/a"),
+        "held_ci": "–".join(f"{round(100 * x)}%" for x in (e.get("heldout") or {}).get("ci95", [0, 0])),
+        "held_prec": pct((e.get("heldout") or {}).get("real", {}).get("precision")),
+        "held_missed": ", ".join(k.replace("_", " ") for k, v in (e.get("heldout") or {}).get("real", {}).get("found", {}).items() if not v) or "none",
         "loss_text": "; ".join(f"{titles.get(k, k)}: {v}" for k, v in real.get("loss_stage", {}).items() if v != "flagged") or "none",
         "gate_text": (f"For example, the spelling family {', '.join(top_gate['gate']['odd_values'][:4])}… would have been blocked at episode "
                       f"{top_gate['gate']['blocked_at_episode']}. Missing it lets the odd spellings into {top_gate['gate']['later_dialogue_lines']} later spoken lines "

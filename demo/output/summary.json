@@ -25,5 +25,7 @@
   "accepted": 0,
   "open": 4
  },
- "human_alias_overrides": 0
+ "human_alias_overrides": 0,
+ "episodes_not_read": [],
+ "extract_errors": []
 }

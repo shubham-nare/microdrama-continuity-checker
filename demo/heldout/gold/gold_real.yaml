@@ -1,0 +1,12 @@
+# Held-out test show (fictional), written in iter 7 AFTER all heuristics were built; never used for tuning.
+# Run once per iteration and reported as-is.
+items:
+  - {id: surname_spelling, title: "surname Marlowe vs Marlow", values: [Marlowe, Marlow], min_values: 2, episodes_any: [4]}
+  - {id: village_name, title: "Kestrel Bay vs Kestrel Cove", values: [Kestrel Bay, Kestrel Cove], min_values: 2, episodes_any: [5]}
+  - {id: eye_colour, title: "Iris's eyes hazel vs green", values: [hazel, green], min_values: 2, episodes_any: [5]}
+  - {id: broken_arm_side, title: "Tom's broken arm left vs right", values: [left, right], min_values: 2, episodes_all: [2, 3]}
+  - {id: compass_material, title: "compass silver vs brass", values: [silver, brass], min_values: 2, episodes_any: [4]}
+  - {id: brother_cousin, title: "Tom: brother vs cousin", values: [brother, cousin], min_values: 2, episodes_all: [1, 4]}
+  - {id: ship_name, title: "ship the Gull vs the Gannet", values: [Gull, Gannet], min_values: 2, episodes_any: [4]}
+  - {id: scar_side, title: "Reyes's scar right vs left eyebrow", values: [right, left], min_values: 2, episodes_all: [2, 4]}
+  - {id: woman_collision, title: "label WOMAN = mother (ep2) and innkeeper (ep5)", flag_type: LABEL_COLLISION, label: WOMAN}
