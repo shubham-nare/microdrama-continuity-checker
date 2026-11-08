@@ -5,8 +5,11 @@ from review/decisions.yaml if given, otherwise the tool's suggestion (the spelli
 Every whole-word occurrence of the other spellings in that flag is replaced, in copies of the scripts.
 Then the pure-code spelling check runs again on the patched copies and reports what is left.
 
-Only names are patched: a trait or injury needs a writer's judgement about which line is wrong, so those
-flags stay as suggestions.
+Safety rule: when two flags would keep DIFFERENT spellings of what may be one name (e.g. 'Ashbourne' for the
+estate and 'Ashburton' for the surname), the patch would write a new contradiction into the script. Both are
+held until an editor sets one canonical value; a separate preview shows what one shared spelling would do.
+
+Only names are patched: a trait or injury needs a writer's judgement about which line is wrong.
 """
 from __future__ import annotations
 
@@ -14,6 +17,8 @@ import difflib
 import json
 import re
 from pathlib import Path
+
+from rapidfuzz import fuzz
 
 from .names import variant_groups
 from .parse import parse_folder
@@ -32,16 +37,28 @@ def plan_fixes(flags: list[dict], decisions: dict) -> list[dict]:
         odd = [v for v in (g.get("odd_values") or []) if v != keep]
         if keep and odd:
             plan.append({"flag": f["id"], "summary": f["summary"], "keep": keep, "replace": odd,
+                         "by_editor": bool(d.get("canonical")),
                          "chosen_by": "editor" if d.get("canonical") else "tool suggestion (not yet accepted by an editor)"})
+    # hold flags whose kept spellings are themselves variants of each other, unless an editor chose both
+    for i, a in enumerate(plan):
+        for b in plan[i + 1:]:
+            if a["keep"] != b["keep"] and fuzz.ratio(a["keep"].lower(), b["keep"].lower()) >= 75 \
+                    and not (a["by_editor"] and b["by_editor"]):
+                for x, y in ((a, b), (b, a)):
+                    x.setdefault("held_with", []).append(y["flag"])
+    for p in plan:
+        if p.get("held_with"):
+            p["status"] = (f"HELD: keeps '{p['keep']}' while flag {', '.join(p['held_with'])} keeps a variant of it; "
+                           "an editor must choose one spelling for both")
+        else:
+            p["status"] = "applied"
     return plan
 
 
-def apply_fixes(data: Path, flags: list[dict], decisions: dict, out: Path) -> dict:
-    plan = plan_fixes(flags, decisions)
-    before = variant_groups(parse_folder(data))
+def _patch(data: Path, plan: list[dict], out: Path) -> dict:
     pdir = out / "patched_scripts"
     pdir.mkdir(parents=True, exist_ok=True)
-    diff_lines, changed, per_flag = [], 0, {p["flag"]: 0 for p in plan}
+    diff_lines, changed = [], 0
     for src in sorted(data.glob("*.txt")):
         text = src.read_text(encoding="utf-8")
         new_lines = []
@@ -49,8 +66,7 @@ def apply_fixes(data: Path, flags: list[dict], decisions: dict, out: Path) -> di
             new = ln
             for p in plan:
                 for o in p["replace"]:
-                    new, n = re.subn(rf"\b{re.escape(o)}\b", p["keep"], new)
-                    per_flag[p["flag"]] += n
+                    new = re.sub(rf"\b{re.escape(o)}\b", p["keep"], new)
             changed += new != ln
             new_lines.append(new)
         patched = "".join(new_lines)
@@ -58,14 +74,31 @@ def apply_fixes(data: Path, flags: list[dict], decisions: dict, out: Path) -> di
         if patched != text:
             diff_lines += difflib.unified_diff(text.splitlines(keepends=True), new_lines,
                                                f"a/{src.name}", f"b/{src.name}", n=0)
-    after = variant_groups(parse_folder(pdir))
-
-    def fmt(groups):
-        return [", ".join(f"{m['name']} x{m['count']}" for m in g["members"]) for g in groups]
-
-    rec = {"plan": plan, "lines_changed": changed, "replacements_per_flag": per_flag,
-           "spelling_groups_before": fmt(before), "spelling_groups_after": fmt(after),
-           "patched_scripts": str(pdir), "diff": "fix.diff"}
     (out / "fix.diff").write_text("".join(diff_lines), encoding="utf-8")
+    return {"lines_changed": changed, "after": variant_groups(parse_folder(pdir))}
+
+
+def _fmt(groups):
+    return [", ".join(f"{m['name']} x{m['count']}" for m in g["members"]) for g in groups]
+
+
+def apply_fixes(data: Path, flags: list[dict], decisions: dict, out: Path) -> dict:
+    plan = plan_fixes(flags, decisions)
+    before = variant_groups(parse_folder(data))
+    counts = {m["name"]: m["count"] for g in before for m in g["members"]}
+    main = _patch(data, [p for p in plan if p["status"] == "applied"], out)
+    rec = {"plan": plan, "lines_changed": main["lines_changed"],
+           "spelling_groups_before": _fmt(before), "spelling_groups_after": _fmt(main["after"]),
+           "patched_scripts": "patched_scripts/ (local only: full scripts)", "diff": "fix.diff"}
+    held = [p for p in plan if p["status"] != "applied"]
+    if held:  # preview: one shared spelling for each held cluster (the most frequent of the kept values)
+        shared = max({p["keep"] for p in held}, key=lambda v: counts.get(v, 0))
+        prev_plan = [p for p in plan if p["status"] == "applied"] + [
+            {**p, "keep": shared, "replace": sorted(set(p["replace"]) | ({p["keep"]} - {shared}))} for p in held]
+        prev = _patch(data, prev_plan, out / "preview_one_spelling")
+        rec["preview_one_spelling"] = {"shared_value": shared, "lines_changed": prev["lines_changed"],
+                                       "spelling_groups_after": _fmt(prev["after"]),
+                                       "note": "NOT applied: what the patch would do if an editor chose this one spelling for "
+                                               "the held flags (set it as canonical for each in review/decisions.yaml)"}
     (out / "fix_and_recheck.json").write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf-8")
     return rec

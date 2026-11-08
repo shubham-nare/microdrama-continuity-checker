@@ -77,14 +77,15 @@ def fix_vals(run: Path) -> dict:
     """Fix-and-recheck numbers (run.py writes <run>/fix/fix_and_recheck.json)."""
     p = run / "fix" / "fix_and_recheck.json"
     if not p.exists():
-        return {"fix_lines": "?", "fix_before": "?", "fix_after": "?", "fix_left": "not run"}
+        return {"fix_lines": "?", "fix_held": "?", "pv_value": "?", "pv_lines": "?", "pv_left": "?"}
     r = json.loads(p.read_text(encoding="utf-8"))
-    unchanged = set(r["spelling_groups_before"]) & set(r["spelling_groups_after"])
-    before = [g for g in r["spelling_groups_before"] if g not in unchanged]
-    after = [g for g in r["spelling_groups_after"] if g not in unchanged]
-    n = lambda gs: sum(len(g.split(", ")) for g in gs)
-    return {"fix_lines": r["lines_changed"], "fix_before": n(before), "fix_after": n(after),
-            "fix_left": "; ".join(" vs ".join(m.rsplit(" x", 1)[0] for m in g.split(", ")) for g in after) or "nothing"}
+    held = [x["keep"] for x in r["plan"] if x["status"] != "applied"]
+    pv = r.get("preview_one_spelling") or {}
+    unchanged = set(r["spelling_groups_before"]) & set(pv.get("spelling_groups_after", []))
+    left = [g for g in pv.get("spelling_groups_after", []) if g not in unchanged]
+    return {"fix_lines": r["lines_changed"], "fix_held": " and ".join(held) or "none",
+            "pv_value": pv.get("shared_value", "n/a"), "pv_lines": pv.get("lines_changed", 0),
+            "pv_left": "no flagged spelling remains" if not left else "left: " + "; ".join(left)}
 
 
 def onecall_vals() -> dict:
