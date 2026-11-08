@@ -260,7 +260,7 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
             (not odd and any(e["where"] and "dialogue" in str(e["where"]) for e in evidence))
         seen_ev, uniq = set(), []
         for e_ in evidence:  # the same line can be cited twice (two values in one sentence): keep it once
-            k = (e_["element_id"], e_["value"])
+            k = e_["element_id"]  # one row per script line, even if two values sit in one sentence
             if k not in seen_ev:
                 seen_ev.add(k)
                 uniq.append(e_)

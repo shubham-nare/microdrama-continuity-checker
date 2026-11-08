@@ -169,7 +169,7 @@
     "where": "CAPTAIN REYES (dialogue)",
     "value": "the Gull",
     "quote": "I sailed the Gull with your father",
-    "odd": false,
+    "odd": true,
     "file": "episode-002.txt",
     "line": 20
    },
@@ -180,7 +180,7 @@
     "where": "CAPTAIN REYES (dialogue)",
     "value": "Gannet",
     "quote": "Your father covered for me on the Gannet.",
-    "odd": true,
+    "odd": false,
     "file": "episode-004.txt",
     "line": 20
    }

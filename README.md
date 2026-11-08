@@ -41,7 +41,7 @@ python run.py --data demo/heldout/show --gate demo/gate/episode-006.txt --out de
 #    new  ep6 line 16: 'brown' "Close-up of Iris's brown eyes"
 #    show ep1 line 32: 'hazel' "Iris's hazel eyes narrowing"
 ```
-Earlier episodes come from the cache, so a gate costs about 1 extraction call plus re-checking. The exit code is 1 when something is blocked, so it can sit in a pipeline.
+Earlier episodes come from the cache, so a gate costs about 1 extraction call plus re-checking. Verdicts: BLOCKED (the episode introduces a value the show never used), NEEDS SIGN-OFF (it repeats a value earlier episodes already disagree on), PASS. Exit code 1 unless PASS, so it can sit in a pipeline.
 
 ## Swap the model (env vars only, no code change)
 ```bash
@@ -61,4 +61,4 @@ The code was written with Claude Code. `CLAUDE.md`, `PROMPTS.md` and `.claude/ag
 - a planning prompt
 - an improvement loop where every iteration ran the full pack, the automatic checks and an independent "critic" reviewer, plus a "fresh-eyes" reviewer and a "contrarian" for ideas
 
-The decisions, failures and fixes from that loop are summarised in the solution doc. The full logs are in the private outputs bundle. `demo/heldout/` is a fictional show written in iteration 7 and never used for tuning (rules added later did not change its score), used only as a held-out test.
+The decisions, failures and fixes from that loop are summarised in the solution doc. The full logs are in the private outputs bundle. `demo/heldout/` is a fictional show written in iteration 7; one later change (judging each candidate separately) was prompted by a verdict flip seen on it and moved its stored score from 7/9 to 8/9; fresh runs give 5–6/9, used only as a held-out test.

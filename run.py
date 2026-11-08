@@ -107,7 +107,9 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
         print(f"WARN (earlier episodes already disagree; this one sides with one of them) {f['summary']}")
     if agrees:
         print(f"note: {len(agrees)} older conflict(s) touch this episode, but it follows the established value")
-    if not hits:
+    if not hits and ties:
+        print(f"NEEDS SIGN-OFF: this episode repeats {len(ties)} value(s) that earlier episodes already disagree on; an editor must pick one")
+    elif not hits:
         print("PASS: no continuity conflict involving this episode")
     for f in hits:
         mine = [e for e in f["evidence"] if e["episode"] == new.number]
@@ -120,13 +122,15 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     import html as _h
     rep = out / "report.html"
     if rep.exists():
-        colour = "#c62828" if hits else "#2e7d32"
+        colour = "#c62828" if hits else ("#ef6c00" if ties else "#2e7d32")
+        verdict = "BLOCKED" if hits else ("NEEDS SIGN-OFF" if ties else "PASS")
         carried = sum(1 for f in r["flags"] if f["type"] in ("CONTRADICTION", "REVIEW", "LABEL_COLLISION")) - len(hits)
         banner = (f"<div style='border:2px solid {colour};padding:10px;border-radius:8px;margin:10px 0'><b>Gate result for episode {new.number}: "
                   + (f"{len(ties)} warning(s) where earlier episodes already disagree. " if ties else "")
                   + "Blocked = this episode introduces a value the show never used. "
                   + (f"BLOCKED by {len(hits)} new conflict(s)</b><ul>" + "".join(f"<li>{_h.escape(f['summary'])}</li>" for f in hits) + "</ul>"
-                     if hits else "PASS</b>")
+                     if hits else (f"NEEDS SIGN-OFF</b> (repeats a disputed value)<ul>" + "".join(f"<li>{_h.escape(f['summary'])}</li>" for f in ties) + "</ul>"
+                                   if ties else "PASS</b>"))
                   + f"<small>{carried} other flag(s) below are carried over from earlier episodes, not caused by this one.</small></div>")
         t = rep.read_text(encoding="utf-8")
         i = t.find("</h1>")
@@ -135,6 +139,7 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     gpath = out / "gate.json"
     rec = {"episode": new.number, "file": new_ep.name, "earlier_episodes": len(list(data.glob("*.txt"))),
            "live_calls": u["calls_live"], "seconds": r["runlog"]["wall_seconds"], "blocked": [f["summary"] for f in hits],
+           "verdict": "BLOCKED" if hits else ("NEEDS SIGN-OFF" if ties else "PASS"),
            "warn_earlier_disagree": [f["summary"] for f in ties], "older_conflicts_followed": [f["summary"] for f in agrees],
            "evidence": [{"flag": f["id"], "new": [{"line": e["line"], "value": e["value"], "quote": e["quote"]} for e in f["evidence"] if e["episode"] == new.number],
                          "earlier": [{"episode": e["episode"], "line": e["line"], "value": e["value"], "quote": e["quote"]} for e in f["evidence"] if e["episode"] != new.number][:3]}
@@ -145,7 +150,7 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
         rec["note"] = "live_calls/seconds are from the last live (uncached) gate run"
     gpath.write_text(json.dumps(rec, indent=1), encoding="utf-8")
     shutil.rmtree(work, ignore_errors=True)
-    return 1 if hits else 0
+    return 1 if (hits or ties) else 0
 
 
 def model_hint(msg: str) -> str:

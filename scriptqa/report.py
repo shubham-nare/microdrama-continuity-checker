@@ -73,6 +73,9 @@ def gate_replay(eps: list[Episode], flags: list[dict]) -> None:
                             lines += 1
                         hit_scenes.add(el.scene)
                 shots += sum(1 for el in ep.elements if el.kind == "CAMERA" and el.scene in hit_scenes)
+        if f.get("source") == "names" or f.get("kind") == "NAME":
+            for e_ in f["evidence"]:  # highlight against the form we tell the editor to keep
+                e_["odd"] = e_["value"] != major
         f["gate"] = {"blocked_at_episode": gate, "majority_value": major, "odd_values": odd,
                      "later_dialogue_lines": lines, "later_camera_shots_in_affected_scenes": shots}
 

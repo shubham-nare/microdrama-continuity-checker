@@ -21,6 +21,14 @@
  ],
  "calls": [
   {
+   "tag": "extract:ep1",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 994,
+   "out_tokens": 747,
+   "seconds": 0.0
+  },
+  {
    "tag": "extract:ep2",
    "model": "gemini-3.5-flash-lite",
    "cache": true,
@@ -37,11 +45,11 @@
    "seconds": 0.0
   },
   {
-   "tag": "extract:ep1",
+   "tag": "extract:ep5",
    "model": "gemini-3.5-flash-lite",
    "cache": true,
-   "in_tokens": 994,
-   "out_tokens": 747,
+   "in_tokens": 875,
+   "out_tokens": 335,
    "seconds": 0.0
   },
   {
@@ -50,14 +58,6 @@
    "cache": true,
    "in_tokens": 952,
    "out_tokens": 610,
-   "seconds": 0.0
-  },
-  {
-   "tag": "extract:ep5",
-   "model": "gemini-3.5-flash-lite",
-   "cache": true,
-   "in_tokens": 875,
-   "out_tokens": 335,
    "seconds": 0.0
   },
   {
@@ -104,16 +104,16 @@
    "tag": "adjudicate:1",
    "model": "gemini-3.5-flash-lite",
    "cache": true,
-   "in_tokens": 373,
-   "out_tokens": 112,
+   "in_tokens": 371,
+   "out_tokens": 100,
    "seconds": 0.0
   },
   {
    "tag": "adjudicate:1",
    "model": "gemini-3.5-flash-lite",
    "cache": true,
-   "in_tokens": 371,
-   "out_tokens": 100,
+   "in_tokens": 373,
+   "out_tokens": 112,
    "seconds": 0.0
   },
   {

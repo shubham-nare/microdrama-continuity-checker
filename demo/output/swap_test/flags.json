@@ -98,7 +98,7 @@
     "where": "HEADER",
     "value": "Holloway",
     "quote": "Maren Holloway returns to her grandfather's lighthouse",
-    "odd": false,
+    "odd": true,
     "file": "episode-001.txt",
     "line": 2
    },
@@ -109,7 +109,7 @@
     "where": "THE STRANGER (dialogue)",
     "value": "Holloway",
     "quote": "elongs to whoever keeps the light, Miss Holloway.\"",
-    "odd": false,
+    "odd": true,
     "file": "episode-001.txt",
     "line": 36
    },

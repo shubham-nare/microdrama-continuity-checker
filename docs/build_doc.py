@@ -122,7 +122,7 @@ def main(run: Path) -> int:
         "gate_demo": (lambda g: (f"On a never-seen episode of the held-out show it took {g['live_calls']} live model call{'s' if g['live_calls'] != 1 else ''}"
                                  + (f" ({g['seconds'] / 60:.0f} min, while the free tier was rate-limiting)" if g['seconds'] > 120 else f" and {g['seconds']:.0f} s")
                                  + (f" and blocked {len(g['blocked'])} conflict{'s' if len(g['blocked']) != 1 else ''} the new episode introduces." if g.get("blocked") else
-                                    f" and passed, with {len(g.get('warn_earlier_disagree', []))} warnings where earlier episodes already disagree; an episode that introduces a new eye colour is blocked."))
+                                    f": {g.get('verdict', 'PASS')}, because it repeats {len(g.get('warn_earlier_disagree', []))} values earlier episodes already disagree on. An episode that introduces a new eye colour is BLOCKED."))
                       if g else "")(json.loads((ROOT / "demo" / "gate_output_new" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output_new" / "gate.json").exists() else None),
         "held_found": (e.get("heldout") or {}).get("real", {}).get("distinct_gold_found", "n/a"),
         "held_n": (e.get("heldout") or {}).get("real", {}).get("n_gold", "n/a"),
