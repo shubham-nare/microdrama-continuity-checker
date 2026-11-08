@@ -113,6 +113,8 @@ def main(run: Path) -> int:
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
         **extra_vals(real, seeded, flags),
+        "tier_text": "; ".join(f"{t} {d['true']}/{d['n']}" for t, d in sorted(real.get("precision_by_tier", {}).items(),
+                               key=lambda kv: ["high", "medium", "low", "needs a human look"].index(kv[0]) if kv[0] in ["high", "medium", "low", "needs a human look"] else 9)),
         "fresh_text": (lambda d: f" A fresh full live run (empty cache, {d['live_calls']} calls, {d['wall_seconds'] / 60:.0f} min) found {d['real_found']}/{d['real_n']}."
                        if d else "")(json.loads((ROOT / "outputs" / "fresh_full" / "fresh_score.json").read_text(encoding="utf-8"))
                                      if (ROOT / "outputs" / "fresh_full" / "fresh_score.json").exists() else None),

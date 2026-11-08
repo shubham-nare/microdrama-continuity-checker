@@ -31,6 +31,7 @@ def main() -> int:
     ap.add_argument("--preflight", action="store_true", help="check the input and the model connection, then stop")
     ap.add_argument("--gate", type=Path, default=None, help="check ONE new episode file against the show in --data")
     ap.add_argument("--fresh", action="store_true", help="ignore the saved cache: a real live run into a throwaway cache")
+    ap.add_argument("--code-only", action="store_true", help="no model at all: parse + spelling-variant check + speaker labels, in seconds")
     a = ap.parse_args()
     if a.fresh:
         import os
@@ -41,6 +42,8 @@ def main() -> int:
         return preflight(a.data)
     if a.gate:
         return gate(a.data, a.gate, a.out, a.review)
+    if a.code_only:
+        return code_only(a.data, a.out)
     from scriptqa.llm import LLMError
     try:
         result = run(a.data, a.out, a.show, a.review, a.workers)
@@ -151,6 +154,30 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     gpath.write_text(json.dumps(rec, indent=1), encoding="utf-8")
     shutil.rmtree(work, ignore_errors=True)
     return 1 if (hits or ties) else 0
+
+
+def code_only(data: Path, out: Path) -> int:
+    """Interview safety net: what code alone finds (spelling variants, speaker labels) with zero model calls."""
+    import json
+    from scriptqa.names import variant_groups
+    from scriptqa.parse import parse_folder
+    eps = parse_folder(data)
+    groups = variant_groups(eps)
+    labels = {}
+    for e in eps:
+        for el in e.elements:
+            if el.speaker:
+                labels.setdefault(el.speaker, set()).add(e.number)
+    out.mkdir(parents=True, exist_ok=True)
+    rec = {"episodes": len(eps), "elements": sum(len(e.elements) for e in eps),
+           "spelling_groups": [[{"name": m["name"], "count": m["count"], "episodes": m["episodes"]} for m in g["members"]] for g in groups],
+           "speaker_labels": {k: sorted(v) for k, v in sorted(labels.items())}}
+    (out / "code_only.json").write_text(json.dumps(rec, indent=1), encoding="utf-8")
+    print(f"[code-only] {rec['episodes']} episodes, {rec['elements']} lines, {len(labels)} speaker labels, no model calls")
+    for g in rec["spelling_groups"]:
+        print("  spelled several ways: " + ", ".join(f"{m['name']} x{m['count']}" for m in g))
+    print(f"  wrote {out / 'code_only.json'} (the model layer was skipped: no trait, prop, injury or who-is-who checks)")
+    return 0
 
 
 def model_hint(msg: str) -> str:

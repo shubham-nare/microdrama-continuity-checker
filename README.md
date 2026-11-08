@@ -17,6 +17,7 @@ python run.py --preflight --data path/to/new_show     # checks format, model, ke
 If an episode's model call fails, the run continues. The episode is listed as "not read" in the report, and the code-only name check still covers it.
 
 ## Run
+`python run.py --data path/to/show --out outputs/quick --code-only` gives the spelling-variant and speaker-label checks in seconds with no model (a safety net when the API is slow).
 ```bash
 pip install -r requirements.txt
 cp .env.example .env                                     # add GEMINI_API_KEY (free tier: aistudio.google.com)

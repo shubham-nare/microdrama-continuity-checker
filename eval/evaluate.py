@@ -463,6 +463,19 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     # (2)(3) real pack
     real = score_real(flags)
     real["ci95"] = wilson(real.get("distinct_gold_found", 0), real.get("n_gold", 0))
+    by_id = {f["id"]: f for f in flags}
+    tiers = {}
+    for j in real["judged"]:
+        f = by_id.get(j["id"])
+        if not f or f["type"] == "LABEL_ALIAS" or j["label"] == "unlabelled":
+            continue
+        t = "needs a human look" if f["type"] == "REVIEW" else f["severity"]
+        d = tiers.setdefault(t, {"true": 0, "n": 0})
+        d["n"] += 1
+        d["true"] += j["label"] == "true"
+    for d in tiers.values():
+        d["ci95"] = wilson(d["true"], d["n"])
+    real["precision_by_tier"] = tiers
     real["loss_stage"] = loss_stages(result)
     ev["real"] = real
     # (4) aliases
