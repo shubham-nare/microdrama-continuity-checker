@@ -291,7 +291,7 @@
   "attribute": "compass",
   "severity": "medium",
   "audible": false,
-  "summary": "* \u2014 compass: 'silver compass hanging from a chain' vs 'brass compass at Iris's throat'",
+  "summary": "Unattributed \u2014 compass: 'silver compass hanging from a chain' vs 'brass compass at Iris's throat'",
   "suggested_fix": "Pick one and fix the others. Variants: silver compass hanging from a chain \u00d71, brass compass at Iris's throat \u00d71",
   "variant_counts": {
    "silver compass hanging from a chain": 1,

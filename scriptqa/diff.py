@@ -273,7 +273,7 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
             "audible": audible,
             "summary": (f"Name spelled {len(counts)} ways: " + ", ".join(f"{k} ×{n}" for k, n in counts.most_common(4))
                         + (f" +{len(counts) - 4} more" if len(counts) > 4 else "")) if g["source"] == "names" else
-                       (f"{g['subject']} — {g['attribute']}: " + " vs ".join(f"'{k}'" for k in values)),
+                       (f"{'Unattributed' if g['subject'] == '*' else g['subject']} — {g['attribute']}: " + " vs ".join(f"'{k}'" for k in values)),
             "suggested_fix": (f"Pick one and fix the others. Variants: {variants}" if v["verdict"] == "CONTRADICTION"
                               else f"Check by hand. Variants: {variants}"),
             "variant_counts": dict(counts.most_common()),

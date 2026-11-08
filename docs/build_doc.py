@@ -40,7 +40,8 @@ def live_minutes(run: Path) -> str:
 def extra_vals(real, seeded, flags) -> dict:
     by_id = {f["id"]: f for f in flags}
     judged = [j for j in real["judged"] if j.get("type") != "LABEL_ALIAS"]
-    false_ex = [by_id[j["id"]]["summary"].split(":")[0].replace("—", "-") for j in judged if j["label"] == "false" and j["id"] in by_id]
+    false_ex = [by_id[j["id"]]["summary"].split(":")[0].replace("—", "-").replace("* -", "unattributed").replace("Unattributed -", "unattributed")
+                for j in judged if j["label"] == "false" and j["id"] in by_id]
 
     def prec(types):
         js = [j for j in judged if j.get("type") in types and j["label"] != "unlabelled"]
@@ -86,7 +87,7 @@ def main(run: Path) -> int:
     titles = {g["id"]: g.get("title", g["id"].replace("_", " "))
               for g in (yaml.safe_load(gold_path.read_text(encoding="utf-8"))["items"] if gold_path.exists() else [])}
     cov = real.get("coverage", {})
-    found = [titles.get(k, k) + (f" ({cov[k]['found']}/{cov[k]['of']} variants)" if k in cov and cov[k]["of"] > 2 else "")
+    found = [titles.get(k, k) + (f" ({cov[k]['found']}/{cov[k]['of']} variants)" if k in cov and cov[k]["of"] > 2 and "(" not in titles.get(k, k) else "")
              for k, v in real["found"].items() if v]
     missed = [titles.get(k, k) for k, v in real["found"].items() if not v]
     n_coll = sum(1 for k in real["found"] if "collision" in k)
@@ -112,10 +113,13 @@ def main(run: Path) -> int:
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
         **extra_vals(real, seeded, flags),
+        "fresh_text": (lambda d: f" A fresh full live run (empty cache, {d['live_calls']} calls, {d['wall_seconds'] / 60:.0f} min) found {d['real_found']}/{d['real_n']}."
+                       if d else "")(json.loads((ROOT / "outputs" / "fresh_full" / "fresh_score.json").read_text(encoding="utf-8"))
+                                     if (ROOT / "outputs" / "fresh_full" / "fresh_score.json").exists() else None),
         "canary_plain": canary.replace("swapped model catches", "caught").replace(" in the demo show", "").split(" (")[0] if canary != "not run" else "was not run",
         "checks_failed": "; ".join(PLAIN.get(c["n"], c["check"].split(":")[0]) for c in checks if not c["pass"]) or "none",
         "seed_valid": ", ".join(f"{v['caught']}/{v['n']} {k}" for k, v in sorted(seeded.get("by_validity", {}).items())),
-        "gate_demo": (lambda g: f"Built as <code>run.py --gate new_episode.txt</code>: on the held-out show, a new episode 6 with a planted eye-colour change was blocked in {g['live_calls']} live calls and {g['seconds']:.0f} s, with both lines quoted."
+        "gate_demo": (lambda g: f"Built as <code>run.py --gate new_episode.txt</code>: on the held-out show, a new episode 6 with a planted eye-colour change was blocked in {g['live_calls']} live call{'s' if g['live_calls'] != 1 else ''} and {g['seconds']:.0f} s, with both lines quoted."
                       if g else "")(json.loads((ROOT / "demo" / "gate_output" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output" / "gate.json").exists() else None),
         "held_found": (e.get("heldout") or {}).get("real", {}).get("distinct_gold_found", "n/a"),
         "held_n": (e.get("heldout") or {}).get("real", {}).get("n_gold", "n/a"),

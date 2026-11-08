@@ -260,8 +260,9 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                        f"<span class=tag>{f['severity']}</span><span class=tag>{f['kind']}</span>"
                        + ("<span class=tag>audible</span>" if f["audible"] else "")
                        + f"<span class=tag>{e(f['id'])}</span> <small>{e(f['suggested_fix'])} — {e(f['adjudication'].get('reason', ''))}</small>"
-                       + (f"<br><small><b>A per-episode check (run.py --gate) would have stopped this at ep{f['gate']['blocked_at_episode']}.</b> Not caught, the minority value(s) {e(', '.join(f['gate']['odd_values'][:5]))} reach "
-                          f"{f['gate']['later_dialogue_lines']} later spoken line(s).</small>"
+                       + (f"<br><small><b>Checking each episode as written (run.py --gate) would have stopped this at ep{f['gate']['blocked_at_episode']}.</b> "
+                          f"Standardising on the cheapest form ('{e(f['gate']['majority_value'])}'), {f['gate']['later_dialogue_lines']} later spoken "
+                          f"line{'s' if f['gate']['later_dialogue_lines'] != 1 else ''} would need fixing.</small>"
                           if f.get("gate", {}).get("blocked_at_episode") and f["gate"].get("odd_values") else "")
                        + "<table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
             for ev in f["evidence"]:
