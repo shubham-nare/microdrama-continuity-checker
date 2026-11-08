@@ -248,6 +248,17 @@ def loss_stages(result: dict) -> dict:
     return out
 
 
+def _fresh_range() -> str:
+    """The stored held-out score is one draw; report the fresh re-runs (outputs/stability) beside it."""
+    got = []
+    for i in (1, 2, 3):
+        p = ROOT / "outputs" / "stability" / f"run{i}" / "vendor_check.json"
+        if p.exists():
+            s = json.loads(p.read_text(encoding="utf-8"))
+            got.append(f"{s['planted_found']}/{s['planted_total']}")
+    return ("this stored score is one draw; fresh re-runs with an empty cache gave " + ", ".join(got)) if got else "no fresh re-runs recorded"
+
+
 def score_real(flags: list[dict]) -> dict:
     gold = (_gold("gold_real.yaml") or {}).get("items", [])
     lab_path = GOLD_DIR / "flag_labels.yaml"
@@ -463,6 +474,8 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     # (2)(3) real pack
     real = score_real(flags)
     real["ci95"] = wilson(real.get("distinct_gold_found", 0), real.get("n_gold", 0))
+    code_sub = score_real([f for f in flags if f.get("source") == "names"])  # the pure-code spelling check, no model
+    real["code_only"] = {"found": code_sub["distinct_gold_found"], "ids": [k for k, v in code_sub["found"].items() if v]}
     by_id = {f["id"]: f for f in flags}
     tiers = {}
     for j in real["judged"]:
@@ -598,7 +611,7 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
             add(13, "held-out fictional show runs end to end; recall reported as-is (not a tuning target)", True,
                 f"found {hreal.get('distinct_gold_found')}/{hreal.get('n_gold')} planted errors "
                 f"(95% CI {ev['heldout']['ci95']}), actionable precision {hreal.get('precision')}, alias F1 {hal['f1']}; "
-                f"missed {[k for k, v in hreal['found'].items() if not v]}")
+                f"missed {[k for k, v in hreal['found'].items() if not v]}; " + _fresh_range())
         except Exception as e:
             add(13, "held-out fictional show runs end to end", False, f"crashed: {e}")
         finally:

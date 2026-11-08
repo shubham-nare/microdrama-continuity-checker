@@ -178,13 +178,33 @@ def build_cards(eps: list[Episode], facts: list[dict], res: dict, flags: list[di
     return cards
 
 
+def _time(ev: dict) -> str:
+    return "logline (not on screen)" if ev.get("where") == "HEADER" else ev["timestamp"]
+
+
+_NOT_FIRST = {"The", "This", "That", "In", "At", "Of", "And", "Then", "Before", "By", "From", "Against", "To", "For", "With", "Is", "Was"}
+
+
+def _usage(value: str, quote: str) -> str:
+    """How a name is used in its line, so one 'spelled N ways' flag can be read as place / title / surname."""
+    v = re.escape(value)
+    if re.search(rf"\b{v}\s+(Manor|estate|Estate|Hall|House|grounds|lands)\b", quote):
+        return "1 as a place (… Manor / … estate)"
+    if re.search(rf"\b(Duke|Duchess|Duchy|Dukedom|Lord|Lady|Earl)\s+of\s+{v}\b", quote):
+        return "2 in a title (Duke / Duchess / Lord of …)"
+    m = re.search(rf"\b([A-Z][a-z]+)\s+{v}\b", quote)
+    if m and m.group(1) not in _NOT_FIRST:
+        return "3 as a surname (first name + …)"
+    return "4 on its own (family, house or region)"
+
+
 def write_flags_csv(flags: list[dict], path: Path) -> None:
     with path.open("w", newline="", encoding="utf-8-sig") as fh:
         w = csv.writer(fh)
         w.writerow(["rank", "id", "status", "severity", "type", "kind", "audible", "summary", "episodes", "suggested_fix",
                     "evidence (episode element timestamp value quote)", "reviewer_decision (dismiss/accept)", "canonical (if accept)"])
         for f in flags:
-            ev = " || ".join(f"ep{e['episode']} line {e.get('line', '?')} {e['timestamp']} {'*' if e['odd'] else ''}{e['value']}: \"{e['quote'][:100]}\""
+            ev = " || ".join(f"ep{e['episode']} line {e.get('line', '?')} {_time(e)} {'*' if e['odd'] else ''}{e['value']}: \"{e['quote'][:100]}\""
                              for e in f["evidence"])
             w.writerow([f.get("rank"), f["id"], f.get("status", "open"), f["severity"], f["type"], f["kind"], f["audible"], f["summary"],
                         " ".join(map(str, f["episodes"])), f["suggested_fix"], ev, "", ""])
@@ -267,14 +287,38 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                        f"<span class=tag>{f['severity']}</span><span class=tag>{f['kind']}</span>"
                        + ("<span class=tag>audible</span>" if f["audible"] else "")
                        + f"<span class=tag>{e(f['id'])}</span> <small>{e(f['suggested_fix'])} — {e(f['adjudication'].get('reason', ''))}</small>"
-                       + (f"<br><small><b>Checking each episode as written (run.py --gate) would have stopped this at ep{f['gate']['blocked_at_episode']}.</b> "
-                          f"Standardising on the cheapest form ('{e(f['gate']['majority_value'])}'), {f['gate']['later_dialogue_lines']} later spoken "
-                          f"line{'s' if f['gate']['later_dialogue_lines'] != 1 else ''} would need fixing.</small>"
+                       + (f"<br><small><b>Would have been caught at ep{f['gate']['blocked_at_episode']} if each episode were checked as it was written (run.py --gate).</b> "
+                          f"Keeping '{e(f['gate']['majority_value'])}' (the spelling that needs the fewest edits) means fixing {f['gate']['later_dialogue_lines']} later spoken "
+                          f"line{'s' if f['gate']['later_dialogue_lines'] != 1 else ''}; orange rows are the ones to change.</small>"
                           if f.get("gate", {}).get("blocked_at_episode") and f["gate"].get("odd_values") else "")
                        + "<table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
-            for ev in f["evidence"]:
-                out.append(f"<tr class='{'odd' if ev['odd'] else ''}'><td>{ev['episode']}</td><td>{ev.get('line', '')}</td><td>{ev['timestamp']}</td>"
-                           f"<td>{e(str(ev['where']))}</td><td>{e(ev['value'])}</td><td class=q>“{e(ev['quote'][:200])}”</td></tr>")
+            def row(ev):
+                return (f"<tr class='{'odd' if ev['odd'] else ''}'><td>{ev['episode']}</td><td>{ev.get('line', '')}</td><td>{_time(ev)}</td>"
+                        f"<td>{e(str(ev['where']))}</td><td>{e(ev['value'])}</td><td class=q>“{e(ev['quote'][:200])}”</td></tr>")
+            name_flag = f.get("source") == "names" and f["type"] == "CONTRADICTION"
+            elsewhere = {}
+            if name_flag:  # values another flag owns are folded away, the rest grouped by how the name is used
+                for m_ in re.finditer(r"([A-Z][a-z]+) \(see (F-[0-9a-f]+)\)", f.get("suggested_fix", "")):
+                    elsewhere[m_.group(1)] = m_.group(2)
+                mine = [ev for ev in f["evidence"] if ev["value"] not in elsewhere]
+                groups = {}
+                for ev in mine:
+                    groups.setdefault(_usage(ev["value"], ev["quote"]), []).append(ev)
+                for g in sorted(groups):
+                    vals = sorted({ev["value"] for ev in groups[g]})
+                    if len(groups) > 1:
+                        out.append(f"<tr><td colspan=6><b>Used {e(g[2:])}</b> <small>{len(groups[g])} line(s): {e(', '.join(vals))}</small></td></tr>")
+                    out.extend(row(ev) for ev in groups[g])
+                out.append("</table>")
+                other = [ev for ev in f["evidence"] if ev["value"] in elsewhere]
+                if other:
+                    out.append(f"<details><summary><small>{len(other)} more line(s) using {e(', '.join(sorted({ev['value'] for ev in other})))}: "
+                               f"handled in flag {e(', '.join(sorted(set(elsewhere.values()))))}</small></summary><table>")
+                    out.extend(row(ev) for ev in other)
+                    out.append("</table></details>")
+                out.append("</div>")
+                continue
+            out.extend(row(ev) for ev in f["evidence"])
             out.append("</table></div>")
     if cleared is not None:
         out.append(f"<h2>Cleared by the model ({len(cleared)})</h2><p><small>Candidates the adjudicator judged compatible, intentional or "
