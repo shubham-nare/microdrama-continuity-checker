@@ -16,7 +16,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "OLD MAN",
   "file": "episode-001.txt",
-  "line": 18,
+  "line": 20,
   "canon": "Maren Holloway"
  },
  {
@@ -36,7 +36,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "THE STRANGER",
   "file": "episode-001.txt",
-  "line": 34,
+  "line": 36,
   "canon": "Maren Holloway"
  },
  {
@@ -56,7 +56,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Maren's Grandfather"
  },
  {
@@ -76,7 +76,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Maren's Grandfather"
  },
  {
@@ -96,7 +96,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Maren's Grandfather"
  },
  {
@@ -116,7 +116,7 @@
   "element_kind": "ACTION",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 30,
+  "line": 32,
   "canon": "Elias"
  },
  {
@@ -136,7 +136,7 @@
   "element_kind": "ACTION",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 30,
+  "line": 32,
   "canon": "Elias"
  },
  {
@@ -156,7 +156,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 38,
+  "line": 40,
   "canon": "Maren Holloway"
  },
  {
@@ -176,7 +176,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "ELIAS",
   "file": "episode-002.txt",
-  "line": 18,
+  "line": 20,
   "canon": "Elias"
  },
  {
@@ -196,7 +196,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "ELIAS",
   "file": "episode-002.txt",
-  "line": 30,
+  "line": 32,
   "canon": "Maren Holloway"
  },
  {
@@ -216,7 +216,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-002.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Elias"
  },
  {
@@ -236,7 +236,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-002.txt",
-  "line": 26,
+  "line": 28,
   "canon": "Maren Holloway"
  },
  {
@@ -256,7 +256,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-002.txt",
-  "line": 26,
+  "line": 28,
   "canon": "Elias"
  },
  {
@@ -276,7 +276,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "ELIAS",
   "file": "episode-002.txt",
-  "line": 18,
+  "line": 20,
   "canon": "Elias"
  },
  {
@@ -296,7 +296,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "OLD MAN",
   "file": "episode-003.txt",
-  "line": 18,
+  "line": 20,
   "canon": "Harbor Master"
  },
  {
@@ -316,7 +316,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Harbor Master"
  },
  {
@@ -336,7 +336,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 14
+  "line": 16
  },
  {
   "kind": "RELATIONSHIP",
@@ -355,7 +355,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "MAREN",
   "file": "episode-003.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Maren Holloway"
  },
  {
@@ -375,7 +375,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 26,
+  "line": 28,
   "canon": "Maren Holloway"
  }
 ]

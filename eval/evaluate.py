@@ -124,7 +124,7 @@ def apply_mutations(src: Path, dst: Path, eps, muts: list[dict]) -> None:
         path = dst / ep.file
         lines = path.read_text(encoding="utf-8").splitlines()
         # element text starts 2 lines after the label (label, timestamps, text)
-        for k in range(m["line"], min(m["line"] + 4, len(lines))):
+        for k in range(m["line"] - 1, min(m["line"] + 3, len(lines))):  # m["line"] is the 1-based text line
             if re.search(rf"\b{re.escape(m['old'])}\b", lines[k]):
                 lines[k] = re.sub(rf"\b{re.escape(m['old'])}\b", m["new"], lines[k], count=1)
                 m["after_line"] = lines[k].strip()
@@ -307,7 +307,17 @@ def score_aliases(res_assign: dict) -> dict:
     wrong_merge = sorted({f"{pred[a]} merges {truth[a]} + {truth[b]}" for a, b in pairs if truth[a] != truth[b] and pred[a] == pred[b]})
     p = tp / (tp + fp) if tp + fp else 1.0
     r = tp / (tp + fn) if tp + fn else 1.0
+    per_char = {}
+    multi = [c for c, ms in gold.items() if len(ms) >= 2]
+    for char in multi:
+        keys = [k for k in truth if truth[k] == char]
+        preds = {pred[k] for k in keys}
+        others = {pred[k] for k in truth if truth[k] != char}
+        per_char[char] = "fully merged" if keys and len(preds) == 1 and not (preds & others) else \
+            ("split across " + ", ".join(sorted(preds)) if len(preds) > 1 else "merged with another character")
+    n_ok = sum(1 for v in per_char.values() if v == "fully merged")
     return {"pairwise_precision": round(p, 3), "pairwise_recall": round(r, 3),
+            "characters_fully_merged": n_ok, "characters_with_several_labels": len(multi), "per_character": per_char,
             "f1": round(2 * p * r / (p + r), 3) if p + r else 0.0, "n_label_episodes": len(truth),
             "split_errors": sorted(errors)[:20], "wrong_merges": wrong_merge[:20]}
 

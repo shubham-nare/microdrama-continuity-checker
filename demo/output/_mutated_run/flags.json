@@ -43,7 +43,7 @@
     "quote": "elongs to whoever keeps the light, Miss Holloway.\"",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 34
+    "line": 36
    },
    {
     "episode": 2,
@@ -54,7 +54,7 @@
     "quote": "\"He trusts the Halloway name. That's why he wants you here.\"",
     "odd": true,
     "file": "episode-002.txt",
-    "line": 30
+    "line": 32
    }
   ],
   "merged": [
@@ -101,7 +101,7 @@
     "quote": "\"You came back, Maren. Your mother never did.\"",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 18
+    "line": 20
    },
    {
     "episode": 3,
@@ -112,7 +112,7 @@
     "quote": "\"That keeper of yours, girl. I've seen his face on a wanted poster in Portland.\"",
     "odd": false,
     "file": "episode-003.txt",
-    "line": 18
+    "line": 20
    }
   ],
   "rank": 2,
@@ -152,7 +152,7 @@
     "quote": "Maren's grey eyes narrowing at him",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 38
+    "line": 40
    },
    {
     "episode": 2,
@@ -163,7 +163,7 @@
     "quote": "Close-up of Maren's grey eyes",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 26
+    "line": 28
    },
    {
     "episode": 3,
@@ -174,7 +174,7 @@
     "quote": "Maren's blue eyes filling with doubt.",
     "odd": true,
     "file": "episode-003.txt",
-    "line": 26
+    "line": 28
    }
   ],
   "rank": 3,
@@ -218,7 +218,7 @@
     "quote": "\"My name is Elias. Your grandfather hired me two winters ago.\"",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 18
+    "line": 20
    },
    {
     "episode": 1,
@@ -229,7 +229,7 @@
     "quote": "\"The deed belongs to whoever keeps the light, Miss Holloway.\"",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 34
+    "line": 36
    }
   ],
   "rank": 4,

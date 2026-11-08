@@ -40,7 +40,7 @@ class Element:
     start: float
     end: float
     text: str
-    line: int            # 1-based line of the label in the source file
+    line: int            # 1-based line of the element's text in the source file
 
 
 @dataclass
@@ -143,7 +143,7 @@ def parse_file(path: Path) -> Episode:
                     id=f"E{num:03d}-{idx:04d}", episode=num, scene=scene_no, kind=kind, label=raw.strip(),
                     speaker=speaker, emotion=emotion,
                     start=ts_to_s(tm.group(1), tm.group(2)), end=ts_to_s(tm.group(3), tm.group(4)),
-                    text=text, line=i + 1,
+                    text=text, line=j + 2,
                 ))
                 i = k - 1
         i += 1

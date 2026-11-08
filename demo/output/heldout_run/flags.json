@@ -33,7 +33,7 @@
     "quote": "My brother Tom always did love lost causes.",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 26
+    "line": 28
    },
    {
     "episode": 2,
@@ -44,7 +44,7 @@
     "quote": "Iris, get your brother off",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 30
+    "line": 32
    },
    {
     "episode": 4,
@@ -55,7 +55,7 @@
     "quote": "My cousin Tom thinks you're a good man.",
     "odd": true,
     "file": "episode-004.txt",
-    "line": 30
+    "line": 32
    }
   ],
   "rank": 1,
@@ -114,7 +114,7 @@
     "quote": "sells this boat while I'm aboard, Miss Marlowe.\"",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 34
+    "line": 36
    },
    {
     "episode": 4,
@@ -125,7 +125,7 @@
     "quote": "\"Then let me prove it, Miss Marlow.\"",
     "odd": true,
     "file": "episode-004.txt",
-    "line": 34
+    "line": 36
    }
   ],
   "rank": 2,
@@ -169,7 +169,7 @@
     "quote": "\"Tom! Iris, get your brother off that ramp!\"",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 30
+    "line": 32
    },
    {
     "episode": 5,
@@ -180,7 +180,7 @@
     "quote": "\"You didn't hear it from me, love. He takes the boat at dawn.\"",
     "odd": false,
     "file": "episode-005.txt",
-    "line": 18
+    "line": 20
    }
   ],
   "rank": 3,
@@ -220,7 +220,7 @@
     "quote": "Iris's hazel eyes narrowing",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 30
+    "line": 32
    },
    {
     "episode": 3,
@@ -231,7 +231,7 @@
     "quote": "Iris's hazel eyes scanning",
     "odd": false,
     "file": "episode-003.txt",
-    "line": 22
+    "line": 24
    },
    {
     "episode": 5,
@@ -242,7 +242,7 @@
     "quote": "Close-up of Iris's green eyes widening",
     "odd": true,
     "file": "episode-005.txt",
-    "line": 22
+    "line": 24
    }
   ],
   "rank": 4,
@@ -290,7 +290,7 @@
     "quote": "a silver compass hanging from a chain at her throat.",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 14
+    "line": 16
    },
    {
     "episode": 4,
@@ -301,7 +301,7 @@
     "quote": "Close-up of the brass compass at Iris's throat as she clutches it.",
     "odd": true,
     "file": "episode-004.txt",
-    "line": 26
+    "line": 28
    }
   ],
   "rank": 5,
@@ -349,7 +349,7 @@
     "quote": "A pale scar cuts across his right eyebrow.",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 14
+    "line": 16
    },
    {
     "episode": 4,
@@ -360,7 +360,7 @@
     "quote": "rubbing the scar over his left eyebrow as he faces Iris",
     "odd": true,
     "file": "episode-004.txt",
-    "line": 14
+    "line": 16
    }
   ],
   "rank": 6,
@@ -408,7 +408,7 @@
     "quote": "He clutches his left arm, which hangs broken.",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 26
+    "line": 28
    },
    {
     "episode": 3,
@@ -419,7 +419,7 @@
     "quote": "his right arm bound in a white sling.",
     "odd": true,
     "file": "episode-003.txt",
-    "line": 14
+    "line": 16
    }
   ],
   "rank": 7,
@@ -464,7 +464,7 @@
     "quote": "\"Name's Reyes. Captain Reyes. I sailed the Gull with your father for twenty years.\"",
     "odd": false,
     "file": "episode-002.txt",
-    "line": 18
+    "line": 20
    },
    {
     "episode": 1,
@@ -475,7 +475,7 @@
     "quote": "\"Nobody sells this boat while I'm aboard, Miss Marlowe.\"",
     "odd": false,
     "file": "episode-001.txt",
-    "line": 34
+    "line": 36
    }
   ],
   "rank": 8,

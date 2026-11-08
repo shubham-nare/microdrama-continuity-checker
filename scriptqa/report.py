@@ -111,7 +111,7 @@ def build_cards(eps: list[Episode], facts: list[dict], res: dict, flags: list[di
                 flag_by_el[e["element_id"]].append(fl["id"])
     cards = []
     for ep in eps:
-        ep_facts = by_ep[ep.number]
+        ep_facts = sorted(by_ep[ep.number], key=lambda f: (bool(f.get("is_change")), f.get("start", 0.0)))
         costume = defaultdict(list)
         for f in ep_facts:
             c = f.get("canon") or canon_subject(f["subject"], f["episode"], res)

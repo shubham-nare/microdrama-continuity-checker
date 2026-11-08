@@ -73,6 +73,11 @@
  "aliases": {
   "pairwise_precision": 1.0,
   "pairwise_recall": 1.0,
+  "characters_fully_merged": 1,
+  "characters_with_several_labels": 1,
+  "per_character": {
+   "Elias": "fully merged"
+  },
   "f1": 1.0,
   "n_label_episodes": 7,
   "split_errors": [],
@@ -81,6 +86,11 @@
  "aliases_after_review": {
   "pairwise_precision": 1.0,
   "pairwise_recall": 1.0,
+  "characters_fully_merged": 1,
+  "characters_with_several_labels": 1,
+  "per_character": {
+   "Elias": "fully merged"
+  },
   "f1": 1.0,
   "n_label_episodes": 7,
   "split_errors": [],
@@ -111,7 +121,7 @@
     "type": "eye_colour",
     "episode": 3,
     "element_id": "E003-0004",
-    "line": 26,
+    "line": 28,
     "old": "brown",
     "new": "blue",
     "after_line": "Close-up of Maren's blue eyes filling with doubt.",
@@ -255,6 +265,11 @@
   "aliases": {
    "pairwise_precision": 1.0,
    "pairwise_recall": 1.0,
+   "characters_fully_merged": 1,
+   "characters_with_several_labels": 1,
+   "per_character": {
+    "Reyes": "fully merged"
+   },
    "f1": 1.0,
    "n_label_episodes": 12,
    "split_errors": [],

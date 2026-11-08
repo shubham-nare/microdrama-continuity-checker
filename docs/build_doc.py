@@ -72,10 +72,13 @@ def main(run: Path) -> int:
         "held_ci": "–".join(f"{round(100 * x)}%" for x in (e.get("heldout") or {}).get("ci95", [0, 0])),
         "held_prec": pct((e.get("heldout") or {}).get("real", {}).get("precision")),
         "held_missed": ", ".join(k.replace("_", " ") for k, v in (e.get("heldout") or {}).get("real", {}).get("found", {}).items() if not v) or "none",
-        "loss_text": "; ".join(f"{titles.get(k, k)}: {v}" for k, v in real.get("loss_stage", {}).items() if v != "flagged") or "none",
-        "gate_text": (f"For example, the spelling family {', '.join(top_gate['gate']['odd_values'][:4])}… would have been blocked at episode "
-                      f"{top_gate['gate']['blocked_at_episode']}. Missing it lets the odd spellings into {top_gate['gate']['later_dialogue_lines']} later spoken lines "
-                      f"and {top_gate['gate']['later_camera_shots_in_affected_scenes']} camera shots in those scenes." if top_gate else ""),
+        "loss_text": "; ".join(f"{titles.get(k, k)}: {v.split(':')[0].replace('INTENTIONAL_CHANGE', 'an intentional change').replace('DIFFERENT_ENTITIES', 'different things').replace('COMPATIBLE', 'compatible')}"
+                               for k, v in real.get("loss_stage", {}).items() if v != "flagged") or "none",
+        "alias_chars": f"{al.get('characters_fully_merged', '?')}/{al.get('characters_with_several_labels', '?')}",
+        "alias_misses": ", ".join(f"{c} ({v})" for c, v in al.get("per_character", {}).items() if v != "fully merged") or "none",
+        "gate_text": (f"For example, a per-episode gate would have blocked the estate's spelling drift at episode "
+                      f"{top_gate['gate']['blocked_at_episode']}, before {top_gate['gate']['later_dialogue_lines']} later spoken lines used a minority spelling "
+                      "(lines to re-record or re-generate as audio)." if top_gate else ""),
         "precision": pct(real["precision"]), "n_scored": real["n_flags_scored"], "n_false": f"{len(false_flags)} {'is' if len(false_flags) == 1 else 'are'}",
         "seed_recall": pct(seeded["pipeline_recall"]), "base_recall": pct(seeded["baseline_recall"]),
         "seed_n": seeded["n"], "per_type": per_type, "spurious": (lambda n: f"{n} spurious new flag" + ("" if n == 1 else "s"))(len(seeded["spurious_new_flags"])),

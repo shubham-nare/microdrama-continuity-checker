@@ -16,7 +16,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Iris"
  },
  {
@@ -36,7 +36,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Iris"
  },
  {
@@ -56,7 +56,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-001.txt",
-  "line": 30,
+  "line": 32,
   "canon": "Iris"
  },
  {
@@ -76,7 +76,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "IRIS",
   "file": "episode-001.txt",
-  "line": 26,
+  "line": 28,
   "canon": "Tom"
  },
  {
@@ -96,7 +96,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-002.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Captain Reyes"
  },
  {
@@ -116,7 +116,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "CAPTAIN REYES",
   "file": "episode-002.txt",
-  "line": 18,
+  "line": 20,
   "canon": "Captain Reyes"
  },
  {
@@ -136,7 +136,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "CAPTAIN REYES",
   "file": "episode-002.txt",
-  "line": 18,
+  "line": 20,
   "canon": "Captain Reyes"
  },
  {
@@ -156,7 +156,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "CAPTAIN REYES",
   "file": "episode-002.txt",
-  "line": 18,
+  "line": 20,
   "canon": "~boat"
  },
  {
@@ -176,7 +176,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "IRIS",
   "file": "episode-002.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Iris"
  },
  {
@@ -196,7 +196,7 @@
   "element_kind": "ACTION",
   "speaker": null,
   "file": "episode-002.txt",
-  "line": 26,
+  "line": 28,
   "canon": "Tom"
  },
  {
@@ -216,7 +216,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "WOMAN",
   "file": "episode-002.txt",
-  "line": 30,
+  "line": 32,
   "canon": "Tom"
  },
  {
@@ -236,7 +236,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-002.txt",
-  "line": 34
+  "line": 36
  },
  {
   "kind": "NAME",
@@ -255,7 +255,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "IRIS",
   "file": "episode-003.txt",
-  "line": 26,
+  "line": 28,
   "canon": "~harbor master"
  },
  {
@@ -275,7 +275,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Tom"
  },
  {
@@ -295,7 +295,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Iris"
  },
  {
@@ -315,7 +315,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Iris"
  },
  {
@@ -335,7 +335,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-003.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Tom"
  },
  {
@@ -355,7 +355,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-004.txt",
-  "line": 14,
+  "line": 16,
   "canon": "Captain Reyes"
  },
  {
@@ -375,7 +375,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "CAPTAIN REYES",
   "file": "episode-004.txt",
-  "line": 18,
+  "line": 20,
   "canon": "~boat"
  },
  {
@@ -395,7 +395,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-004.txt",
-  "line": 26,
+  "line": 28,
   "canon": "Iris"
  },
  {
@@ -415,7 +415,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "IRIS",
   "file": "episode-004.txt",
-  "line": 30,
+  "line": 32,
   "canon": "Tom"
  },
  {
@@ -435,7 +435,7 @@
   "element_kind": "DIALOGUE",
   "speaker": "CAPTAIN REYES",
   "file": "episode-004.txt",
-  "line": 34,
+  "line": 36,
   "canon": "Iris"
  },
  {
@@ -455,7 +455,7 @@
   "element_kind": "CAMERA",
   "speaker": null,
   "file": "episode-005.txt",
-  "line": 22,
+  "line": 24,
   "canon": "Iris"
  }
 ]
