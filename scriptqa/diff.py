@@ -211,13 +211,22 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
         } for i, it in enumerate(g["items"])]
         audible = any(e["where"] and "dialogue" in e["where"] for e in evidence if e["odd"]) or \
             (not odd and any(e["where"] and "dialogue" in e["where"] for e in evidence))
+        seen_ev, uniq = set(), []
+        for e_ in evidence:  # the same line can be cited twice (two values in one sentence): keep it once
+            k = (e_["element_id"], e_["value"])
+            if k not in seen_ev:
+                seen_ev.add(k)
+                uniq.append(e_)
+        evidence = uniq
         fp = hashlib.sha1(f"{g['kind']}|{g['subject']}|{g['attribute']}|{sorted(values)}".encode()).hexdigest()[:10]
         flags.append({
             "id": f"F-{fp}", "type": "CONTRADICTION" if v["verdict"] == "CONTRADICTION" else "REVIEW",
             "kind": g["kind"], "source": g["source"], "subject": g["subject"], "attribute": g["attribute"],
             "severity": severity(g, odd) if v["verdict"] == "CONTRADICTION" else "low",
             "audible": audible,
-            "summary": f"{g['subject']} — {g['attribute']}: " + " vs ".join(f"'{k}'" for k in values),
+            "summary": (f"Name spelled {len(counts)} ways: " + ", ".join(f"{k} ×{n}" for k, n in counts.most_common(4))
+                        + (f" +{len(counts) - 4} more" if len(counts) > 4 else "")) if g["source"] == "names" else
+                       (f"{g['subject']} — {g['attribute']}: " + " vs ".join(f"'{k}'" for k in values)),
             "suggested_fix": (f"Pick one and fix the others. Variants: {variants}" if v["verdict"] == "CONTRADICTION"
                               else f"Check by hand. Variants: {variants}"),
             "variant_counts": dict(counts.most_common()),
@@ -244,11 +253,25 @@ def label_flags(res: dict, eps_by_num: dict) -> list[dict]:
                 return el
         return None
 
+    def frame_line(label, ep):
+        prev = None
+        for el in eps_by_num[ep].elements:
+            if el.speaker == label:
+                return prev
+            if el.kind in ("CAMERA", "ACTION"):
+                prev = el
+        return None
+
     flags = []
     for c in res["collisions"]:
         ev = []
         for char, es in c["characters"].items():
             el = first_line(c["label"], es[0])
+            fr = frame_line(c["label"], es[0])
+            if fr:  # the shot just before the first line shows who is speaking
+                ev.append({"episode": es[0], "element_id": fr.id, "timestamp": fmt_ts(fr.start),
+                           "where": f"{fr.kind} (who is in frame)", "value": char, "quote": fr.text[:160], "odd": False,
+                           "file": eps_by_num[es[0]].file, "line": fr.line})
             if el:
                 ev.append({"episode": es[0], "element_id": el.id, "timestamp": fmt_ts(el.start),
                            "where": f"{el.speaker} (dialogue)", "value": char, "quote": el.text[:160], "odd": False,

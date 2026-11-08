@@ -3,7 +3,7 @@
   "n": 1,
   "check": "every flag has >=2 evidence quotes, each found verbatim at the cited element",
   "pass": true,
-  "detail": "8 evidence quotes checked, 0 failures []"
+  "detail": "10 evidence quotes checked, 0 failures []"
  },
  {
   "n": 2,
@@ -45,7 +45,7 @@
   "n": 8,
   "check": "model-swap test (different provider adapter + model, held-out episodes)",
   "pass": true,
-  "detail": "provider=openai_compat model=gemini-3.1-flash-lite on 3 held-out eps: 19 facts, 4 flags, schema ok, 8 evidence quotes checked, 0 failures []; canary: swapped model catches 3/4 planted errors in the demo show (surname_spelling, eye_colour, old_man_collision)"
+  "detail": "provider=openai_compat model=gemini-3.1-flash-lite on 3 held-out eps: 19 facts, 4 flags, schema ok, 10 evidence quotes checked, 0 failures []; canary: swapped model catches 3/4 planted errors in the demo show (surname_spelling, eye_colour, old_man_collision)"
  },
  {
   "n": 9,
@@ -57,7 +57,7 @@
   "n": 12,
   "check": "human loop: an editor's dismiss decision is applied on the next run (stable flag ids, 0 live calls)",
   "pass": true,
-  "detail": "dismissed F-d3426089f1 -> status dismissed; other flags unchanged=True"
+  "detail": "dismissed F-0db87e6834 -> status dismissed; other flags unchanged=True"
  },
  {
   "n": 13,

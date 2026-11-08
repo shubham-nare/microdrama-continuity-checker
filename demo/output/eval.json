@@ -28,16 +28,16 @@
   "precision": 1.0,
   "judged": [
    {
-    "id": "F-d3426089f1",
-    "type": "CONTRADICTION",
-    "label": "true",
-    "why": "matches gold ['surname_spelling']"
-   },
-   {
     "id": "F-0db87e6834",
     "type": "LABEL_COLLISION",
     "label": "true",
     "why": "matches gold ['old_man_collision']"
+   },
+   {
+    "id": "F-d3426089f1",
+    "type": "CONTRADICTION",
+    "label": "true",
+    "why": "matches gold ['surname_spelling']"
    },
    {
     "id": "F-113ee2b696",
@@ -203,6 +203,12 @@
    "precision": 1.0,
    "judged": [
     {
+     "id": "F-c4c71765a2",
+     "type": "LABEL_COLLISION",
+     "label": "true",
+     "why": "matches gold ['woman_collision']"
+    },
+    {
      "id": "F-0c1e206621",
      "type": "CONTRADICTION",
      "label": "true",
@@ -213,12 +219,6 @@
      "type": "CONTRADICTION",
      "label": "true",
      "why": "matches gold ['surname_spelling']"
-    },
-    {
-     "id": "F-c4c71765a2",
-     "type": "LABEL_COLLISION",
-     "label": "true",
-     "why": "matches gold ['woman_collision']"
     },
     {
      "id": "F-0b812b4ee7",

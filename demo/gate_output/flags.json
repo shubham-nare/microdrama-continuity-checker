@@ -1,5 +1,73 @@
 [
  {
+  "id": "F-c4c71765a2",
+  "type": "LABEL_COLLISION",
+  "kind": "LABEL",
+  "source": "resolve",
+  "subject": "WOMAN",
+  "attribute": "speaker label",
+  "severity": "high",
+  "audible": false,
+  "summary": "Label 'WOMAN' is used for different characters: Iris's mother (ep 2); Innkeeper (ep 5)",
+  "suggested_fix": "Give each character its own label so reference images and voices map correctly",
+  "adjudication": {
+   "verdict": "CODE",
+   "reason": "from alias resolution"
+  },
+  "episodes": [
+   2,
+   5
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0004",
+    "timestamp": "00:11.00",
+    "where": "ACTION (who is in frame)",
+    "value": "Iris's mother",
+    "quote": "Tom slips on the wet ramp hauling the mooring line and falls hard. He clutches his left arm, which hangs broken.",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 28
+   },
+   {
+    "episode": 2,
+    "element_id": "E002-0005",
+    "timestamp": "00:16.50",
+    "where": "WOMAN (dialogue)",
+    "value": "Iris's mother",
+    "quote": "\"Tom! Iris, get your brother off that ramp!\"",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 32
+   },
+   {
+    "episode": 5,
+    "element_id": "E005-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA (who is in frame)",
+    "value": "Innkeeper",
+    "quote": "Wide shot of the crowded inn. A stout innkeeper in a stained apron wipes the bar.",
+    "odd": false,
+    "file": "episode-005.txt",
+    "line": 16
+   },
+   {
+    "episode": 5,
+    "element_id": "E005-0002",
+    "timestamp": "00:04.50",
+    "where": "WOMAN (dialogue)",
+    "value": "Innkeeper",
+    "quote": "\"You didn't hear it from me, love. He takes the boat at dawn.\"",
+    "odd": false,
+    "file": "episode-005.txt",
+    "line": 20
+   }
+  ],
+  "rank": 1,
+  "status": "open"
+ },
+ {
   "id": "F-0c1e206621",
   "type": "CONTRADICTION",
   "kind": "RELATIONSHIP",
@@ -58,7 +126,7 @@
     "line": 32
    }
   ],
-  "rank": 1,
+  "rank": 2,
   "status": "open",
   "gate": {
    "blocked_at_episode": 4,
@@ -69,52 +137,6 @@
    "later_dialogue_lines": 1,
    "later_camera_shots_in_affected_scenes": 2
   }
- },
- {
-  "id": "F-c4c71765a2",
-  "type": "LABEL_COLLISION",
-  "kind": "LABEL",
-  "source": "resolve",
-  "subject": "WOMAN",
-  "attribute": "speaker label",
-  "severity": "high",
-  "audible": false,
-  "summary": "Label 'WOMAN' is used for different characters: Iris's mother (ep 2); Innkeeper (ep 5)",
-  "suggested_fix": "Give each character its own label so reference images and voices map correctly",
-  "adjudication": {
-   "verdict": "CODE",
-   "reason": "from alias resolution"
-  },
-  "episodes": [
-   2,
-   5
-  ],
-  "evidence": [
-   {
-    "episode": 2,
-    "element_id": "E002-0005",
-    "timestamp": "00:16.50",
-    "where": "WOMAN (dialogue)",
-    "value": "Iris's mother",
-    "quote": "\"Tom! Iris, get your brother off that ramp!\"",
-    "odd": false,
-    "file": "episode-002.txt",
-    "line": 32
-   },
-   {
-    "episode": 5,
-    "element_id": "E005-0002",
-    "timestamp": "00:04.50",
-    "where": "WOMAN (dialogue)",
-    "value": "Innkeeper",
-    "quote": "\"You didn't hear it from me, love. He takes the boat at dawn.\"",
-    "odd": false,
-    "file": "episode-005.txt",
-    "line": 20
-   }
-  ],
-  "rank": 2,
-  "status": "open"
  },
  {
   "id": "F-9afc3754c6",
@@ -387,7 +409,7 @@
   "attribute": "Marlowe/Marlow",
   "severity": "low",
   "audible": true,
-  "summary": "(name spelling) \u2014 Marlowe/Marlow: 'Marlowe' vs 'Marlow'",
+  "summary": "Name spelled 2 ways: Marlowe \u00d72, Marlow \u00d71",
   "suggested_fix": "Check by hand. Variants: Marlowe \u00d72, Marlow \u00d71",
   "variant_counts": {
    "Marlowe": 2,

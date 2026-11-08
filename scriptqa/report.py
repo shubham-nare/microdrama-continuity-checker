@@ -10,6 +10,8 @@ from pathlib import Path
 from .parse import Episode, fmt_ts
 from .resolve import canon_subject
 
+import re
+
 TRAIT_KINDS = ("TRAIT", "PROP", "INJURY")
 STABLE_TRAITS = {"eye_colour", "hair", "facial_hair", "scar", "build", "age", "skin", "voice"}
 TEMPORARY_WORDS = {"wet", "soaked", "scratched", "bruised", "bloody", "bloodied", "muddy", "mud", "dirty", "tear",
@@ -25,20 +27,30 @@ def gate_replay(eps: list[Episode], flags: list[dict]) -> None:
     """For each contradiction: the episode where a per-episode gate would have blocked it (the first episode
     where a second, different value appears), and what reaches production if it is not caught: later
     dialogue lines and CAMERA shots that carry a non-majority value."""
+    owned = {}
+    for f in flags:
+        if f["type"] == "CONTRADICTION":
+            for v in (f.get("variant_counts") or {}):
+                owned.setdefault(v.lower(), []).append(f["id"])
     for f in flags:
         if f["type"] != "CONTRADICTION":
             continue
         counts = f.get("variant_counts") or {}
         if not counts:
             continue
-        major = max(counts, key=counts.get)
-        odd = [v for v in counts if v != major and len(v) >= 3]
         seen, gate = set(), None
         for ev in sorted(f["evidence"], key=lambda e: (e["episode"], e["timestamp"])):
             seen.add(ev["value"])
             if len(seen) >= 2:
                 gate = ev["episode"]
                 break
+        if not gate:
+            continue
+        # running counts: occurrences of each value in episodes BEFORE the gate (what a gate would know)
+        before = {v: sum(len(re.findall(rf"\b{re.escape(v.lower())}\b", el.text.lower()))
+                         for ep in eps if ep.number < gate for el in ep.elements) for v in counts}
+        major = max(before, key=lambda v: (before[v], -list(counts).index(v)))
+        odd = [v for v in counts if v != major and len(v) >= 3 and len(owned.get(v.lower(), [])) <= 1]
         lines = shots = 0
         if gate and odd:
             pat = [o.lower() for o in odd]
