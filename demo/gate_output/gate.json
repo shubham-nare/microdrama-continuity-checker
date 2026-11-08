@@ -6,5 +6,38 @@
  "seconds": 2.9,
  "blocked": [
   "Iris \u2014 eye_colour: 'hazel' vs 'green' vs 'brown'"
- ]
+ ],
+ "evidence": [
+  {
+   "flag": "F-9afc3754c6",
+   "new": [
+    {
+     "line": 16,
+     "value": "brown",
+     "quote": "Close-up of Iris's brown eyes"
+    }
+   ],
+   "earlier": [
+    {
+     "episode": 1,
+     "line": 32,
+     "value": "hazel",
+     "quote": "Iris's hazel eyes narrowing"
+    },
+    {
+     "episode": 3,
+     "line": 24,
+     "value": "hazel",
+     "quote": "Iris's hazel eyes scanning"
+    },
+    {
+     "episode": 5,
+     "line": 24,
+     "value": "green",
+     "quote": "Close-up of Iris's green eyes widening"
+    }
+   ]
+  }
+ ],
+ "note": "live_calls/seconds are from the last live (uncached) gate run"
 }

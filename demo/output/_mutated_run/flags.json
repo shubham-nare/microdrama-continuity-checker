@@ -75,7 +75,7 @@
   "subject": "(name spelling)",
   "attribute": "Holloway/Halloway",
   "severity": "high",
-  "audible": true,
+  "audible": false,
   "summary": "Name spelled 2 ways: Holloway \u00d72, Halloway \u00d71",
   "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Holloway (see F-cf04a0a2bf); Halloway (see F-cf04a0a2bf)",
   "variant_counts": {},
@@ -117,7 +117,7 @@
     "where": "ELIAS (dialogue)",
     "value": "Halloway",
     "quote": "\"He trusts the Halloway name. That's why he wants you here.\"",
-    "odd": true,
+    "odd": false,
     "file": "episode-002.txt",
     "line": 32
    }

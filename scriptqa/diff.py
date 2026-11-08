@@ -182,6 +182,34 @@ def severity(g: dict, odd: list[dict]) -> str:
     return "medium" if g["kind"] in ("TRAIT", "PROP") else "low"
 
 
+# Written independently of the seeded-error mutator (overlap with its 5 materials is disclosed in the doc).
+CLASH_WORDS = {
+    "black": "black", "white": "white", "red": "red", "crimson": "red", "scarlet": "red", "blue": "blue", "navy": "blue",
+    "green": "green", "emerald-green": "green", "grey": "grey", "gray": "grey", "silver-grey": "grey", "brown": "brown",
+    "hazel": "hazel", "amber": "amber", "violet": "violet", "purple": "violet", "lavender": "violet", "pink": "pink",
+    "yellow": "yellow", "golden": "gold", "gold": "gold", "blonde": "gold", "fair": "gold", "auburn": "red",
+    "silver": "silver", "bronze": "bronze", "brass": "brass", "copper": "copper", "iron": "iron", "steel": "steel",
+    "wooden": "wood", "wood": "wood", "leather": "leather", "lace": "lace", "silk": "silk", "velvet": "velvet",
+    "emerald": "emerald", "ruby": "ruby", "sapphire": "sapphire", "amethyst": "amethyst", "pearl": "pearl",
+    "diamond": "diamond", "jade": "jade", "onyx": "onyx", "garnet": "garnet", "opal": "opal",
+}
+
+
+def _clash(values: list[str], attribute: str) -> bool:
+    """Two descriptions of one thing that name different colours/materials and share another describing word."""
+    def parts(v):
+        words = [w for w in re.split(r"[\s,;/]+|-", v.lower()) if w]
+        return {CLASH_WORDS[w] for w in words if w in CLASH_WORDS}, {w for w in words if w not in CLASH_WORDS and w not in STOPWORDS and len(w) > 2}
+    obj = set(attribute.lower().split())
+    ps = [parts(v) for v in values]
+    for i in range(len(ps)):
+        for j in range(i + 1, len(ps)):
+            (ci, wi), (cj, wj) = ps[i], ps[j]
+            if ci and cj and not (ci & cj) and ((wi & wj) - obj or obj & (wi | wj)):
+                return True
+    return False
+
+
 def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]:
     flags = []
     for g in groups:
@@ -198,6 +226,10 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
             if not ok:
                 v["reason"] = f"model called it intentional ({v.get('reason', '')}) but cited no line that shows the change — kept for a human"
                 v["verdict"] = "UNCLEAR"
+        if g["kind"] in ("PROP", "TRAIT") and v.get("verdict") in ("COMPATIBLE", "DIFFERENT_ENTITIES") \
+                and _clash(sorted({i["value"] for i in g["items"]}), str(g["attribute"])):
+            v["reason"] = f"model said {v['verdict'].lower().replace('_', ' ')} ({v.get('reason', '')}) but the descriptions name different colours/materials — kept for a human"
+            v["verdict"] = "UNCLEAR"
         if g["source"] == "names" and v.get("verdict") in ("INTENTIONAL_CHANGE", "COMPATIBLE"):
             v["reason"] = f"model says {v['verdict'].lower().replace('_', ' ')}: {v.get('reason', '')} — kept for a human, spelling groups are never auto-dropped"
             v["verdict"] = "UNCLEAR"
@@ -210,6 +242,8 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
         values = Counter(it["value"] for it in g["items"])
         if g["source"] == "names":
             counts = Counter({it["value"]: it.get("count", 1) for it in g["items"]})
+            top = max(counts.values())
+            odd_idx = {i for i, it in enumerate(g["items"]) if counts[it["value"]] * 2 < top}
         else:
             counts = values
         variants = ", ".join(f"{k} ×{n}" for k, n in counts.most_common())

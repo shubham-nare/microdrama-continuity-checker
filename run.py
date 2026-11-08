@@ -90,7 +90,10 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     import json
     gpath = out / "gate.json"
     rec = {"episode": new.number, "file": new_ep.name, "earlier_episodes": len(list(data.glob("*.txt"))),
-           "live_calls": u["calls_live"], "seconds": r["runlog"]["wall_seconds"], "blocked": [f["summary"] for f in hits]}
+           "live_calls": u["calls_live"], "seconds": r["runlog"]["wall_seconds"], "blocked": [f["summary"] for f in hits],
+           "evidence": [{"flag": f["id"], "new": [{"line": e["line"], "value": e["value"], "quote": e["quote"]} for e in f["evidence"] if e["episode"] == new.number],
+                         "earlier": [{"episode": e["episode"], "line": e["line"], "value": e["value"], "quote": e["quote"]} for e in f["evidence"] if e["episode"] != new.number][:3]}
+                        for f in hits]}
     if u["calls_live"] == 0 and gpath.exists():  # a cached re-run: keep the last LIVE measurement for cost reporting
         old = json.loads(gpath.read_text(encoding="utf-8"))
         rec["live_calls"], rec["seconds"] = old.get("live_calls", 0), old.get("seconds", 0)

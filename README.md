@@ -36,7 +36,7 @@ Outputs in the `--out` folder:
 ## Check one new episode before it goes to video (per-episode gate)
 ```bash
 python run.py --data demo/heldout/show --gate demo/gate/episode-006.txt --out demo/gate_output
-# GATE episode 6 vs 5 earlier episodes: 3 live model calls, ~7 s
+# GATE episode 6 vs 5 earlier episodes: N live model calls, a few seconds (earlier episodes come from the cache)
 # BLOCKED [medium] Iris: eye_colour: 'hazel' vs 'green' vs 'brown'
 #    new  ep6 line 16: 'brown' "Close-up of Iris's brown eyes"
 #    show ep1 line 32: 'hazel' "Iris's hazel eyes narrowing"

@@ -110,6 +110,9 @@
     "caught": 1
    }
   },
+  "loss_stages": {
+   "flagged": 1
+  },
   "distinct_detecting_flags": 1,
   "baseline_note": "baseline = code-only spelling detector; it cannot catch non-spelling error types by design",
   "pipeline_recall": 1.0,
@@ -136,7 +139,8 @@
      "F-eb833cd912"
     ],
     "baseline_hit": false,
-    "validity": "none"
+    "validity": "none",
+    "loss_stage": "flagged"
    }
   ]
  },

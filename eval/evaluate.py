@@ -18,7 +18,7 @@ import random
 import re
 import shutil
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import yaml
@@ -492,6 +492,15 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     n = len(muts)
     for m in muts:
         m["validity"] = validity_class(eps, m)
+        if m["pipeline_hit"]:
+            m["loss_stage"] = "flagged"
+        elif any(it.get("element_id") == m["element_id"] for g_ in mres["groups"] for it in g_["items"]):
+            g_ = next(g_ for g_ in mres["groups"] if any(it.get("element_id") == m["element_id"] for it in g_["items"]))
+            m["loss_stage"] = f"grouped, cleared by the model as {g_.get('verdict', {}).get('verdict')}"
+        elif any(f_.get("element_id") == m["element_id"] for f_ in mres["facts"]):
+            m["loss_stage"] = "extracted, never grouped"
+        else:
+            m["loss_stage"] = "not extracted"
     by_class = defaultdict(lambda: {"n": 0, "caught": 0})
     for m in muts:
         by_class[m["validity"]]["n"] += 1
@@ -500,6 +509,7 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     distinct = sorted({fid for m in muts for fid in m["pipeline_hit"]})
     ev["seeded"] = {"seed": SEED, "n": n, "caught": caught, "ci95": wilson(caught, n),
                     "by_validity": dict(by_class),
+                    "loss_stages": dict(Counter(m["loss_stage"].split(" as ")[0] for m in muts)),
                     "distinct_detecting_flags": len(distinct),
                     "baseline_note": "baseline = code-only spelling detector; it cannot catch non-spelling error types by design",
                     "pipeline_recall": round(sum(bool(m["pipeline_hit"]) for m in muts) / n, 3) if n else None,

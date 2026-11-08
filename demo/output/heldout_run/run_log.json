@@ -29,6 +29,14 @@
    "seconds": 0.0
   },
   {
+   "tag": "extract:ep4",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 952,
+   "out_tokens": 610,
+   "seconds": 0.0
+  },
+  {
    "tag": "extract:ep2",
    "model": "gemini-3.5-flash-lite",
    "cache": true,
@@ -42,14 +50,6 @@
    "cache": true,
    "in_tokens": 881,
    "out_tokens": 418,
-   "seconds": 0.0
-  },
-  {
-   "tag": "extract:ep4",
-   "model": "gemini-3.5-flash-lite",
-   "cache": true,
-   "in_tokens": 952,
-   "out_tokens": 610,
    "seconds": 0.0
   },
   {

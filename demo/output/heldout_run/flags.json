@@ -146,7 +146,7 @@
   "subject": "(name spelling)",
   "attribute": "Marlowe/Marlow",
   "severity": "high",
-  "audible": true,
+  "audible": false,
   "summary": "Name spelled 2 ways: Marlowe \u00d72, Marlow \u00d71",
   "suggested_fix": "Pick one and fix the others. Variants: Marlowe \u00d72, Marlow \u00d71",
   "variant_counts": {
@@ -191,7 +191,7 @@
     "where": "CAPTAIN REYES (dialogue)",
     "value": "Marlow",
     "quote": "\"Then let me prove it, Miss Marlow.\"",
-    "odd": true,
+    "odd": false,
     "file": "episode-004.txt",
     "line": 36
    }

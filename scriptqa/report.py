@@ -47,9 +47,8 @@ def gate_replay(eps: list[Episode], flags: list[dict]) -> None:
         if not gate:
             continue
         # running counts: occurrences of each value in episodes BEFORE the gate (what a gate would know)
-        before = {v: sum(len(re.findall(rf"\b{re.escape(v.lower())}\b", el.text.lower()))
-                         for ep in eps if ep.number < gate for el in ep.elements) for v in counts}
-        major = max(before, key=lambda v: (before[v], -list(counts).index(v)))
+        before = {v: sum(1 for e_ in f["evidence"] if e_["value"] == v and e_["episode"] < gate) for v in counts}
+        major = max(before, key=lambda v: (before[v], counts.get(v, 0)))
         odd = [v for v in counts if v != major and len(v) >= 3 and len(owned.get(v.lower(), [])) <= 1]
         lines = shots = 0
         if gate and odd:
@@ -199,6 +198,10 @@ def cleared_groups(groups: list[dict]) -> list[dict]:
         v = g.get("verdict", {}).get("verdict")
         if v in ("CONTRADICTION", "UNCLEAR") or (g["source"] == "names" and v in ("INTENTIONAL_CHANGE", "COMPATIBLE")):
             continue  # those became flags
+        if g["kind"] in ("PROP", "TRAIT") and v in ("COMPATIBLE", "DIFFERENT_ENTITIES"):
+            from .diff import _clash
+            if _clash(sorted({i["value"] for i in g["items"]}), str(g["attribute"])):
+                continue  # became a REVIEW flag
         if v == "INTENTIONAL_CHANGE" and g["source"] == "facts":
             cid = (g.get("verdict", {}).get("change_value_id") or "").lstrip("V")
             if not (cid.isdigit() and 1 <= int(cid) <= len(g["items"]) and g["items"][int(cid) - 1].get("is_change")):
@@ -223,6 +226,9 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
            f"{summary['facts_verified']} verified facts · <b>{summary['flags_contradiction']} contradictions</b> "
            f"({summary['flags_high']} high) · {summary['flags_collision']} label collisions · {summary['flags_alias']} characters with several labels · "
            f"{summary['flags_review']} marked 'needs a human look' · every flag is open until an editor accepts or dismisses it</p>",
+           "<p><small><b>How to read this:</b> a <b>contradiction</b> is the same fact stated two ways with no on-screen reason; "
+           "<b>needs a human look</b> means the model cleared it without evidence, so you decide; orange rows are the lines to fix; "
+           "a <b>label collision</b> is one speaker label used for two people. </small></p>"
            "<p><small>Every quote below was checked by code against the script. Severity: high = audible (dialogue) or "
            "breaks who-is-who; medium = visual state (trait, prop, injury); info = alias list for reference images. "
            "Reviewer: mark each flag accept / dismiss in flags.csv (column reviewer_decision).</small></p>"]

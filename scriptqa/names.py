@@ -41,10 +41,17 @@ def name_inventory(eps: list[Episode]) -> dict[str, list[dict]]:
                 occ[w].append({"episode": ep.number, "element_id": eid, "kind": kind,
                                "quote": t[s:m.end() + 40].strip(), "initial": initial})
     # a capitalised word seen only at the start of sentences, at most twice, is an ordinary word
-    # ('Starving and overcome...'), not a name
+    # ('Starving and overcome...'), not a name; UNLESS it is a one-letter slip of a frequent name (same first letter,
+    # length within 1), which is exactly how a misspelt name looks when a character is addressed at line start
+    frequent = [w for w, o in occ.items() if len(o) >= 5]
+
+    def near_frequent(w):
+        return any(f[0] == w[0] and f != w and abs(len(f) - len(w)) <= 1 and fuzz.ratio(f.lower(), w.lower()) >= 85
+                   for f in frequent)
+
     return {w: o for w, o in occ.items()
             if w.lower() not in STOP and lower_words[w.lower()] == 0 and len(w) >= 4
-            and not (len(o) <= 2 and all(x["initial"] for x in o))}
+            and not (len(o) <= 2 and all(x["initial"] for x in o) and not near_frequent(w))}
 
 
 def variant_groups(eps: list[Episode], min_ratio: float = 75.0) -> list[dict]:
