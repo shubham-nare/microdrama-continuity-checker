@@ -6,8 +6,8 @@ spelling flag goes to a preview (preview_one_spelling/), which is written but ne
 Every whole-word occurrence of the other spellings in that flag is replaced, in copies of the scripts.
 Then the pure-code spelling check runs again on the patched copies and reports what is left.
 
-Safety rule: when two flags would keep DIFFERENT spellings of what may be one name (e.g. 'Ashbourne' for the
-estate and 'Ashburton' for the surname), the patch would write a new contradiction into the script. Both are
+Safety rule: when two flags would keep DIFFERENT spellings of what may be one name (e.g. 'Marlowe' for a
+house and 'Marlow' for a surname), the patch would write a new contradiction into the script. Both are
 held until an editor sets one canonical value; a separate preview shows what one shared spelling would do.
 
 Only names are patched: a trait or injury needs a writer's judgement about which line is wrong.
