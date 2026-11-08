@@ -138,8 +138,14 @@ class LLM:
         }
         r = httpx.post(f"{base}/chat/completions", json=body, timeout=180,
                        headers={"Authorization": f"Bearer {key}"})
+        if r.status_code == 400 and "response_format" in r.text:
+            body.pop("response_format", None)  # some gateways reject JSON mode: retry once without it
+            r = httpx.post(f"{base}/chat/completions", json=body, timeout=180,
+                           headers={"Authorization": f"Bearer {key}"})
+        if r.status_code in (401, 403, 404):
+            raise LLMError(f"HTTP {r.status_code}: {r.text[:300]}")  # configuration: key or model name
         if r.status_code >= 400:
-            raise LLMError(f"HTTP {r.status_code}: {r.text[:300]}")
+            raise RuntimeError(f"HTTP {r.status_code}: {r.text[:300]}")  # 429 / 5xx: transient, retried with backoff
         j = r.json()
         u = j.get("usage", {})
         return j["choices"][0]["message"]["content"], u.get("prompt_tokens", 0), u.get("completion_tokens", 0)

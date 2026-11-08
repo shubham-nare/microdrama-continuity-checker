@@ -27,7 +27,7 @@
   "n": 5,
   "check": "seeded-error recall >= 0.70 and <= 2 spurious new flags",
   "pass": true,
-  "detail": "recall 1.0 on 1 seeded errors; per type eye_colour 1/1; spurious 0"
+  "detail": "recall 1.0 on 1 seeded errors (by validity: none 1/1); per type eye_colour 1/1; spurious 0"
  },
  {
   "n": 6,
@@ -73,7 +73,7 @@
  },
  {
   "n": 11,
-  "check": "real-pack recall vs hand-verified gold >= 0.70",
+  "check": "real-pack recall vs the answer key (agent-drafted, every item cites its script line) >= 0.70",
   "pass": true,
   "detail": "recall 0.75: found ['surname_spelling', 'eye_colour', 'old_man_collision'], missed ['scar_side']"
  }

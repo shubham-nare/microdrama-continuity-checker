@@ -216,6 +216,14 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                 ("Needs a human look", [f for f in flags if f["type"] == "REVIEW"])]
     for title, fl in sections:
         out.append(f"<h2>{e(title)} ({len(fl)})</h2>")
+        if title == "Characters under several labels":
+            out.append("<p><small>Not errors: the label map that reference images and voices should use (one character ID per row).</small></p>"
+                       "<table><tr><th>character</th><th>labels (episodes)</th><th>id</th></tr>")
+            for f in fl:
+                labs = "; ".join(f"{ev['value']} (ep{ev['episode']}…)" for ev in f["evidence"])
+                out.append(f"<tr><td>{e(f['subject'])}</td><td>{e(labs)}</td><td>{e(f['suggested_fix'].split(chr(39))[1] if chr(39) in f['suggested_fix'] else '')}</td></tr>")
+            out.append("</table>")
+            continue
         for f in fl:
             out.append(f"<div class='f {f['severity']}'><b>#{f['rank']} {e(f['summary'])}</b><br>"
                        f"<span class=tag>{f['severity']}</span><span class=tag>{f['kind']}</span>"

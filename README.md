@@ -22,7 +22,8 @@ pip install -r requirements.txt
 cp .env.example .env                                     # add GEMINI_API_KEY (free tier: aistudio.google.com)
 python run.py --data demo/show --out outputs/demo        # 3-episode fictional demo show, safe to share
 python run.py --data data --out outputs/run1             # any folder of episode .txt files
-python run.py --data data --out outputs/run1 --eval      # + seeded-error test, gold scoring, all checks
+python run.py --data demo/show --out outputs/demo --gold demo/gold --eval   # + seeded-error test, answer-key scoring, all checks
+python run.py --data data --out outputs/run1 --eval      # same on your own show (needs your own answer key in eval/)
 ```
 Outputs in the `--out` folder:
 - `report.html`: open this first

@@ -77,6 +77,16 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
             print(f"   new  ep{e['episode']} line {e.get('line')}: {e['value']!r} \"{e['quote'][:90]}\"")
         for e in before[:2]:
             print(f"   show ep{e['episode']} line {e.get('line')}: {e['value']!r} \"{e['quote'][:90]}\"")
+    import html as _h
+    rep = out / "report.html"
+    if rep.exists():
+        banner = (f"<div style='border:2px solid #c62828;padding:10px;border-radius:8px;margin:10px 0'><b>Gate result for episode {new.number}: "
+                  + (f"BLOCKED by {len(hits)} new conflict(s)</b><ul>" + "".join(f"<li>{_h.escape(f['summary'])}</li>" for f in hits) + "</ul>"
+                     if hits else "PASS</b>")
+                  + f"<small>{len(r['flags']) - len(hits)} other flag(s) below are carried over from earlier episodes, not caused by this one.</small></div>")
+        t = rep.read_text(encoding="utf-8")
+        i = t.find("</h1>")
+        rep.write_text(t[:i + 5] + banner + t[i + 5:], encoding="utf-8")
     import json
     gpath = out / "gate.json"
     rec = {"episode": new.number, "file": new_ep.name, "earlier_episodes": len(list(data.glob("*.txt"))),

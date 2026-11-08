@@ -87,6 +87,25 @@ def find_sites(eps) -> dict[str, list[dict]]:
     return sites
 
 
+def validity_class(eps, m: dict) -> str:
+    """cross-episode: the old value appears with the same key word in ANOTHER episode (so the plant contradicts
+    something elsewhere); same-episode: only elsewhere in its own episode; none: nothing to contradict."""
+    key = (m.get("ctx") or "").split()[-1].lower() if m.get("ctx") else None
+    old = m["old"].lower()
+    other = same = False
+    for ep in eps:
+        for el in ep.elements:
+            if el.id == m["element_id"]:
+                continue
+            t = el.text.lower()
+            if re.search(rf"\b{re.escape(old)}\b", t) and (key is None or key in t):
+                if ep.number == m["episode"]:
+                    same = True
+                else:
+                    other = True
+    return "cross-episode" if other else ("same-episode" if same else "none")
+
+
 def make_mutations(eps, per_type: int = 4, seed: int = SEED) -> list[dict]:
     rng = random.Random(seed)
     sites = find_sites(eps)
@@ -101,7 +120,8 @@ def make_mutations(eps, per_type: int = 4, seed: int = SEED) -> list[dict]:
             used_eps.add(s["el"].episode)
             el = s["el"]
             muts.append({"type": mtype, "episode": el.episode, "element_id": el.id, "line": el.line,
-                         "old": s["old"], "new": _match_case(s["new"], s["old"]), "before": el.text})
+                         "old": s["old"], "new": _match_case(s["new"], s["old"]), "before": el.text,
+                         "ctx": s.get("ctx", "")})
             n += 1
             if n >= per_type:
                 break
@@ -470,9 +490,16 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     spurious = [f["id"] for f in mflags if f["type"] in NON_INFO and f["id"] not in clean_ids
                 and not any(flag_hits_mutation(f, m) for m in muts)]
     n = len(muts)
+    for m in muts:
+        m["validity"] = validity_class(eps, m)
+    by_class = defaultdict(lambda: {"n": 0, "caught": 0})
+    for m in muts:
+        by_class[m["validity"]]["n"] += 1
+        by_class[m["validity"]]["caught"] += bool(m["pipeline_hit"])
     caught = sum(bool(m["pipeline_hit"]) for m in muts)
     distinct = sorted({fid for m in muts for fid in m["pipeline_hit"]})
     ev["seeded"] = {"seed": SEED, "n": n, "caught": caught, "ci95": wilson(caught, n),
+                    "by_validity": dict(by_class),
                     "distinct_detecting_flags": len(distinct),
                     "baseline_note": "baseline = code-only spelling detector; it cannot catch non-spelling error types by design",
                     "pipeline_recall": round(sum(bool(m["pipeline_hit"]) for m in muts) / n, 3) if n else None,
@@ -501,7 +528,8 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     s = ev["seeded"]
     add(5, "seeded-error recall >= 0.70 and <= 2 spurious new flags",
         (s["pipeline_recall"] or 0) >= 0.70 and len(spurious) <= 2,
-        f"recall {s['pipeline_recall']} on {n} seeded errors; per type " +
+        f"recall {s['pipeline_recall']} on {n} seeded errors (by validity: " +
+        ", ".join(f"{k} {v['caught']}/{v['n']}" for k, v in sorted(s.get("by_validity", {}).items())) + "); per type " +
         ", ".join(f"{k} {v['pipeline']}/{v['n']}" for k, v in sorted(s["per_type"].items())) + f"; spurious {len(spurious)}")
     add(6, "real-pack ACTIONABLE precision (contradiction/review/collision flags, all judged) >= 0.70",
         real["n_unlabelled"] == 0 and (real["precision"] or 0) >= 0.70,
@@ -556,7 +584,7 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     add(10, "run log records calls, tokens, wall time, est. cost",
         all(k in rl for k in ("usage", "wall_seconds", "est_cost_usd_paid_tier")),
         f"{rl['usage']['calls_total']} calls, {rl['usage']['in_tokens']}+{rl['usage']['out_tokens']} tokens, {rl['wall_seconds']} s, ${rl['est_cost_usd_paid_tier']}")
-    add(11, "real-pack recall vs hand-verified gold >= 0.70", (real["recall"] or 0) >= 0.70,
+    add(11, "real-pack recall vs the answer key (agent-drafted, every item cites its script line) >= 0.70", (real["recall"] or 0) >= 0.70,
         f"recall {real['recall']}: found {[k for k, v in real['found'].items() if v]}, missed {[k for k, v in real['found'].items() if not v]}")
 
     (out / "eval.json").write_text(json.dumps(ev, ensure_ascii=False, indent=1, default=str), encoding="utf-8")

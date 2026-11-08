@@ -104,6 +104,12 @@
    0.21,
    1.0
   ],
+  "by_validity": {
+   "none": {
+    "n": 1,
+    "caught": 1
+   }
+  },
   "distinct_detecting_flags": 1,
   "baseline_note": "baseline = code-only spelling detector; it cannot catch non-spelling error types by design",
   "pipeline_recall": 1.0,
@@ -124,11 +130,13 @@
     "line": 28,
     "old": "brown",
     "new": "blue",
+    "ctx": "brown eyes",
     "after_line": "Close-up of Maren's blue eyes filling with doubt.",
     "pipeline_hit": [
      "F-eb833cd912"
     ],
-    "baseline_hit": false
+    "baseline_hit": false,
+    "validity": "none"
    }
   ]
  },
