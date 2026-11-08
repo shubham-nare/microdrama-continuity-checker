@@ -30,10 +30,46 @@ def live_minutes(run: Path) -> str:
     p = ROOT / ".cache" / "live_runs.json"
     if p.exists():
         runs = json.loads(p.read_text(encoding="utf-8"))
+        runs = [r for r in runs if Path(r["data"]).name == "data" and "mutated" not in r["data"]]
         if runs:
-            r = runs[-1]
+            r = max(runs, key=lambda r: r["calls_live"])  # the fullest live run (nothing cached) is the honest timing
             return f"{r['wall_seconds'] / 60:.0f} minutes ({r['calls_live']} live calls, measured {r['when']})"
     return "not measured"
+
+
+def extra_vals(real, seeded, flags) -> dict:
+    by_id = {f["id"]: f for f in flags}
+    judged = [j for j in real["judged"] if j.get("type") != "LABEL_ALIAS"]
+    false_ex = [by_id[j["id"]]["summary"].split(":")[0].replace("—", "-") for j in judged if j["label"] == "false" and j["id"] in by_id]
+
+    def prec(types):
+        js = [j for j in judged if j.get("type") in types and j["label"] != "unlabelled"]
+        return f"{sum(1 for j in js if j['label'] == 'true')}/{len(js)}" if js else "n/a"
+    stab = []
+    for i in (1, 2, 3):
+        p = ROOT / "outputs" / "stability" / f"run{i}" / "vendor_check.json"
+        if p.exists():
+            stab.append(json.loads(p.read_text(encoding="utf-8")))
+    common = "n/a"
+    if len(stab) == 3:
+        sets = [set(f["id"] for f in json.loads((ROOT / "outputs" / "stability" / f"run{i}" / "flags.json").read_text(encoding="utf-8"))
+                    if f["type"] != "LABEL_ALIAS") for i in (1, 2, 3)]
+        common = str(len(sets[0] & sets[1] & sets[2]))
+    missed = set.intersection(*[{k for k, v in s["found"].items() if not v} for s in stab]) if stab else set()
+    lp = ROOT / "outputs" / "vendor_llama" / "vendor_check.json"
+    ll = json.loads(lp.read_text(encoding="utf-8")) if lp.exists() else {}
+    loss = {k: v for k, v in real.get("loss_stage", {}).items() if v != "flagged"}
+    rel = seeded.get("per_type", {}).get("relation_flip", {})
+    return {
+        "false_examples": "; ".join(false_ex) or "none",
+        "prec_contra": prec(("CONTRADICTION", "LABEL_COLLISION")), "prec_review": prec(("REVIEW",)),
+        "stab_found": ", ".join(f"{s['planted_found']}/{s['planted_total']}" for s in stab) or "not run",
+        "stab_common": common, "stab_missed": ", ".join(sorted(m.replace("_", " ") for m in missed)) or "none",
+        "llama_found": ll.get("planted_found", "n/a"), "llama_dropped": ll.get("facts_dropped_by_quote_check", "n/a"),
+        "llama_facts": (ll.get("facts_kept", 0) + ll.get("facts_dropped_by_quote_check", 0)) if ll else "n/a",
+        "loss_text_short": "; ".join(f"{k.replace('_', ' ')} ({v.split(':')[0].split(' as ')[0]})" for k, v in loss.items()) or "none",
+        "relation_rate": f"{rel.get('pipeline', 0)}/{rel.get('n', 0)} caught" if rel else "n/a",
+    }
 
 
 def main(run: Path) -> int:
@@ -75,6 +111,7 @@ def main(run: Path) -> int:
         "seed_ci": "–".join(f"{round(100 * x)}%" for x in seeded.get("ci95", [0, 0])),
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
+        **extra_vals(real, seeded, flags),
         "canary_plain": canary.replace("swapped model catches", "caught").replace(" in the demo show", "").split(" (")[0] if canary != "not run" else "was not run",
         "checks_failed": "; ".join(PLAIN.get(c["n"], c["check"].split(":")[0]) for c in checks if not c["pass"]) or "none",
         "seed_valid": ", ".join(f"{v['caught']}/{v['n']} {k}" for k, v in sorted(seeded.get("by_validity", {}).items())),

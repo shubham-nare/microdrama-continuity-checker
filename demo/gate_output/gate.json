@@ -38,5 +38,6 @@
     }
    ]
   }
- ]
+ ],
+ "note": "live_calls/seconds are from the last live (uncached) gate run"
 }

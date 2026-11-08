@@ -4,16 +4,16 @@
   "model": "gemini-3.5-flash-lite",
   "fallback": "gemini-3.1-flash-lite",
   "calls_total": 7,
-  "calls_live": 1,
-  "calls_cached": 6,
+  "calls_live": 0,
+  "calls_cached": 7,
   "in_tokens": 4697,
   "out_tokens": 2305,
-  "live_seconds": 1.4,
+  "live_seconds": 0,
   "models_used": [
    "gemini-3.5-flash-lite"
   ]
  },
- "wall_seconds": 1.5,
+ "wall_seconds": 0.0,
  "est_cost_usd_paid_tier": 0.0014,
  "price_assumption_per_M": [
   0.1,
@@ -71,10 +71,10 @@
   {
    "tag": "adjudicate:1",
    "model": "gemini-3.5-flash-lite",
-   "cache": false,
+   "cache": true,
    "in_tokens": 391,
    "out_tokens": 113,
-   "seconds": 1.43
+   "seconds": 0.0
   }
  ]
 }

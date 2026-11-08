@@ -56,16 +56,16 @@
    "tag": "adjudicate:1",
    "model": "gemini-3.1-flash-lite",
    "cache": true,
-   "in_tokens": 731,
-   "out_tokens": 99,
+   "in_tokens": 761,
+   "out_tokens": 106,
    "seconds": 0.0
   },
   {
    "tag": "adjudicate:1",
    "model": "gemini-3.1-flash-lite",
    "cache": true,
-   "in_tokens": 761,
-   "out_tokens": 106,
+   "in_tokens": 731,
+   "out_tokens": 99,
    "seconds": 0.0
   },
   {
