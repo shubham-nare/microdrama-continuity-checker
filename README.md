@@ -17,6 +17,7 @@ python run.py --preflight --data path/to/new_show     # checks format, model, ke
 If an episode's model call fails, the run continues. The episode is listed as "not read" in the report, and the code-only name check still covers it.
 
 ## Run
+Exit codes: 0 = every quality bar passed; 1 = the run finished but a bar failed (listed in `checks.json`; three fail on Kuku's pack, as the doc says); 2 = no episode could be read.
 `python run.py --data path/to/show --out outputs/quick --code-only` gives the spelling-variant and speaker-label checks in seconds with no model (a safety net when the API is slow).
 ```bash
 pip install -r requirements.txt
