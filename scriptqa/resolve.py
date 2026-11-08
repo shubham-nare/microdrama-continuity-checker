@@ -256,6 +256,25 @@ def _relation_supported(canon: str, relation, facts: list[dict]) -> bool:
     return False
 
 
+def resolve_code_only(eps: list[Episode], hints: list[dict], review: dict | None = None) -> dict:
+    """Fallback when the model call fails: each speaker label is its own character, plus human overrides."""
+    assign = {}
+    for h in hints:
+        assign[(h["label"], h["episode"])] = h["label"].title()
+    for o in (review or {}).get("aliases", []):
+        for (lab, e) in list(assign):
+            if lab == o["label"].upper() and (o.get("episodes", "all") == "all" or e in o["episodes"]):
+                assign[(lab, e)] = o["character"]
+    chars = defaultdict(lambda: defaultdict(list))
+    for (lab, e), c in assign.items():
+        chars[c][lab].append(e)
+    char_out = {c: {"id": slug(c), "canonical": c, "reason": "code-only (model unavailable)",
+                    "labels": {l: sorted(es) for l, es in d.items()}} for c, d in chars.items()}
+    a = {f"{l}|{e}": c for (l, e), c in assign.items()}
+    return {"characters": char_out, "assign": a, "model_assign": dict(a), "human_overrides": len((review or {}).get("aliases", [])),
+            "collisions": [], "subject_map": {}, "problems": ["model unavailable: code-only identities"], "canon_names": list(char_out)}
+
+
 def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
 

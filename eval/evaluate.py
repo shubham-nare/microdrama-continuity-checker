@@ -590,6 +590,25 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
             add(13, "held-out fictional show runs end to end", False, f"crashed: {e}")
         finally:
             GOLD_DIR = saved
+    # 14 resilience: with the resolver and the judge simulated as unavailable, the run still finishes with a report
+    demo = ROOT / "demo" / "show"
+    if demo.exists():
+        saved_fail = os.environ.get("LLM_FAIL_TAGS")
+        os.environ["LLM_FAIL_TAGS"] = "resolve,adjudicate"
+        try:
+            rr = run_pipeline(demo, out / "_resilience", "resilience", None, 3, log=lambda *a: None)
+            ok_r = (out / "_resilience" / "report.html").exists() and rr["summary"]["identities_code_only"] \
+                and rr["summary"]["groups_not_judged"] == rr["summary"]["candidate_groups"]
+            add(14, "resilience: resolver + judge unavailable -> run still finishes, everything sent to a human", ok_r,
+                f"code-only identities={rr['summary']['identities_code_only']}, groups not judged {rr['summary']['groups_not_judged']}/{rr['summary']['candidate_groups']}, flags {len(rr['flags'])}")
+        except Exception as e:
+            add(14, "resilience: resolver + judge unavailable -> run still finishes", False, f"crashed: {e}")
+        finally:
+            if saved_fail is None:
+                os.environ.pop("LLM_FAIL_TAGS", None)
+            else:
+                os.environ["LLM_FAIL_TAGS"] = saved_fail
+            shutil.rmtree(out / "_resilience", ignore_errors=True)
     rl = json.loads((out / "run_log.json").read_text(encoding="utf-8"))
     add(10, "run log records calls, tokens, wall time, est. cost",
         all(k in rl for k in ("usage", "wall_seconds", "est_cost_usd_paid_tier")),

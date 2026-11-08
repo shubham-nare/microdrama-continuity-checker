@@ -66,6 +66,12 @@
   "detail": "found 8/9 planted errors (95% CI [0.56, 0.98]), actionable precision 1.0, alias F1 1.0; missed ['village_name']"
  },
  {
+  "n": 14,
+  "check": "resilience: resolver + judge unavailable -> run still finishes, everything sent to a human",
+  "pass": true,
+  "detail": "code-only identities=True, groups not judged 3/3, flags 2"
+ },
+ {
   "n": 10,
   "check": "run log records calls, tokens, wall time, est. cost",
   "pass": true,

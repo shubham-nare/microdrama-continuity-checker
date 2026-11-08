@@ -119,8 +119,10 @@ def main(run: Path) -> int:
         "canary_plain": canary.replace("swapped model catches", "caught").replace(" in the demo show", "").split(" (")[0] if canary != "not run" else "was not run",
         "checks_failed": "; ".join(PLAIN.get(c["n"], c["check"].split(":")[0]) for c in checks if not c["pass"]) or "none",
         "seed_valid": ", ".join(f"{v['caught']}/{v['n']} {k}" for k, v in sorted(seeded.get("by_validity", {}).items())),
-        "gate_demo": (lambda g: f"Built as <code>run.py --gate new_episode.txt</code>: on the held-out show, a new episode 6 with a planted eye-colour change was blocked in {g['live_calls']} live call{'s' if g['live_calls'] != 1 else ''} and {g['seconds']:.0f} s, with both lines quoted."
-                      if g else "")(json.loads((ROOT / "demo" / "gate_output" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output" / "gate.json").exists() else None),
+        "gate_demo": (lambda g: (f"On a never-seen episode of the held-out show it took {g['live_calls']} live model call{'s' if g['live_calls'] != 1 else ''}"
+                                 + (f" ({g['seconds'] / 60:.0f} min, while the free tier was rate-limiting)" if g['seconds'] > 120 else f" and {g['seconds']:.0f} s")
+                                 + (f" and blocked {len(g['blocked'])} conflict{'s' if len(g['blocked']) != 1 else ''} the new episode touches." if g.get("blocked") else " and passed."))
+                      if g else "")(json.loads((ROOT / "demo" / "gate_output_new" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output_new" / "gate.json").exists() else None),
         "held_found": (e.get("heldout") or {}).get("real", {}).get("distinct_gold_found", "n/a"),
         "held_n": (e.get("heldout") or {}).get("real", {}).get("n_gold", "n/a"),
         "held_ci": "–".join(f"{round(100 * x)}%" for x in (e.get("heldout") or {}).get("ci95", [0, 0])),
@@ -149,6 +151,22 @@ def main(run: Path) -> int:
     }
     tpl = (ROOT / "docs" / "solution_template.html").read_text(encoding="utf-8")
     html = tpl.format(**vals)
+    import re as _re
+    body = _re.sub(r"<style.*?</style>", " ", html, flags=_re.S)
+    words = len(_re.sub(r"<[^>]+>", " ", body).split())
+    gold_ids = [g for g in titles if "_" in g]
+    problems = []
+    if words > 1000:
+        problems.append(f"{words} words (budget 1000)")
+    if any(gid in body for gid in gold_ids):
+        problems.append("an internal answer-key id leaked into the doc")
+    if _re.search(r"ep\d+->ep\d+", body):
+        problems.append("a raw 'epNN->epNN' string leaked into the doc")
+    if _re.search(r"font-size:\s*[0-9](\.\d+)?pt", tpl):
+        problems.append("a font below 10 pt")
+    print(f"doc budget: {words} words" + ("; PROBLEMS: " + "; ".join(problems) if problems else "; ok"))
+    if problems:
+        return 3
     out_html = ROOT / "docs" / "solution.html"
     out_html.write_text(html, encoding="utf-8")
     pdf = ROOT / "docs" / "solution.pdf"

@@ -1,0 +1,76 @@
+{
+ "1": {
+  "facts_in": 6,
+  "facts_ok": 4,
+  "facts_repointed": 0,
+  "facts_dropped": 2,
+  "labels_in": 3,
+  "labels_ok": 3,
+  "labels_dropped": 0,
+  "dropped_examples": [
+   {
+    "element_id": "E001-0001",
+    "quote": "Iris Marlowe returns to the fishing village"
+   },
+   {
+    "element_id": "E001-0001",
+    "quote": "fishing village of Kestrel Bay"
+   }
+  ]
+ },
+ "2": {
+  "facts_in": 8,
+  "facts_ok": 8,
+  "facts_repointed": 0,
+  "facts_dropped": 0,
+  "labels_in": 3,
+  "labels_ok": 3,
+  "labels_dropped": 0,
+  "dropped_examples": []
+ },
+ "3": {
+  "facts_in": 5,
+  "facts_ok": 5,
+  "facts_repointed": 0,
+  "facts_dropped": 0,
+  "labels_in": 2,
+  "labels_ok": 2,
+  "labels_dropped": 0,
+  "dropped_examples": []
+ },
+ "4": {
+  "facts_in": 5,
+  "facts_ok": 5,
+  "facts_repointed": 0,
+  "facts_dropped": 0,
+  "labels_in": 2,
+  "labels_ok": 2,
+  "labels_dropped": 0,
+  "dropped_examples": []
+ },
+ "5": {
+  "facts_in": 2,
+  "facts_ok": 1,
+  "facts_repointed": 0,
+  "facts_dropped": 1,
+  "labels_in": 2,
+  "labels_ok": 2,
+  "labels_dropped": 0,
+  "dropped_examples": [
+   {
+    "element_id": "E005-0001",
+    "quote": "INT. KESTREL COVE INN \u2013 NIGHT"
+   }
+  ]
+ },
+ "7": {
+  "facts_in": 5,
+  "facts_ok": 5,
+  "facts_repointed": 0,
+  "facts_dropped": 0,
+  "labels_in": 3,
+  "labels_ok": 3,
+  "labels_dropped": 0,
+  "dropped_examples": []
+ }
+}

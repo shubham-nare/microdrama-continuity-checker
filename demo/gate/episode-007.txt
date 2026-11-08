@@ -1,0 +1,38 @@
+EPISODE NUMBER: Episode 7
+EPISODE LOGLINE: At sea, Captain Reyes teaches Iris to read the stars while Tom radios from the shore that the harbor master has called the coast guard.
+CONTINUITY NOTES: Follows Episode 6; the next night on the open water. Fictional gate-demo episode, never run before iteration 18, with one planted error.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: EXT. BOAT DECK – NIGHT
+Scene start: 00:00.00
+Scene end: 00:35.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Wide shot of the boat under a sky full of stars. Captain Reyes points upward, the scar across his left eyebrow pale in the moonlight.
+
+**CAPTAIN REYES (Gentle):**
+Start: (00:04.50) | End: (00:08.00)
+"That's the North Star, Miss Marlowe. Your father steered by it every night."
+
+**IRIS (Softly):**
+Start: (00:08.50) | End: (00:11.00)
+"He never once took me out here."
+
+**ACTION:**
+Start: (00:11.00) | End: (00:15.00)
+The radio crackles. Iris grabs the handset, her silver compass swinging on its chain.
+
+**TOM (V.O.) (Urgent, Over radio):**
+Start: (00:15.50) | End: (00:19.00)
+"Iris, it's your cousin Tom. The coast guard is coming for the boat."
+
+**SOUND FX:**
+Start: (00:33.00) | End: (00:35.00)
+A distant siren rises over the water, cliffhanger sting.
+
+--- SCRIPT END ---

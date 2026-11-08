@@ -48,6 +48,9 @@ class LLM:
 
     # ---------------------------------------------------------------- public
     def complete_json(self, system: str, prompt: str, schema: type[BaseModel], tag: str = "") -> dict:
+        fail = [t for t in os.environ.get("LLM_FAIL_TAGS", "").split(",") if t]
+        if any(tag.startswith(t) for t in fail):  # test switch: simulate an unavailable model for these steps
+            raise LLMError(f"{tag}: simulated failure (LLM_FAIL_TAGS)")
         schema_json = json.dumps(schema.model_json_schema(), sort_keys=True)
         key = hashlib.sha256(
             json.dumps([self.provider, self.model, system, prompt, schema_json]).encode()
@@ -116,8 +119,13 @@ class LLM:
             config=types.GenerateContentConfig(
                 system_instruction=system, temperature=0,
                 response_mime_type="application/json", response_schema=schema,
+                **({"max_output_tokens": int(os.environ["LLM_MAX_TOKENS"])} if os.environ.get("LLM_MAX_TOKENS") else {}),
             ),
         )
+        fr = getattr(r.candidates[0], "finish_reason", None) if r.candidates else None
+        if fr is not None and "MAX_TOKENS" in str(fr):
+            raise LLMError(f"output truncated at the model's token limit ({os.environ.get('LLM_MAX_TOKENS', 'default')}); "
+                           "raise LLM_MAX_TOKENS or split the call")
         u = r.usage_metadata
         return r.text or "", (u.prompt_token_count or 0) if u else 0, (u.candidates_token_count or 0) if u else 0
 
@@ -131,6 +139,7 @@ class LLM:
         body = {
             "model": model, "temperature": 0,
             "response_format": {"type": "json_object"},
+            **({"max_tokens": int(os.environ["LLM_MAX_TOKENS"])} if os.environ.get("LLM_MAX_TOKENS") else {}),
             "messages": [
                 {"role": "system", "content": system + "\n\nReturn ONLY a JSON object matching this JSON Schema:\n" + schema_txt},
                 {"role": "user", "content": prompt},
@@ -147,6 +156,8 @@ class LLM:
         if r.status_code >= 400:
             raise RuntimeError(f"HTTP {r.status_code}: {r.text[:300]}")  # 429 / 5xx: transient, retried with backoff
         j = r.json()
+        if j["choices"][0].get("finish_reason") == "length":
+            raise LLMError("output truncated at the model's token limit; raise LLM_MAX_TOKENS or split the call")
         u = j.get("usage", {})
         return j["choices"][0]["message"]["content"], u.get("prompt_tokens", 0), u.get("completion_tokens", 0)
 

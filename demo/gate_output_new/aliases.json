@@ -1,0 +1,86 @@
+{
+ "characters": {
+  "Captain Reyes": {
+   "id": "captain_reyes",
+   "canonical": "Captain Reyes",
+   "reason": "The sailor in episode 1 is identified as Captain Reyes in episode 2, sharing the same physical description of a scar on his eyebrow.",
+   "labels": {
+    "CAPTAIN REYES": [
+     2,
+     4,
+     7
+    ],
+    "THE SAILOR": [
+     1
+    ]
+   }
+  },
+  "Innkeeper": {
+   "id": "innkeeper",
+   "canonical": "Innkeeper",
+   "reason": "The label WOMAN in episode 5 refers to the innkeeper.",
+   "labels": {
+    "WOMAN": [
+     5
+    ]
+   }
+  },
+  "Iris": {
+   "id": "iris",
+   "canonical": "Iris",
+   "reason": "The label IRIS consistently refers to the protagonist Iris Marlowe across all episodes.",
+   "labels": {
+    "IRIS": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     7
+    ]
+   }
+  },
+  "Iris's Mother": {
+   "id": "iris_s_mother",
+   "canonical": "Iris's Mother",
+   "reason": "The label WOMAN in episode 2 is explicitly identified as Iris's mother.",
+   "labels": {
+    "WOMAN": [
+     2
+    ]
+   }
+  },
+  "Tom": {
+   "id": "tom",
+   "canonical": "Tom",
+   "reason": "The label TOM consistently refers to Iris's cousin Tom Marlowe.",
+   "labels": {
+    "TOM": [
+     1,
+     3,
+     7
+    ]
+   }
+  }
+ },
+ "collisions": [
+  {
+   "label": "WOMAN",
+   "characters": {
+    "Iris's Mother": [
+     2
+    ],
+    "Innkeeper": [
+     5
+    ]
+   }
+  }
+ ],
+ "subject_map": {
+  "iris": "Iris",
+  "tom": "Tom",
+  "captain reyes": "Captain Reyes",
+  "iris's mother": "Iris's Mother"
+ },
+ "problems": []
+}

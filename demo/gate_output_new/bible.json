@@ -1,0 +1,335 @@
+{
+ "characters": {
+  "Iris": {
+   "id": "iris",
+   "canonical": "Iris",
+   "labels": {
+    "IRIS": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     7
+    ]
+   },
+   "episodes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7
+   ],
+   "traits": {
+    "hair": [
+     {
+      "episode": 1,
+      "element_id": "E001-0001",
+      "value": "long red hair",
+      "quote": "her long red hair whipping in the wind"
+     }
+    ],
+    "eye_colour": [
+     {
+      "episode": 1,
+      "element_id": "E001-0005",
+      "value": "hazel",
+      "quote": "Iris's hazel eyes narrowing"
+     },
+     {
+      "episode": 3,
+      "element_id": "E003-0003",
+      "value": "hazel",
+      "quote": "Iris's hazel eyes scanning"
+     },
+     {
+      "episode": 5,
+      "element_id": "E005-0003",
+      "value": "green",
+      "quote": "Close-up of Iris's green eyes widening"
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {
+    "compass": [
+     {
+      "episode": 1,
+      "element_id": "E001-0001",
+      "value": "silver compass hanging from a chain",
+      "quote": "a silver compass hanging from a chain at her throat."
+     },
+     {
+      "episode": 4,
+      "element_id": "E004-0004",
+      "value": "brass compass at Iris's throat",
+      "quote": "Close-up of the brass compass at Iris's throat as she clutches it."
+     },
+     {
+      "episode": 7,
+      "element_id": "E007-0004",
+      "value": "silver compass on its chain",
+      "quote": "Iris grabs the handset, her silver compass swinging on its chain."
+     }
+    ],
+    "logbook": [
+     {
+      "episode": 3,
+      "element_id": "E003-0003",
+      "value": "water-stained",
+      "quote": "a water-stained logbook by lamplight."
+     }
+    ]
+   },
+   "injuries": [],
+   "relationships": {},
+   "names": {
+    "place": [
+     {
+      "episode": 2,
+      "element_id": "E002-0003",
+      "value": "the Gull",
+      "quote": "the Gull is mine now"
+     }
+    ],
+    "surname": [
+     {
+      "episode": 4,
+      "element_id": "E004-0006",
+      "value": "Marlow",
+      "quote": "Then let me prove it, Miss Marlow."
+     },
+     {
+      "episode": 7,
+      "element_id": "E007-0002",
+      "value": "Marlowe",
+      "quote": "That's the North Star, Miss Marlowe."
+     }
+    ]
+   }
+  },
+  "Captain Reyes": {
+   "id": "captain_reyes",
+   "canonical": "Captain Reyes",
+   "labels": {
+    "CAPTAIN REYES": [
+     2,
+     4,
+     7
+    ],
+    "THE SAILOR": [
+     1
+    ]
+   },
+   "episodes": [
+    1,
+    2,
+    4,
+    7
+   ],
+   "traits": {
+    "scar": [
+     {
+      "episode": 2,
+      "element_id": "E002-0001",
+      "value": "pale scar on right eyebrow",
+      "quote": "A pale scar cuts across his right eyebrow."
+     },
+     {
+      "episode": 4,
+      "element_id": "E004-0001",
+      "value": "scar over his left eyebrow",
+      "quote": "rubbing the scar over his left eyebrow as he faces Iris"
+     },
+     {
+      "episode": 7,
+      "element_id": "E007-0001",
+      "value": "scar across his left eyebrow",
+      "quote": "the scar across his left eyebrow pale in the moonlight."
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {},
+   "injuries": [],
+   "relationships": {},
+   "names": {
+    "given_name": [
+     {
+      "episode": 2,
+      "element_id": "E002-0002",
+      "value": "Reyes",
+      "quote": "Name's Reyes. Captain Reyes."
+     },
+     {
+      "episode": 7,
+      "element_id": "E007-0001",
+      "value": "Reyes",
+      "quote": "Captain Reyes points upward, the scar across his left eyebrow pale in the moonlight."
+     }
+    ],
+    "title": [
+     {
+      "episode": 2,
+      "element_id": "E002-0002",
+      "value": "Captain Reyes",
+      "quote": "Captain Reyes."
+     }
+    ]
+   }
+  },
+  "Tom": {
+   "id": "tom",
+   "canonical": "Tom",
+   "labels": {
+    "TOM": [
+     1,
+     3,
+     7
+    ]
+   },
+   "episodes": [
+    1,
+    3,
+    7
+   ],
+   "traits": {
+    "other": [
+     {
+      "episode": 3,
+      "element_id": "E003-0001",
+      "value": "right arm bound in sling",
+      "quote": "his right arm bound in a white sling."
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {},
+   "injuries": [
+    {
+     "attribute": "left arm location",
+     "episode": 2,
+     "element_id": "E002-0004",
+     "value": "left arm",
+     "quote": "He clutches his left arm, which hangs broken."
+    },
+    {
+     "attribute": "arm sling location",
+     "episode": 3,
+     "element_id": "E003-0001",
+     "value": "right arm",
+     "quote": "his right arm bound in a white sling."
+    }
+   ],
+   "relationships": {
+    "relation to iris": [
+     {
+      "episode": 1,
+      "element_id": "E001-0004",
+      "value": "brother",
+      "quote": "My brother Tom always did love lost causes."
+     },
+     {
+      "episode": 2,
+      "element_id": "E002-0005",
+      "value": "brother",
+      "quote": "Iris, get your brother off"
+     },
+     {
+      "episode": 4,
+      "element_id": "E004-0005",
+      "value": "cousin",
+      "quote": "My cousin Tom thinks you're a good man."
+     },
+     {
+      "episode": 7,
+      "element_id": "E007-0005",
+      "value": "cousin",
+      "quote": "Iris, it's your cousin Tom."
+     }
+    ]
+   },
+   "names": {}
+  },
+  "Innkeeper": {
+   "id": "innkeeper",
+   "canonical": "Innkeeper",
+   "labels": {
+    "WOMAN": [
+     5
+    ]
+   },
+   "episodes": [
+    5
+   ],
+   "traits": {},
+   "costumes": [],
+   "props": {},
+   "injuries": [],
+   "relationships": {},
+   "names": {}
+  },
+  "Iris's Mother": {
+   "id": "iris_s_mother",
+   "canonical": "Iris's Mother",
+   "labels": {
+    "WOMAN": [
+     2
+    ]
+   },
+   "episodes": [
+    2
+   ],
+   "traits": {},
+   "costumes": [
+    {
+     "episode": 2,
+     "element_id": "E002-0006",
+     "value": "grey shawl",
+     "quote": "hurrying down the pier in a grey shawl."
+    }
+   ],
+   "props": {},
+   "injuries": [],
+   "relationships": {},
+   "names": {}
+  }
+ },
+ "non_character_facts": {
+  "~boat": [
+   {
+    "kind": "NAME",
+    "attribute": "place",
+    "episode": 2,
+    "element_id": "E002-0002",
+    "value": "the Gull",
+    "quote": "I sailed the Gull with your father"
+   },
+   {
+    "kind": "NAME",
+    "attribute": "place",
+    "episode": 4,
+    "element_id": "E004-0002",
+    "value": "Gannet",
+    "quote": "Your father covered for me on the Gannet."
+   }
+  ],
+  "~harbor master": [
+   {
+    "kind": "NAME",
+    "attribute": "place",
+    "episode": 3,
+    "element_id": "E003-0004",
+    "value": "Kestrel Bay",
+    "quote": "Dad owed the Kestrel Bay harbor master"
+   }
+  ]
+ },
+ "name_spelling_groups": [
+  [
+   "Marlowe",
+   "Marlow"
+  ]
+ ]
+}

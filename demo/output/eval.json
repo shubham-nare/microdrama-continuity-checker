@@ -329,7 +329,9 @@
    },
    "human_alias_overrides": 0,
    "episodes_not_read": [],
-   "extract_errors": []
+   "extract_errors": [],
+   "groups_not_judged": 0,
+   "identities_code_only": false
   },
   "ci95": [
    0.56,

@@ -21,6 +21,14 @@
  ],
  "calls": [
   {
+   "tag": "extract:ep1",
+   "model": "gemini-3.5-flash-lite",
+   "cache": true,
+   "in_tokens": 1005,
+   "out_tokens": 754,
+   "seconds": 0.0
+  },
+  {
    "tag": "extract:ep3",
    "model": "gemini-3.5-flash-lite",
    "cache": true,
@@ -34,14 +42,6 @@
    "cache": true,
    "in_tokens": 920,
    "out_tokens": 437,
-   "seconds": 0.0
-  },
-  {
-   "tag": "extract:ep1",
-   "model": "gemini-3.5-flash-lite",
-   "cache": true,
-   "in_tokens": 1005,
-   "out_tokens": 754,
    "seconds": 0.0
   },
   {

@@ -1,0 +1,299 @@
+[
+ {
+  "episode": 1,
+  "scene": 1,
+  "heading": "EXT. KESTREL BAY HARBOR \u2013 DAWN",
+  "start": "00:00.00",
+  "end": "00:45.00",
+  "characters": [
+   {
+    "character": "Captain Reyes",
+    "id": "captain_reyes",
+    "labels_in_scene": [
+     "THE SAILOR"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Iris",
+    "id": "iris",
+    "labels_in_scene": [
+     "IRIS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "hair": "long red hair (ep1)",
+     "eye_colour": "hazel (ep1)"
+    },
+    "props_recent": {
+     "compass": "silver compass hanging from a chain (ep1)"
+    },
+    "injuries": []
+   },
+   {
+    "character": "Tom",
+    "id": "tom",
+    "labels_in_scene": [
+     "TOM"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {},
+    "injuries": []
+   }
+  ],
+  "open_flags": []
+ },
+ {
+  "episode": 2,
+  "scene": 1,
+  "heading": "EXT. BOAT DECK \u2013 MORNING",
+  "start": "00:00.00",
+  "end": "00:50.00",
+  "characters": [
+   {
+    "character": "Captain Reyes",
+    "id": "captain_reyes",
+    "labels_in_scene": [
+     "CAPTAIN REYES"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "scar": "pale scar on right eyebrow (ep2)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Iris",
+    "id": "iris",
+    "labels_in_scene": [
+     "IRIS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "hair": "long red hair (ep1)",
+     "eye_colour": "hazel (ep1)"
+    },
+    "props_recent": {
+     "compass": "silver compass hanging from a chain (ep1)"
+    },
+    "injuries": []
+   },
+   {
+    "character": "Iris's Mother",
+    "id": "iris_s_mother",
+    "labels_in_scene": [
+     "WOMAN"
+    ],
+    "costume_this_scene": [
+     "grey shawl"
+    ],
+    "traits": {},
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Tom",
+    "id": "tom",
+    "labels_in_scene": [],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {},
+    "injuries": [
+     "left arm (left arm, ep2)"
+    ]
+   }
+  ],
+  "open_flags": [
+   "F-c4c71765a2",
+   "F-d934295162"
+  ]
+ },
+ {
+  "episode": 3,
+  "scene": 1,
+  "heading": "INT. BOAT CABIN \u2013 NIGHT",
+  "start": "00:00.00",
+  "end": "00:40.00",
+  "characters": [
+   {
+    "character": "Iris",
+    "id": "iris",
+    "labels_in_scene": [
+     "IRIS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "hair": "long red hair (ep1)",
+     "eye_colour": "hazel (ep3)"
+    },
+    "props_recent": {
+     "compass": "silver compass hanging from a chain (ep1)",
+     "logbook": "water-stained (ep3)"
+    },
+    "injuries": []
+   },
+   {
+    "character": "Tom",
+    "id": "tom",
+    "labels_in_scene": [
+     "TOM"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "other": "right arm bound in sling (ep3)"
+    },
+    "props_recent": {},
+    "injuries": [
+     "left arm (left arm, ep2)",
+     "right arm (arm sling, ep3)"
+    ]
+   }
+  ],
+  "open_flags": [
+   "F-40cae23b8e"
+  ]
+ },
+ {
+  "episode": 4,
+  "scene": 1,
+  "heading": "INT. HARBOR OFFICE \u2013 DAY",
+  "start": "00:00.00",
+  "end": "00:45.00",
+  "characters": [
+   {
+    "character": "Captain Reyes",
+    "id": "captain_reyes",
+    "labels_in_scene": [
+     "CAPTAIN REYES"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "scar": "scar over his left eyebrow (ep4)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Iris",
+    "id": "iris",
+    "labels_in_scene": [
+     "IRIS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "hair": "long red hair (ep1)",
+     "eye_colour": "hazel (ep3)"
+    },
+    "props_recent": {
+     "compass": "brass compass at Iris's throat (ep4)",
+     "logbook": "water-stained (ep3)"
+    },
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0c1e206621",
+   "F-0eb13be099",
+   "F-41b9931a56",
+   "F-6293a3e9c1"
+  ]
+ },
+ {
+  "episode": 5,
+  "scene": 1,
+  "heading": "INT. KESTREL COVE INN \u2013 NIGHT",
+  "start": "00:00.00",
+  "end": "00:40.00",
+  "characters": [
+   {
+    "character": "Innkeeper",
+    "id": "innkeeper",
+    "labels_in_scene": [
+     "WOMAN"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Iris",
+    "id": "iris",
+    "labels_in_scene": [
+     "IRIS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "hair": "long red hair (ep1)",
+     "eye_colour": "green (ep5)"
+    },
+    "props_recent": {
+     "compass": "brass compass at Iris's throat (ep4)",
+     "logbook": "water-stained (ep3)"
+    },
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0b812b4ee7",
+   "F-c4c71765a2"
+  ]
+ },
+ {
+  "episode": 7,
+  "scene": 1,
+  "heading": "EXT. BOAT DECK \u2013 NIGHT",
+  "start": "00:00.00",
+  "end": "00:35.00",
+  "characters": [
+   {
+    "character": "Captain Reyes",
+    "id": "captain_reyes",
+    "labels_in_scene": [
+     "CAPTAIN REYES"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "scar": "scar across his left eyebrow (ep7)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Iris",
+    "id": "iris",
+    "labels_in_scene": [
+     "IRIS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "hair": "long red hair (ep1)",
+     "eye_colour": "green (ep5)"
+    },
+    "props_recent": {
+     "compass": "silver compass on its chain (ep7)"
+    },
+    "injuries": []
+   },
+   {
+    "character": "Tom",
+    "id": "tom",
+    "labels_in_scene": [
+     "TOM"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {},
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0c1e206621"
+  ]
+ }
+]

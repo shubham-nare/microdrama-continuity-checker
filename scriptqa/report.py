@@ -231,6 +231,10 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
            (f"<p style='background:#fdecea;padding:8px;border-radius:6px'><b>{len(summary.get('episodes_not_read', []))} episode(s) were NOT read by the model</b> "
             f"(episodes {', '.join(map(str, summary.get('episodes_not_read', [])))}): only the code-only name check covers them. Re-run to retry.</p>"
             if summary.get("episodes_not_read") else ""),
+           (f"<p style='background:#fdecea;padding:8px;border-radius:6px'><b>{summary.get('groups_not_judged')} candidate group(s) were not judged by the model</b> "
+            "and are listed under 'needs a human look'.</p>" if summary.get("groups_not_judged") else ""),
+           ("<p style='background:#fdecea;padding:8px;border-radius:6px'><b>Who-is-who is code-only</b> (the model call failed): every speaker label "
+            "is treated as its own character.</p>" if summary.get("identities_code_only") else ""),
            f"<p>{summary['episodes']} episodes · {summary['elements']} timed elements · "
            f"{summary['facts_verified']} verified facts · <b>{summary['flags_contradiction']} contradictions</b> "
            f"({summary['flags_high']} high) · {summary['flags_collision']} label collisions · {summary['flags_alias']} characters with several labels · "

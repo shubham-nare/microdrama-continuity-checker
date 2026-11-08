@@ -1,0 +1,173 @@
+[
+ {
+  "group_id": "G1",
+  "source": "facts",
+  "kind": "PROP",
+  "subject": "*",
+  "attribute": "compass",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "silver compass",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "change_value_id": "",
+   "reason": "The compass is described as silver in episode 1 and 7, but as brass in episode 4 without any explanation for the change."
+  },
+  "values": [
+   "brass compass at Iris's throat",
+   "silver compass hanging from a chain",
+   "silver compass on its chain"
+  ]
+ },
+ {
+  "group_id": "G2",
+  "source": "facts",
+  "kind": "TRAIT",
+  "subject": "Iris",
+  "attribute": "eye_colour",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "hazel",
+   "odd_value_ids": [
+    "V3"
+   ],
+   "change_value_id": "",
+   "reason": "Iris's eye color shifts from hazel in episodes 1 and 3 to green in episode 5 without explanation."
+  },
+  "values": [
+   "green",
+   "hazel"
+  ]
+ },
+ {
+  "group_id": "G3",
+  "source": "facts",
+  "kind": "RELATIONSHIP",
+  "subject": "Tom",
+  "attribute": "relation to iris",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "brother",
+   "odd_value_ids": [
+    "V3",
+    "V4"
+   ],
+   "change_value_id": "",
+   "reason": "The relationship between Tom and Iris changes from brother to cousin between episode 2 and episode 4 without any narrative explanation."
+  },
+  "values": [
+   "brother",
+   "cousin"
+  ]
+ },
+ {
+  "group_id": "G4",
+  "source": "facts",
+  "kind": "TRAIT",
+  "subject": "Captain Reyes",
+  "attribute": "scar",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "scar across his left eyebrow",
+   "odd_value_ids": [
+    "V1"
+   ],
+   "change_value_id": "",
+   "reason": "The scar location shifts from the right eyebrow in episode 2 to the left eyebrow in episodes 4 and 7 without any narrative explanation."
+  },
+  "values": [
+   "pale scar on right eyebrow",
+   "scar across his left eyebrow",
+   "scar over his left eyebrow"
+  ]
+ },
+ {
+  "group_id": "G5",
+  "source": "facts",
+  "kind": "NAME",
+  "subject": "~boat",
+  "attribute": "place",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "the Gull",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "change_value_id": "",
+   "reason": "Captain Reyes names two different boats across episodes without any explanation."
+  },
+  "values": [
+   "Gannet",
+   "the Gull"
+  ]
+ },
+ {
+  "group_id": "G6",
+  "source": "facts",
+  "kind": "INJURY",
+  "subject": "Tom",
+  "attribute": "injury location ep2->ep3",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "left arm",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "change_value_id": "",
+   "reason": "Tom's injury moves from his left arm in episode 2 to his right arm in episode 3 without a narrative reason."
+  },
+  "values": [
+   "left arm",
+   "right arm"
+  ]
+ },
+ {
+  "group_id": "G7",
+  "source": "facts",
+  "kind": "NAME",
+  "subject": "Iris",
+  "attribute": "surname",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "Marlow",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "change_value_id": "",
+   "reason": "The surname of the character Iris is spelled differently in episode 4 and episode 7 without any narrative explanation."
+  },
+  "values": [
+   "Marlow",
+   "Marlowe"
+  ]
+ },
+ {
+  "group_id": "G8",
+  "source": "names",
+  "kind": "NAME",
+  "subject": "(name spelling)",
+  "attribute": "Marlowe/Marlow",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "Marlowe",
+   "odd_value_ids": [
+    "V3"
+   ],
+   "change_value_id": "",
+   "reason": "The character's surname is consistently spelled 'Marlowe' in episodes 1 and 7, but is misspelled as 'Marlow' in episode 4."
+  },
+  "values": [
+   "Marlow",
+   "Marlowe"
+  ]
+ }
+]

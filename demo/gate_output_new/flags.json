@@ -1,0 +1,609 @@
+[
+ {
+  "id": "F-0c1e206621",
+  "type": "CONTRADICTION",
+  "kind": "RELATIONSHIP",
+  "source": "facts",
+  "subject": "Tom",
+  "attribute": "relation to iris",
+  "severity": "high",
+  "audible": true,
+  "summary": "Tom \u2014 relation to iris: 'brother' vs 'cousin'",
+  "suggested_fix": "Pick one and fix the others. Variants: brother \u00d72, cousin \u00d72",
+  "variant_counts": {
+   "brother": 2,
+   "cousin": 2
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "The relationship between Tom and Iris changes from brother to cousin between episode 2 and episode 4 without any narrative explanation."
+  },
+  "episodes": [
+   1,
+   2,
+   4,
+   7
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-0004",
+    "timestamp": "00:11.50",
+    "where": "IRIS (dialogue)",
+    "value": "brother",
+    "quote": "My brother Tom always did love lost causes.",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 28
+   },
+   {
+    "episode": 2,
+    "element_id": "E002-0005",
+    "timestamp": "00:16.50",
+    "where": "WOMAN (dialogue)",
+    "value": "brother",
+    "quote": "Iris, get your brother off",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 32
+   },
+   {
+    "episode": 4,
+    "element_id": "E004-0005",
+    "timestamp": "00:16.50",
+    "where": "IRIS (dialogue)",
+    "value": "cousin",
+    "quote": "My cousin Tom thinks you're a good man.",
+    "odd": true,
+    "file": "episode-004.txt",
+    "line": 32
+   },
+   {
+    "episode": 7,
+    "element_id": "E007-0005",
+    "timestamp": "00:15.50",
+    "where": "TOM (dialogue)",
+    "value": "cousin",
+    "quote": "Iris, it's your cousin Tom.",
+    "odd": true,
+    "file": "episode-007.txt",
+    "line": 32
+   }
+  ],
+  "rank": 1,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 4,
+   "majority_value": "cousin",
+   "odd_values": [
+    "brother"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 0
+  }
+ },
+ {
+  "id": "F-41b9931a56",
+  "type": "CONTRADICTION",
+  "kind": "NAME",
+  "source": "names",
+  "subject": "(name spelling)",
+  "attribute": "Marlowe/Marlow",
+  "severity": "high",
+  "audible": true,
+  "summary": "Name spelled 2 ways: Marlowe \u00d73, Marlow \u00d71",
+  "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Marlow (see F-2e5f3243d5); Marlowe (see F-2e5f3243d5)",
+  "variant_counts": {},
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "The character's surname is consistently spelled 'Marlowe' in episodes 1 and 7, but is misspelled as 'Marlow' in episode 4."
+  },
+  "episodes": [
+   1,
+   4,
+   7
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-HEADER",
+    "timestamp": "00:00.00",
+    "where": "HEADER",
+    "value": "Marlowe",
+    "quote": "Iris Marlowe returns to the fishing village of Kestr",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 2
+   },
+   {
+    "episode": 1,
+    "element_id": "E001-0006",
+    "timestamp": "00:18.50",
+    "where": "THE SAILOR (dialogue)",
+    "value": "Marlowe",
+    "quote": "sells this boat while I'm aboard, Miss Marlowe.\"",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 36
+   },
+   {
+    "episode": 4,
+    "element_id": "E004-0006",
+    "timestamp": "00:20.50",
+    "where": "CAPTAIN REYES (dialogue)",
+    "value": "Marlow",
+    "quote": "\"Then let me prove it, Miss Marlow.\"",
+    "odd": true,
+    "file": "episode-004.txt",
+    "line": 36
+   },
+   {
+    "episode": 7,
+    "element_id": "E007-0002",
+    "timestamp": "00:04.50",
+    "where": "CAPTAIN REYES (dialogue)",
+    "value": "Marlowe",
+    "quote": "\"That's the North Star, Miss Marlowe. Your father steered by it every night.",
+    "odd": false,
+    "file": "episode-007.txt",
+    "line": 20
+   }
+  ],
+  "merged": [
+   "F-2e5f3243d5"
+  ],
+  "rank": 2,
+  "status": "open"
+ },
+ {
+  "id": "F-c4c71765a2",
+  "type": "LABEL_COLLISION",
+  "kind": "LABEL",
+  "source": "resolve",
+  "subject": "WOMAN",
+  "attribute": "speaker label",
+  "severity": "high",
+  "audible": false,
+  "summary": "Label 'WOMAN' is used for different characters: Iris's Mother (ep 2); Innkeeper (ep 5)",
+  "suggested_fix": "Give each character its own label so reference images and voices map correctly",
+  "adjudication": {
+   "verdict": "CODE",
+   "reason": "from alias resolution"
+  },
+  "episodes": [
+   2,
+   5
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0004",
+    "timestamp": "00:11.00",
+    "where": "ACTION (who is in frame)",
+    "value": "Iris's Mother",
+    "quote": "Tom slips on the wet ramp hauling the mooring line and falls hard. He clutches his left arm, which hangs broken.",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 28
+   },
+   {
+    "episode": 2,
+    "element_id": "E002-0005",
+    "timestamp": "00:16.50",
+    "where": "WOMAN (dialogue)",
+    "value": "Iris's Mother",
+    "quote": "\"Tom! Iris, get your brother off that ramp!\"",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 32
+   },
+   {
+    "episode": 5,
+    "element_id": "E005-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA (who is in frame)",
+    "value": "Innkeeper",
+    "quote": "Wide shot of the crowded inn. A stout innkeeper in a stained apron wipes the bar.",
+    "odd": false,
+    "file": "episode-005.txt",
+    "line": 16
+   },
+   {
+    "episode": 5,
+    "element_id": "E005-0002",
+    "timestamp": "00:04.50",
+    "where": "WOMAN (dialogue)",
+    "value": "Innkeeper",
+    "quote": "\"You didn't hear it from me, love. He takes the boat at dawn.\"",
+    "odd": false,
+    "file": "episode-005.txt",
+    "line": 20
+   }
+  ],
+  "rank": 3,
+  "status": "open"
+ },
+ {
+  "id": "F-0eb13be099",
+  "type": "CONTRADICTION",
+  "kind": "NAME",
+  "source": "facts",
+  "subject": "~boat",
+  "attribute": "place",
+  "severity": "high",
+  "audible": true,
+  "summary": "~boat \u2014 place: 'the Gull' vs 'Gannet'",
+  "suggested_fix": "Pick one and fix the others. Variants: the Gull \u00d71, Gannet \u00d71",
+  "variant_counts": {
+   "the Gull": 1,
+   "Gannet": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "Captain Reyes names two different boats across episodes without any explanation."
+  },
+  "episodes": [
+   2,
+   4
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0002",
+    "timestamp": "00:04.50",
+    "where": "CAPTAIN REYES (dialogue)",
+    "value": "the Gull",
+    "quote": "I sailed the Gull with your father",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 20
+   },
+   {
+    "episode": 4,
+    "element_id": "E004-0002",
+    "timestamp": "00:04.50",
+    "where": "CAPTAIN REYES (dialogue)",
+    "value": "Gannet",
+    "quote": "Your father covered for me on the Gannet.",
+    "odd": true,
+    "file": "episode-004.txt",
+    "line": 20
+   }
+  ],
+  "rank": 4,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 4,
+   "majority_value": "Gannet",
+   "odd_values": [
+    "the Gull"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 0
+  }
+ },
+ {
+  "id": "F-6293a3e9c1",
+  "type": "CONTRADICTION",
+  "kind": "PROP",
+  "source": "facts",
+  "subject": "*",
+  "attribute": "compass",
+  "severity": "medium",
+  "audible": false,
+  "summary": "Unattributed \u2014 compass: 'silver compass hanging from a chain' vs 'brass compass at Iris's throat' vs 'silver compass on its chain'",
+  "suggested_fix": "Pick one and fix the others. Variants: silver compass hanging from a chain \u00d71, brass compass at Iris's throat \u00d71, silver compass on its chain \u00d71",
+  "variant_counts": {
+   "silver compass hanging from a chain": 1,
+   "brass compass at Iris's throat": 1,
+   "silver compass on its chain": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "The compass is described as silver in episode 1 and 7, but as brass in episode 4 without any explanation for the change."
+  },
+  "episodes": [
+   1,
+   4,
+   7
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA",
+    "value": "silver compass hanging from a chain",
+    "quote": "a silver compass hanging from a chain at her throat.",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 16
+   },
+   {
+    "episode": 4,
+    "element_id": "E004-0004",
+    "timestamp": "00:12.00",
+    "where": "CAMERA",
+    "value": "brass compass at Iris's throat",
+    "quote": "Close-up of the brass compass at Iris's throat as she clutches it.",
+    "odd": true,
+    "file": "episode-004.txt",
+    "line": 28
+   },
+   {
+    "episode": 7,
+    "element_id": "E007-0004",
+    "timestamp": "00:11.00",
+    "where": "ACTION",
+    "value": "silver compass on its chain",
+    "quote": "Iris grabs the handset, her silver compass swinging on its chain.",
+    "odd": false,
+    "file": "episode-007.txt",
+    "line": 28
+   }
+  ],
+  "rank": 5,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 4,
+   "majority_value": "silver compass hanging from a chain",
+   "odd_values": [
+    "brass compass at Iris's throat",
+    "silver compass on its chain"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 2
+  }
+ },
+ {
+  "id": "F-0b812b4ee7",
+  "type": "CONTRADICTION",
+  "kind": "TRAIT",
+  "source": "facts",
+  "subject": "Iris",
+  "attribute": "eye_colour",
+  "severity": "medium",
+  "audible": false,
+  "summary": "Iris \u2014 eye_colour: 'hazel' vs 'green'",
+  "suggested_fix": "Pick one and fix the others. Variants: hazel \u00d72, green \u00d71",
+  "variant_counts": {
+   "hazel": 2,
+   "green": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "Iris's eye color shifts from hazel in episodes 1 and 3 to green in episode 5 without explanation."
+  },
+  "episodes": [
+   1,
+   3,
+   5
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-0005",
+    "timestamp": "00:14.00",
+    "where": "CAMERA",
+    "value": "hazel",
+    "quote": "Iris's hazel eyes narrowing",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 32
+   },
+   {
+    "episode": 3,
+    "element_id": "E003-0003",
+    "timestamp": "00:07.00",
+    "where": "CAMERA",
+    "value": "hazel",
+    "quote": "Iris's hazel eyes scanning",
+    "odd": false,
+    "file": "episode-003.txt",
+    "line": 24
+   },
+   {
+    "episode": 5,
+    "element_id": "E005-0003",
+    "timestamp": "00:08.00",
+    "where": "CAMERA",
+    "value": "green",
+    "quote": "Close-up of Iris's green eyes widening",
+    "odd": true,
+    "file": "episode-005.txt",
+    "line": 24
+   }
+  ],
+  "rank": 6,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 5,
+   "majority_value": "hazel",
+   "odd_values": [
+    "green"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 2
+  }
+ },
+ {
+  "id": "F-d934295162",
+  "type": "CONTRADICTION",
+  "kind": "TRAIT",
+  "source": "facts",
+  "subject": "Captain Reyes",
+  "attribute": "scar",
+  "severity": "medium",
+  "audible": false,
+  "summary": "Captain Reyes \u2014 scar: 'pale scar on right eyebrow' vs 'scar over his left eyebrow' vs 'scar across his left eyebrow'",
+  "suggested_fix": "Pick one and fix the others. Variants: pale scar on right eyebrow \u00d71, scar over his left eyebrow \u00d71, scar across his left eyebrow \u00d71",
+  "variant_counts": {
+   "pale scar on right eyebrow": 1,
+   "scar over his left eyebrow": 1,
+   "scar across his left eyebrow": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "The scar location shifts from the right eyebrow in episode 2 to the left eyebrow in episodes 4 and 7 without any narrative explanation."
+  },
+  "episodes": [
+   2,
+   4,
+   7
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA",
+    "value": "pale scar on right eyebrow",
+    "quote": "A pale scar cuts across his right eyebrow.",
+    "odd": true,
+    "file": "episode-002.txt",
+    "line": 16
+   },
+   {
+    "episode": 4,
+    "element_id": "E004-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA",
+    "value": "scar over his left eyebrow",
+    "quote": "rubbing the scar over his left eyebrow as he faces Iris",
+    "odd": false,
+    "file": "episode-004.txt",
+    "line": 16
+   },
+   {
+    "episode": 7,
+    "element_id": "E007-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA",
+    "value": "scar across his left eyebrow",
+    "quote": "the scar across his left eyebrow pale in the moonlight.",
+    "odd": false,
+    "file": "episode-007.txt",
+    "line": 16
+   }
+  ],
+  "rank": 7,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 4,
+   "majority_value": "pale scar on right eyebrow",
+   "odd_values": [
+    "scar over his left eyebrow",
+    "scar across his left eyebrow"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 3
+  }
+ },
+ {
+  "id": "F-40cae23b8e",
+  "type": "CONTRADICTION",
+  "kind": "INJURY",
+  "source": "facts",
+  "subject": "Tom",
+  "attribute": "injury location ep2->ep3",
+  "severity": "medium",
+  "audible": false,
+  "summary": "Tom \u2014 injury location ep2->ep3: 'left arm' vs 'right arm'",
+  "suggested_fix": "Pick one and fix the others. Variants: left arm \u00d71, right arm \u00d71",
+  "variant_counts": {
+   "left arm": 1,
+   "right arm": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "Tom's injury moves from his left arm in episode 2 to his right arm in episode 3 without a narrative reason."
+  },
+  "episodes": [
+   2,
+   3
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0004",
+    "timestamp": "00:11.00",
+    "where": "ACTION",
+    "value": "left arm",
+    "quote": "He clutches his left arm, which hangs broken.",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 28
+   },
+   {
+    "episode": 3,
+    "element_id": "E003-0001",
+    "timestamp": "00:00.00",
+    "where": "CAMERA",
+    "value": "right arm",
+    "quote": "his right arm bound in a white sling.",
+    "odd": true,
+    "file": "episode-003.txt",
+    "line": 16
+   }
+  ],
+  "rank": 8,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 3,
+   "majority_value": "left arm",
+   "odd_values": [
+    "right arm"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 2
+  }
+ },
+ {
+  "id": "F-4cabc6e91d",
+  "type": "LABEL_ALIAS",
+  "kind": "LABEL",
+  "source": "resolve",
+  "subject": "Captain Reyes",
+  "attribute": "speaker labels",
+  "severity": "info",
+  "audible": false,
+  "summary": "Captain Reyes appears under 2 labels: CAPTAIN REYES (ep 2\u20137); THE SAILOR (ep 1\u20131)",
+  "suggested_fix": "Map all labels to one character ID 'captain_reyes' for reference images",
+  "adjudication": {
+   "verdict": "CODE",
+   "reason": "The sailor in episode 1 is identified as Captain Reyes in episode 2, sharing the same physical description of a scar on his eyebrow."
+  },
+  "episodes": [
+   1,
+   2,
+   4,
+   7
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0002",
+    "timestamp": "00:04.50",
+    "where": "CAPTAIN REYES (dialogue)",
+    "value": "CAPTAIN REYES",
+    "quote": "\"Name's Reyes. Captain Reyes. I sailed the Gull with your father for twenty years.\"",
+    "odd": false,
+    "file": "episode-002.txt",
+    "line": 20
+   },
+   {
+    "episode": 1,
+    "element_id": "E001-0006",
+    "timestamp": "00:18.50",
+    "where": "THE SAILOR (dialogue)",
+    "value": "THE SAILOR",
+    "quote": "\"Nobody sells this boat while I'm aboard, Miss Marlowe.\"",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 36
+   }
+  ],
+  "rank": 9,
+  "status": "open"
+ }
+]

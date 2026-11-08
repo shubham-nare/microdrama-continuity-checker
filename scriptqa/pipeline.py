@@ -88,14 +88,33 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
     log(f"[extract+verify] {len(facts)} facts kept, {sum(s['facts_dropped'] for s in vstats.values())} dropped")
 
     # 3. resolve who is who
-    res = resolve(llm, eps, hints, facts, review)
+    try:
+        res = resolve(llm, eps, hints, facts, review)
+        resolve_failed = False
+    except Exception as e:  # keep going with code-only identities: every label is its own character
+        log(f"[resolve] WARNING: model call failed ({str(e)[:120]}); using code-only identities")
+        from .resolve import resolve_code_only
+        res = resolve_code_only(eps, hints, review)
+        resolve_failed = True
     log(f"[resolve] {len(res['characters'])} characters, {len(res['collisions'])} label collisions")
 
     # 4. candidates (code) -> adjudicate (model labels only) -> flags (code)
     ngroups = variant_groups(eps)
     groups = diff.build_fact_groups(facts, res) + diff.build_name_groups(ngroups, eps_by_num)
+    not_judged = []
+
+    def safe_judge(g):
+        try:
+            diff.adjudicate(llm, [g])
+        except Exception as e:  # a group the model could not judge goes to a human, never silently dropped
+            g["verdict"] = {"verdict": "UNCLEAR", "canonical_value": "", "odd_value_ids": [], "change_value_id": "",
+                            "reason": f"not judged: model unavailable ({str(e)[:80]})"}
+            not_judged.append(g["attribute"])
+
     with ThreadPoolExecutor(max_workers=workers) as ex:  # one call per group, in parallel
-        list(ex.map(lambda g: diff.adjudicate(llm, [g]), groups))
+        list(ex.map(safe_judge, groups))
+    if not_judged:
+        log(f"[judge] WARNING: {len(not_judged)}/{len(groups)} candidate groups not judged (sent to a human as review flags)")
     for i, g in enumerate(groups):
         g["group_id"] = f"G{i + 1}"
     flags = diff.dedupe_and_rank(diff.to_flags(groups, (review or {}).get("events")) + diff.label_flags(res, eps_by_num))
@@ -123,6 +142,7 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
         "characters": len(res["characters"]),
         "review": review_stats, "human_alias_overrides": res.get("human_overrides", 0),
         "episodes_not_read": sorted(f["episode"] for f in failed), "extract_errors": failed,
+        "groups_not_judged": len(not_judged), "identities_code_only": resolve_failed,
     }
     dump(out / "flags.json", flags)
     report.write_flags_csv(flags, out / "flags.csv")

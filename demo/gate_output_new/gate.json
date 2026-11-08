@@ -1,0 +1,123 @@
+{
+ "episode": 7,
+ "file": "episode-007.txt",
+ "earlier_episodes": 5,
+ "live_calls": 7,
+ "seconds": 870.3,
+ "blocked": [
+  "Tom \u2014 relation to iris: 'brother' vs 'cousin'",
+  "Name spelled 2 ways: Marlowe \u00d73, Marlow \u00d71",
+  "Unattributed \u2014 compass: 'silver compass hanging from a chain' vs 'brass compass at Iris's throat' vs 'silver compass on its chain'",
+  "Captain Reyes \u2014 scar: 'pale scar on right eyebrow' vs 'scar over his left eyebrow' vs 'scar across his left eyebrow'"
+ ],
+ "evidence": [
+  {
+   "flag": "F-0c1e206621",
+   "new": [
+    {
+     "line": 32,
+     "value": "cousin",
+     "quote": "Iris, it's your cousin Tom."
+    }
+   ],
+   "earlier": [
+    {
+     "episode": 1,
+     "line": 28,
+     "value": "brother",
+     "quote": "My brother Tom always did love lost causes."
+    },
+    {
+     "episode": 2,
+     "line": 32,
+     "value": "brother",
+     "quote": "Iris, get your brother off"
+    },
+    {
+     "episode": 4,
+     "line": 32,
+     "value": "cousin",
+     "quote": "My cousin Tom thinks you're a good man."
+    }
+   ]
+  },
+  {
+   "flag": "F-41b9931a56",
+   "new": [
+    {
+     "line": 20,
+     "value": "Marlowe",
+     "quote": "\"That's the North Star, Miss Marlowe. Your father steered by it every night."
+    }
+   ],
+   "earlier": [
+    {
+     "episode": 1,
+     "line": 2,
+     "value": "Marlowe",
+     "quote": "Iris Marlowe returns to the fishing village of Kestr"
+    },
+    {
+     "episode": 1,
+     "line": 36,
+     "value": "Marlowe",
+     "quote": "sells this boat while I'm aboard, Miss Marlowe.\""
+    },
+    {
+     "episode": 4,
+     "line": 36,
+     "value": "Marlow",
+     "quote": "\"Then let me prove it, Miss Marlow.\""
+    }
+   ]
+  },
+  {
+   "flag": "F-6293a3e9c1",
+   "new": [
+    {
+     "line": 28,
+     "value": "silver compass on its chain",
+     "quote": "Iris grabs the handset, her silver compass swinging on its chain."
+    }
+   ],
+   "earlier": [
+    {
+     "episode": 1,
+     "line": 16,
+     "value": "silver compass hanging from a chain",
+     "quote": "a silver compass hanging from a chain at her throat."
+    },
+    {
+     "episode": 4,
+     "line": 28,
+     "value": "brass compass at Iris's throat",
+     "quote": "Close-up of the brass compass at Iris's throat as she clutches it."
+    }
+   ]
+  },
+  {
+   "flag": "F-d934295162",
+   "new": [
+    {
+     "line": 16,
+     "value": "scar across his left eyebrow",
+     "quote": "the scar across his left eyebrow pale in the moonlight."
+    }
+   ],
+   "earlier": [
+    {
+     "episode": 2,
+     "line": 16,
+     "value": "pale scar on right eyebrow",
+     "quote": "A pale scar cuts across his right eyebrow."
+    },
+    {
+     "episode": 4,
+     "line": 16,
+     "value": "scar over his left eyebrow",
+     "quote": "rubbing the scar over his left eyebrow as he faces Iris"
+    }
+   ]
+  }
+ ]
+}
