@@ -15,6 +15,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
+PLAIN = {4: "who-is-who (only 5 of 9 multi-label characters fully merged; bar 80%)",
+         5: "planted errors caught (bar 70%, with at most 2 new false flags)",
+         6: "share of flags that are real errors (bar 70%)",
+         11: "real errors found (bar 70%)"}
+
+
 def pct(x):
     return "n/a" if x is None else f"{round(100 * x)}%"
 
@@ -49,8 +55,10 @@ def main(run: Path) -> int:
     missed = [titles.get(k, k) for k, v in real["found"].items() if not v]
     n_coll = sum(1 for k in real["found"] if "collision" in k)
     flags = json.loads((run / "flags.json").read_text(encoding="utf-8"))
-    gates = [f for f in flags if f.get("gate", {}).get("blocked_at_episode")]
-    top_gate = max(gates, key=lambda f: f["gate"]["later_dialogue_lines"] + f["gate"]["later_camera_shots_in_affected_scenes"], default=None)
+    true_ids = {j["id"] for j in real["judged"] if j["label"] == "true"}
+    gates = [f for f in flags if f.get("gate", {}).get("blocked_at_episode") and f["id"] in true_ids and f["gate"].get("odd_values")]
+    gates = [f for f in gates if f["gate"]["later_dialogue_lines"] > 0]
+    top_gate = max(gates, key=lambda f: f["gate"]["later_dialogue_lines"], default=None)
     swap = next((c["detail"] for c in checks if c["n"] == 8), "")
     canary = swap.split("canary: ")[1] if "canary: " in swap else "not run"
     false_flags = [j for j in real["judged"] if j["label"] == "false" and j.get("type") != "LABEL_ALIAS"]
@@ -67,7 +75,8 @@ def main(run: Path) -> int:
         "seed_ci": "–".join(f"{round(100 * x)}%" for x in seeded.get("ci95", [0, 0])),
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
-        "checks_failed": "; ".join(c["check"].split(":")[0] for c in checks if not c["pass"]) or "none",
+        "canary_plain": canary.replace("swapped model catches", "caught").replace(" in the demo show", "").split(" (")[0] if canary != "not run" else "was not run",
+        "checks_failed": "; ".join(PLAIN.get(c["n"], c["check"].split(":")[0]) for c in checks if not c["pass"]) or "none",
         "seed_valid": ", ".join(f"{v['caught']}/{v['n']} {k}" for k, v in sorted(seeded.get("by_validity", {}).items())),
         "gate_demo": (lambda g: f"Built as <code>run.py --gate new_episode.txt</code>: on the held-out show, a new episode 6 with a planted eye-colour change was blocked in {g['live_calls']} live calls and {g['seconds']:.0f} s, with both lines quoted."
                       if g else "")(json.loads((ROOT / "demo" / "gate_output" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output" / "gate.json").exists() else None),
@@ -80,9 +89,9 @@ def main(run: Path) -> int:
                                for k, v in real.get("loss_stage", {}).items() if v != "flagged") or "none",
         "alias_chars": f"{al.get('characters_fully_merged', '?')}/{al.get('characters_with_several_labels', '?')}",
         "alias_misses": ", ".join(f"{c} ({v})" for c, v in al.get("per_character", {}).items() if v != "fully merged") or "none",
-        "gate_text": (f"For example, a per-episode gate would have blocked the estate's spelling drift at episode "
-                      f"{top_gate['gate']['blocked_at_episode']}, before {top_gate['gate']['later_dialogue_lines']} later spoken lines used a minority spelling "
-                      "(lines to re-record or re-generate as audio)." if top_gate else ""),
+        "gate_text": (f"On Kuku's pack, checking each episode as written would have stopped “{top_gate['summary'].split(':')[0]}” at episode "
+                      f"{top_gate['gate']['blocked_at_episode']}, before {top_gate['gate']['later_dialogue_lines']} later spoken lines used a minority form "
+                      "(lines to re-record)." if top_gate else ""),
         "precision": pct(real["precision"]), "n_scored": real["n_flags_scored"], "n_false": f"{len(false_flags)} {'is' if len(false_flags) == 1 else 'are'}",
         "seed_recall": pct(seeded["pipeline_recall"]), "base_recall": pct(seeded["baseline_recall"]),
         "seed_n": seeded["n"], "per_type": per_type, "spurious": (lambda n: f"{n} spurious new flag" + ("" if n == 1 else "s"))(len(seeded["spurious_new_flags"])),

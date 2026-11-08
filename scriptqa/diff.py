@@ -115,7 +115,8 @@ def build_name_groups(name_groups: list[dict], eps_by_num: dict) -> list[dict]:
                               "element_id": o["element_id"] or f"E{o['episode']:03d}-HEADER",
                               "element_kind": el.kind if el else "HEADER", "speaker": el.speaker if el else None,
                               "start": el.start if el else 0.0, "is_change": False, "canon": "(name spelling)",
-                              "file": eps_by_num[o["episode"]].file, "line": el.line if el else 2,
+                              "file": eps_by_num[o["episode"]].file,
+                              "line": el.line if el else (3 if o["quote"][:30] in eps_by_num[o["episode"]].continuity_notes else 2),
                               "count": m["count"], "all_episodes": m["episodes"]})
         out.append({"source": "names", "kind": "NAME", "subject": "(name spelling)",
                     "attribute": "/".join(m["name"] for m in g["members"]), "items": items})

@@ -52,14 +52,14 @@ def gate_replay(eps: list[Episode], flags: list[dict]) -> None:
         odd = [v for v in counts if v != major and len(v) >= 3 and len(owned.get(v.lower(), [])) <= 1]
         lines = shots = 0
         if gate and odd:
-            pat = [o.lower() for o in odd]
+            pat = [re.compile(rf"\b{re.escape(o.lower())}\b") for o in odd]
             for ep in eps:
                 if ep.number < gate:
                     continue
                 hit_scenes = set()
                 for el in ep.elements:
                     t = el.text.lower()
-                    if any(o in t for o in pat):
+                    if any(p_.search(t) for p_ in pat):
                         if el.kind == "DIALOGUE":
                             lines += 1
                         hit_scenes.add(el.scene)
