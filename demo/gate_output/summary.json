@@ -7,23 +7,23 @@
  "facts_repointed": 0,
  "candidate_groups": 7,
  "verdicts": {
-  "CONTRADICTION": 5,
-  "COMPATIBLE": 1,
+  "CONTRADICTION": 7,
+  "COMPATIBLE": 0,
   "INTENTIONAL_CHANGE": 0,
-  "DIFFERENT_ENTITIES": 1,
+  "DIFFERENT_ENTITIES": 0,
   "UNCLEAR": 0
  },
- "flags_total": 8,
- "flags_contradiction": 5,
- "flags_high": 1,
+ "flags_total": 9,
+ "flags_contradiction": 7,
+ "flags_high": 3,
  "flags_collision": 1,
  "flags_alias": 1,
- "flags_review": 1,
+ "flags_review": 0,
  "characters": 5,
  "review": {
   "dismissed": 0,
   "accepted": 0,
-  "open": 8
+  "open": 9
  },
  "human_alias_overrides": 0,
  "episodes_not_read": [],

@@ -199,6 +199,10 @@ def cleared_groups(groups: list[dict]) -> list[dict]:
         v = g.get("verdict", {}).get("verdict")
         if v in ("CONTRADICTION", "UNCLEAR") or (g["source"] == "names" and v in ("INTENTIONAL_CHANGE", "COMPATIBLE")):
             continue  # those became flags
+        if v == "INTENTIONAL_CHANGE" and g["source"] == "facts":
+            cid = (g.get("verdict", {}).get("change_value_id") or "").lstrip("V")
+            if not (cid.isdigit() and 1 <= int(cid) <= len(g["items"]) and g["items"][int(cid) - 1].get("is_change")):
+                continue  # dismissal without evidence: it became a REVIEW flag
         out.append({"source": g["source"], "kind": g["kind"], "subject": str(g["subject"]), "attribute": str(g["attribute"]),
                     "verdict": v, "reason": g.get("verdict", {}).get("reason", ""),
                     "values": sorted({i["value"] for i in g["items"]})[:8],
@@ -243,7 +247,7 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                        + f"<span class=tag>{e(f['id'])}</span> <small>{e(f['suggested_fix'])} — {e(f['adjudication'].get('reason', ''))}</small>"
                        + (f"<br><small><b>A per-episode check (run.py --gate) would have stopped this at ep{f['gate']['blocked_at_episode']}.</b> Not caught, the minority value(s) {e(', '.join(f['gate']['odd_values'][:5]))} reach "
                           f"{f['gate']['later_dialogue_lines']} later spoken line(s).</small>"
-                          if f.get("gate", {}).get("blocked_at_episode") else "")
+                          if f.get("gate", {}).get("blocked_at_episode") and f["gate"].get("odd_values") else "")
                        + "<table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
             for ev in f["evidence"]:
                 out.append(f"<tr class='{'odd' if ev['odd'] else ''}'><td>{ev['episode']}</td><td>{ev.get('line', '')}</td><td>{ev['timestamp']}</td>"

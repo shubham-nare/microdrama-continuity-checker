@@ -265,7 +265,7 @@
     "broken_arm_side": "flagged",
     "compass_material": "flagged",
     "brother_cousin": "flagged",
-    "ship_name": "grouped, then cleared by the model as DIFFERENT_ENTITIES: The Gull and the Gannet are two different boats mentioned by Captain Reyes.",
+    "ship_name": "grouped, then cleared by the model as DIFFERENT_ENTITIES: The captain references two different boats, the Gull and the Gannet.",
     "scar_side": "flagged",
     "woman_collision": "flagged"
    }

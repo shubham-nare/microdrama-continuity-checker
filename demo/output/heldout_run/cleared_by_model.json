@@ -5,7 +5,7 @@
   "subject": "~boat",
   "attribute": "place",
   "verdict": "DIFFERENT_ENTITIES",
-  "reason": "The Gull and the Gannet are two different boats mentioned by Captain Reyes.",
+  "reason": "The captain references two different boats, the Gull and the Gannet.",
   "values": [
    "Gannet",
    "the Gull"

@@ -69,7 +69,7 @@
   "n": 10,
   "check": "run log records calls, tokens, wall time, est. cost",
   "pass": true,
-  "detail": "5 calls, 4088+2515 tokens, 0.0 s, $0.0014"
+  "detail": "5 calls, 4088+2545 tokens, 2.9 s, $0.0014"
  },
  {
   "n": 11,

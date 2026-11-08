@@ -77,14 +77,11 @@
   "severity": "high",
   "audible": true,
   "summary": "Name spelled 2 ways: Holloway \u00d72, Halloway \u00d71",
-  "suggested_fix": "Pick one and fix the others. Variants: Holloway \u00d72, Halloway \u00d71",
-  "variant_counts": {
-   "Holloway": 2,
-   "Halloway": 1
-  },
+  "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Holloway (see F-cf04a0a2bf); Halloway (see F-cf04a0a2bf)",
+  "variant_counts": {},
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "The surname spelling changes from Holloway in ep1 to Halloway in ep2."
+   "reason": "The surname spelling changes between Holloway in ep1 and Halloway in ep2."
   },
   "episodes": [
    1,
@@ -129,16 +126,7 @@
    "F-cf04a0a2bf"
   ],
   "rank": 2,
-  "status": "open",
-  "gate": {
-   "blocked_at_episode": 2,
-   "majority_value": "Holloway",
-   "odd_values": [
-    "Halloway"
-   ],
-   "later_dialogue_lines": 1,
-   "later_camera_shots_in_affected_scenes": 2
-  }
+  "status": "open"
  },
  {
   "id": "F-113ee2b696",
@@ -157,7 +145,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Maren's eye colour is grey in ep1 and ep2, but changes to brown in ep3 without explanation."
+   "reason": "Maren's eye colour is described as grey in ep1 and ep2, but switches to brown in ep3 without explanation."
   },
   "episodes": [
    1,

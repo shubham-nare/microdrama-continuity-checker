@@ -127,6 +127,7 @@ class GroupVerdict(BaseModel):
     verdict: Literal["CONTRADICTION", "COMPATIBLE", "INTENTIONAL_CHANGE", "DIFFERENT_ENTITIES", "UNCLEAR"]
     canonical_value: str = Field(description="The value that should be used everywhere (usually the most frequent / earliest established), or '' if not a contradiction.")
     odd_value_ids: list[str] = Field(default_factory=list, description="IDs (V#) of the values that contradict the canonical one.")
+    change_value_id: str = Field("", description="For INTENTIONAL_CHANGE only: the V# whose line shows the change happening on screen (a trim, a new wound, a disguise). Empty otherwise.")
     reason: str = Field(description="One line, citing episodes.")
 
 
@@ -188,6 +189,15 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
         # code rule: a spelling-variant group found by names.py is only dropped if the model says the names are
         # different entities; "intentional"/"compatible" becomes a REVIEW flag, because one model call must not
         # be able to explain away a real typo (iter 3: a one-off misspelling of a main character was called "a slight")
+        # code rule: a dismissal needs evidence too. 'Intentional change' stands only if the cited value's line was read by
+        # extraction as showing the change (is_change); otherwise the candidate goes to a human as REVIEW
+        if v.get("verdict") == "INTENTIONAL_CHANGE" and g["source"] == "facts":
+            cid = (v.get("change_value_id") or "").lstrip("V")
+            items = g["items"]
+            ok = cid.isdigit() and 1 <= int(cid) <= len(items) and items[int(cid) - 1].get("is_change")
+            if not ok:
+                v["reason"] = f"model called it intentional ({v.get('reason', '')}) but cited no line that shows the change — kept for a human"
+                v["verdict"] = "UNCLEAR"
         if g["source"] == "names" and v.get("verdict") in ("INTENTIONAL_CHANGE", "COMPATIBLE"):
             v["reason"] = f"model says {v['verdict'].lower().replace('_', ' ')}: {v.get('reason', '')} — kept for a human, spelling groups are never auto-dropped"
             v["verdict"] = "UNCLEAR"
@@ -209,8 +219,8 @@ def to_flags(groups: list[dict], events: list[dict] | None = None) -> list[dict]
             "value": it["value"], "quote": it["quote"], "odd": i in odd_idx,
             "file": it.get("file"), "line": it.get("line"),
         } for i, it in enumerate(g["items"])]
-        audible = any(e["where"] and "dialogue" in e["where"] for e in evidence if e["odd"]) or \
-            (not odd and any(e["where"] and "dialogue" in e["where"] for e in evidence))
+        audible = any(e["where"] and "dialogue" in str(e["where"]) for e in evidence if e["odd"]) or \
+            (not odd and any(e["where"] and "dialogue" in str(e["where"]) for e in evidence))
         seen_ev, uniq = set(), []
         for e_ in evidence:  # the same line can be cited twice (two values in one sentence): keep it once
             k = (e_["element_id"], e_["value"])
@@ -309,7 +319,29 @@ def label_flags(res: dict, eps_by_num: dict) -> list[dict]:
 SEV_ORDER = {"high": 0, "medium": 1, "low": 2, "info": 3}
 
 
+def separate_owned_values(flags: list[dict]) -> None:
+    """A spelling family can swallow a value that another flag explains better (a surname inside an estate family).
+    Such values are listed as 'see flag X' instead of being in this flag's pick-one list."""
+    person = [f for f in flags if f["type"] == "CONTRADICTION" and f["kind"] == "NAME" and f["source"] == "facts"]
+    for f in flags:
+        if f["source"] != "names" or f["type"] != "CONTRADICTION":
+            continue
+        moved = {}
+        for p in person:
+            for v in (p.get("variant_counts") or {}):
+                for name in list((f.get("variant_counts") or {})):
+                    if name.lower() == v.lower() or name.lower() in v.lower().split():
+                        moved[name] = p["id"]
+        if moved:
+            for name in moved:
+                f["variant_counts"].pop(name, None)
+            rest = ", ".join(f"{k} ×{n}" for k, n in sorted(f["variant_counts"].items(), key=lambda kv: -kv[1]))
+            f["suggested_fix"] = f"Pick one and fix the others. Variants: {rest}. Also seen: " + \
+                "; ".join(f"{k} (see {fid})" for k, fid in moved.items())
+
+
 def dedupe_and_rank(flags: list[dict]) -> list[dict]:
+    separate_owned_values(flags)
     kept: list[dict] = []
     for f in sorted(flags, key=lambda f: (SEV_ORDER[f["severity"]], -len(f["evidence"]))):
         ids = {e["element_id"] for e in f["evidence"]}

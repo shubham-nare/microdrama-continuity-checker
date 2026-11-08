@@ -6,8 +6,8 @@
   "calls_total": 5,
   "calls_live": 0,
   "calls_cached": 5,
-  "in_tokens": 6959,
-  "out_tokens": 2977,
+  "in_tokens": 7021,
+  "out_tokens": 3010,
   "live_seconds": 0,
   "models_used": [
    "gemini-3.1-flash-lite"
@@ -56,8 +56,8 @@
    "tag": "adjudicate:1",
    "model": "gemini-3.1-flash-lite",
    "cache": true,
-   "in_tokens": 889,
-   "out_tokens": 258,
+   "in_tokens": 951,
+   "out_tokens": 291,
    "seconds": 0.0
   }
  ]

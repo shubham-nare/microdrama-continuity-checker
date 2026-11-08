@@ -84,7 +84,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Tom is established as her brother in ep1 and ep2, but becomes her cousin in ep4."
+   "reason": "Tom is referred to as Iris's brother in ep1 and ep2, then as her cousin in ep4."
   },
   "episodes": [
    1,
@@ -155,7 +155,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "The surname is spelled Marlowe in ep1 and changes to Marlow in ep4."
+   "reason": "The surname spelling changes from Marlowe in ep1 to Marlow in ep4."
   },
   "episodes": [
    1,
@@ -225,7 +225,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Iris's eye color shifts from hazel in ep1 and ep3 to green in ep5."
+   "reason": "Iris's eye color switches from hazel in ep1 and ep3 to green in ep5."
   },
   "episodes": [
    1,
@@ -296,7 +296,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "The compass changes material from silver in ep1 to brass in ep4."
+   "reason": "The necklace changes from silver in ep1 to brass in ep4 without explanation."
   },
   "episodes": [
    1,
@@ -355,7 +355,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Captain Reyes's scar moves from his right eyebrow in ep2 to his left in ep4."
+   "reason": "Captain Reyes's scar moves from his right eyebrow in ep2 to his left eyebrow in ep4."
   },
   "episodes": [
    2,
@@ -414,7 +414,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Tom's broken arm shifts from the left arm in ep2 to the right arm in ep3 without explanation."
+   "reason": "Tom's broken arm shifts from the left arm in ep2 to the right arm in ep3."
   },
   "episodes": [
    2,

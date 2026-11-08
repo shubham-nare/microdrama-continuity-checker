@@ -12,7 +12,8 @@
    "odd_value_ids": [
     "V2"
    ],
-   "reason": "The compass material changes from silver in ep1 to brass in ep4 without explanation."
+   "change_value_id": "",
+   "reason": "The compass changes material from silver in ep1 to brass in ep4."
   },
   "values": [
    "brass compass at Iris's throat",
@@ -33,7 +34,8 @@
     "V3",
     "V4"
    ],
-   "reason": "Iris's eye color shifts from hazel to green then brown across episodes."
+   "change_value_id": "",
+   "reason": "Iris's eye color shifts from hazel to green then brown across episodes without explanation."
   },
   "values": [
    "brown",
@@ -54,7 +56,8 @@
    "odd_value_ids": [
     "V3"
    ],
-   "reason": "Tom is initially established as her brother in ep1 and ep2, but referred to as her cousin in ep4."
+   "change_value_id": "",
+   "reason": "Tom is referred to as her brother in ep1 and ep2, then as her cousin in ep4."
   },
   "values": [
    "brother",
@@ -74,7 +77,8 @@
    "odd_value_ids": [
     "V2"
    ],
-   "reason": "Captain Reyes's scar switches from the right eyebrow in ep2 to the left eyebrow in ep4."
+   "change_value_id": "",
+   "reason": "Captain Reyes's scar jumps from his right eyebrow in ep2 to his left eyebrow in ep4."
   },
   "values": [
    "pale scar on right eyebrow",
@@ -89,10 +93,13 @@
   "attribute": "place",
   "verdict": {
    "group_id": "G5",
-   "verdict": "DIFFERENT_ENTITIES",
-   "canonical_value": "",
-   "odd_value_ids": [],
-   "reason": "The captain refers to two different boats, the Gull and the Gannet."
+   "verdict": "CONTRADICTION",
+   "canonical_value": "the Gull",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "change_value_id": "",
+   "reason": "The boat name changes between the Gull in ep2 and the Gannet in ep4."
   },
   "values": [
    "Gannet",
@@ -112,7 +119,8 @@
    "odd_value_ids": [
     "V2"
    ],
-   "reason": "Tom's broken arm shifts from the left arm in ep2 to the right arm in ep3 without a new injury event."
+   "change_value_id": "",
+   "reason": "Tom's injury switches from the left arm in ep2 to the right arm in ep3."
   },
   "values": [
    "left arm",
@@ -127,10 +135,13 @@
   "attribute": "Marlowe/Marlow",
   "verdict": {
    "group_id": "G7",
-   "verdict": "COMPATIBLE",
-   "canonical_value": "",
-   "odd_value_ids": [],
-   "reason": "Marlowe and Marlow are spelling variants of the same surname."
+   "verdict": "CONTRADICTION",
+   "canonical_value": "Marlowe",
+   "odd_value_ids": [
+    "V3"
+   ],
+   "change_value_id": "",
+   "reason": "The surname spelling changes from Marlowe in ep1 to Marlow in ep4."
   },
   "values": [
    "Marlow",

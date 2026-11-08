@@ -12,7 +12,8 @@
    "odd_value_ids": [
     "V2"
    ],
-   "reason": "Maren's surname is spelled Holloway in ep1 and changed to Halloway in ep2."
+   "change_value_id": "",
+   "reason": "Maren's surname is spelled Holloway in ep1 and Halloway in ep2."
   },
   "values": [
    "Halloway",
@@ -32,7 +33,8 @@
    "odd_value_ids": [
     "V3"
    ],
-   "reason": "Maren's eye colour is grey in ep1 and ep2, but changes to brown in ep3 without explanation."
+   "change_value_id": "",
+   "reason": "Maren's eye colour is described as grey in ep1 and ep2, but switches to brown in ep3 without explanation."
   },
   "values": [
    "brown",
@@ -52,7 +54,8 @@
    "odd_value_ids": [
     "V3"
    ],
-   "reason": "The surname spelling changes from Holloway in ep1 to Halloway in ep2."
+   "change_value_id": "",
+   "reason": "The surname spelling changes between Holloway in ep1 and Halloway in ep2."
   },
   "values": [
    "Halloway",

@@ -67,6 +67,7 @@ def main(run: Path) -> int:
         "seed_ci": "–".join(f"{round(100 * x)}%" for x in seeded.get("ci95", [0, 0])),
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
+        "checks_failed": "; ".join(c["check"].split(":")[0] for c in checks if not c["pass"]) or "none",
         "seed_valid": ", ".join(f"{v['caught']}/{v['n']} {k}" for k, v in sorted(seeded.get("by_validity", {}).items())),
         "gate_demo": (lambda g: f"Built as <code>run.py --gate new_episode.txt</code>: on the held-out show, a new episode 6 with a planted eye-colour change was blocked in {g['live_calls']} live calls and {g['seconds']:.0f} s, with both lines quoted."
                       if g else "")(json.loads((ROOT / "demo" / "gate_output" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output" / "gate.json").exists() else None),
