@@ -32,6 +32,16 @@ Outputs in the `--out` folder:
 - `eval.json` and `checks.json` (with `--eval`)
 - `run_log.json`: calls, tokens, cost
 
+## Check one new episode before it goes to video (per-episode gate)
+```bash
+python run.py --data demo/heldout/show --gate demo/gate/episode-006.txt --out demo/gate_output
+# GATE episode 6 vs 5 earlier episodes: 3 live model calls, ~7 s
+# BLOCKED [medium] Iris: eye_colour: 'hazel' vs 'green' vs 'brown'
+#    new  ep6 line 16: 'brown' "Close-up of Iris's brown eyes"
+#    show ep1 line 32: 'hazel' "Iris's hazel eyes narrowing"
+```
+Earlier episodes come from the cache, so a gate costs about 1 extraction call plus re-checking. The exit code is 1 when something is blocked, so it can sit in a pipeline.
+
 ## Swap the model (env vars only, no code change)
 ```bash
 LLM_PROVIDER=gemini        LLM_MODEL=gemini-3.5-flash-lite

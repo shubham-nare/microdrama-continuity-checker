@@ -1,0 +1,30 @@
+EPISODE NUMBER: Episode 6
+EPISODE LOGLINE: Iris and Captain Reyes slip out of Kestrel Bay at midnight, with Tom left behind on the pier.
+CONTINUITY NOTES: Follows Episode 5; the same night. Fictional gate-demo episode with one planted error.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: EXT. KESTREL BAY PIER – NIGHT
+Scene start: 00:00.00
+Scene end: 00:30.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Close-up of Iris's brown eyes reflecting the harbor lamps as she unties the mooring line.
+
+**IRIS (Whispering):**
+Start: (00:04.50) | End: (00:07.00)
+"Cast off, Captain. Before the harbor master wakes."
+
+**CAPTAIN REYES (Low):**
+Start: (00:07.50) | End: (00:10.00)
+"Aye. Your father would have done the same."
+
+**SOUND FX:**
+Start: (00:28.00) | End: (00:30.00)
+Engine sputters to life, cliffhanger sting.
+
+--- SCRIPT END ---

@@ -1,0 +1,103 @@
+<!doctype html><meta charset=utf-8><title>Continuity report — gate: episode 6</title><style>body{font-family:system-ui,Segoe UI,sans-serif;margin:24px auto;max-width:1100px;padding:0 16px;color:#1d1d1f;background:#fff}
+h1{font-size:22px}h2{font-size:18px;margin-top:32px;border-bottom:1px solid #ddd;padding-bottom:4px}
+.f{border:1px solid #ddd;border-radius:8px;padding:10px 14px;margin:10px 0}.high{border-left:6px solid #c62828}
+.medium{border-left:6px solid #ef6c00}.low{border-left:6px solid #9e9e9e}.info{border-left:6px solid #1565c0}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:10px;background:#eee;margin-right:4px}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #eee;padding:4px 6px;text-align:left;vertical-align:top}
+.odd{background:#fff3e0}.q{color:#444;font-style:italic}details{margin:6px 0}small{color:#666}
+@media (prefers-color-scheme: dark){body{background:#121212;color:#eee}.f{border-color:#333}td,th{border-color:#2a2a2a}.odd{background:#3a2a10}.tag{background:#333}.q{color:#bbb}}</style>
+<h1>Continuity report — gate: episode 6</h1>
+
+<p>6 episodes · 35 timed elements · 24 verified facts · <b>5 contradictions</b> (1 high) · 1 label collisions · 1 characters with several labels · 1 marked 'needs a human look' · every flag is open until an editor accepts or dismisses it</p>
+<p><small>Every quote below was checked by code against the script. Severity: high = audible (dialogue) or breaks who-is-who; medium = visual state (trait, prop, injury); info = alias list for reference images. Reviewer: mark each flag accept / dismiss in flags.csv (column reviewer_decision).</small></p>
+<h2>Contradictions (5)</h2>
+<div class='f high'><b>#1 Tom — relation to iris: &#x27;brother&#x27; vs &#x27;cousin&#x27;</b><br><span class=tag>high</span><span class=tag>RELATIONSHIP</span><span class=tag>audible</span><span class=tag>F-0c1e206621</span> <small>Pick one and fix the others. Variants: brother ×2, cousin ×1 — Tom is initially established as her brother in ep1 and ep2, but referred to as her cousin in ep4.</small><br><small><b>A per-episode check (run.py --gate) would have stopped this at ep4.</b> Not caught, the minority value(s) cousin reach 1 later spoken line(s).</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>28</td><td>00:11.50</td><td>IRIS (dialogue)</td><td>brother</td><td class=q>“My brother Tom always did love lost causes.”</td></tr>
+<tr class=''><td>2</td><td>32</td><td>00:16.50</td><td>WOMAN (dialogue)</td><td>brother</td><td class=q>“Iris, get your brother off”</td></tr>
+<tr class='odd'><td>4</td><td>32</td><td>00:16.50</td><td>IRIS (dialogue)</td><td>cousin</td><td class=q>“My cousin Tom thinks you&#x27;re a good man.”</td></tr>
+</table></div>
+<div class='f medium'><b>#3 Iris — eye_colour: &#x27;hazel&#x27; vs &#x27;green&#x27; vs &#x27;brown&#x27;</b><br><span class=tag>medium</span><span class=tag>TRAIT</span><span class=tag>F-9afc3754c6</span> <small>Pick one and fix the others. Variants: hazel ×2, green ×1, brown ×1 — Iris&#x27;s eye color shifts from hazel to green then brown across episodes.</small><br><small><b>A per-episode check (run.py --gate) would have stopped this at ep5.</b> Not caught, the minority value(s) green, brown reach 0 later spoken line(s).</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>32</td><td>00:14.00</td><td>CAMERA</td><td>hazel</td><td class=q>“Iris&#x27;s hazel eyes narrowing”</td></tr>
+<tr class=''><td>3</td><td>24</td><td>00:07.00</td><td>CAMERA</td><td>hazel</td><td class=q>“Iris&#x27;s hazel eyes scanning”</td></tr>
+<tr class='odd'><td>5</td><td>24</td><td>00:08.00</td><td>CAMERA</td><td>green</td><td class=q>“Close-up of Iris&#x27;s green eyes widening”</td></tr>
+<tr class='odd'><td>6</td><td>16</td><td>00:00.00</td><td>CAMERA</td><td>brown</td><td class=q>“Close-up of Iris&#x27;s brown eyes”</td></tr>
+</table></div>
+<div class='f medium'><b>#4 * — compass: &#x27;silver compass hanging from a chain&#x27; vs &#x27;brass compass at Iris&#x27;s throat&#x27;</b><br><span class=tag>medium</span><span class=tag>PROP</span><span class=tag>F-bc34954e79</span> <small>Pick one and fix the others. Variants: silver compass hanging from a chain ×1, brass compass at Iris&#x27;s throat ×1 — The compass material changes from silver in ep1 to brass in ep4 without explanation.</small><br><small><b>A per-episode check (run.py --gate) would have stopped this at ep4.</b> Not caught, the minority value(s) brass compass at Iris&#x27;s throat reach 0 later spoken line(s).</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>16</td><td>00:00.00</td><td>CAMERA</td><td>silver compass hanging from a chain</td><td class=q>“a silver compass hanging from a chain at her throat.”</td></tr>
+<tr class='odd'><td>4</td><td>28</td><td>00:12.00</td><td>CAMERA</td><td>brass compass at Iris&#x27;s throat</td><td class=q>“Close-up of the brass compass at Iris&#x27;s throat as she clutches it.”</td></tr>
+</table></div>
+<div class='f medium'><b>#5 Captain Reyes — scar: &#x27;pale scar on right eyebrow&#x27; vs &#x27;scar over his left eyebrow&#x27;</b><br><span class=tag>medium</span><span class=tag>TRAIT</span><span class=tag>F-2d05f64c7f</span> <small>Pick one and fix the others. Variants: pale scar on right eyebrow ×1, scar over his left eyebrow ×1 — Captain Reyes&#x27;s scar switches from the right eyebrow in ep2 to the left eyebrow in ep4.</small><br><small><b>A per-episode check (run.py --gate) would have stopped this at ep4.</b> Not caught, the minority value(s) scar over his left eyebrow reach 0 later spoken line(s).</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>2</td><td>16</td><td>00:00.00</td><td>CAMERA</td><td>pale scar on right eyebrow</td><td class=q>“A pale scar cuts across his right eyebrow.”</td></tr>
+<tr class='odd'><td>4</td><td>16</td><td>00:00.00</td><td>CAMERA</td><td>scar over his left eyebrow</td><td class=q>“rubbing the scar over his left eyebrow as he faces Iris”</td></tr>
+</table></div>
+<div class='f medium'><b>#6 Tom — injury location ep2-&gt;ep3: &#x27;left arm&#x27; vs &#x27;right arm&#x27;</b><br><span class=tag>medium</span><span class=tag>INJURY</span><span class=tag>F-40cae23b8e</span> <small>Pick one and fix the others. Variants: left arm ×1, right arm ×1 — Tom&#x27;s broken arm shifts from the left arm in ep2 to the right arm in ep3 without a new injury event.</small><br><small><b>A per-episode check (run.py --gate) would have stopped this at ep3.</b> Not caught, the minority value(s) right arm reach 0 later spoken line(s).</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>2</td><td>28</td><td>00:11.00</td><td>ACTION</td><td>left arm</td><td class=q>“He clutches his left arm, which hangs broken.”</td></tr>
+<tr class='odd'><td>3</td><td>16</td><td>00:00.00</td><td>CAMERA</td><td>right arm</td><td class=q>“his right arm bound in a white sling.”</td></tr>
+</table></div>
+<h2>Speaker-label collisions (1)</h2>
+<div class='f high'><b>#2 Label &#x27;WOMAN&#x27; is used for different characters: Iris&#x27;s mother (ep 2); Innkeeper (ep 5)</b><br><span class=tag>high</span><span class=tag>LABEL</span><span class=tag>F-c4c71765a2</span> <small>Give each character its own label so reference images and voices map correctly — from alias resolution</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>2</td><td>32</td><td>00:16.50</td><td>WOMAN (dialogue)</td><td>Iris&#x27;s mother</td><td class=q>“&quot;Tom! Iris, get your brother off that ramp!&quot;”</td></tr>
+<tr class=''><td>5</td><td>20</td><td>00:04.50</td><td>WOMAN (dialogue)</td><td>Innkeeper</td><td class=q>“&quot;You didn&#x27;t hear it from me, love. He takes the boat at dawn.&quot;”</td></tr>
+</table></div>
+<h2>Characters under several labels (1)</h2>
+<div class='f info'><b>#8 Captain Reyes appears under 2 labels: CAPTAIN REYES (ep 2–6); THE SAILOR (ep 1–1)</b><br><span class=tag>info</span><span class=tag>LABEL</span><span class=tag>F-4cabc6e91d</span> <small>Map all labels to one character ID &#x27;captain_reyes&#x27; for reference images — The sailor on the boat in episode 1 is revealed in episode 2 to be Captain Reyes.</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>2</td><td>20</td><td>00:04.50</td><td>CAPTAIN REYES (dialogue)</td><td>CAPTAIN REYES</td><td class=q>“&quot;Name&#x27;s Reyes. Captain Reyes. I sailed the Gull with your father for twenty years.&quot;”</td></tr>
+<tr class=''><td>1</td><td>36</td><td>00:18.50</td><td>THE SAILOR (dialogue)</td><td>THE SAILOR</td><td class=q>“&quot;Nobody sells this boat while I&#x27;m aboard, Miss Marlowe.&quot;”</td></tr>
+</table></div>
+<h2>Needs a human look (1)</h2>
+<div class='f low'><b>#7 (name spelling) — Marlowe/Marlow: &#x27;Marlowe&#x27; vs &#x27;Marlow&#x27;</b><br><span class=tag>low</span><span class=tag>NAME</span><span class=tag>audible</span><span class=tag>F-41b9931a56</span> <small>Check by hand. Variants: Marlowe ×2, Marlow ×1 — model says compatible: Marlowe and Marlow are spelling variants of the same surname. — kept for a human, spelling groups are never auto-dropped</small><table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>2</td><td>00:00.00</td><td>HEADER</td><td>Marlowe</td><td class=q>“Iris Marlowe returns to the fishing village of Kestr”</td></tr>
+<tr class=''><td>1</td><td>36</td><td>00:18.50</td><td>THE SAILOR (dialogue)</td><td>Marlowe</td><td class=q>“sells this boat while I&#x27;m aboard, Miss Marlowe.&quot;”</td></tr>
+<tr class=''><td>4</td><td>36</td><td>00:20.50</td><td>CAPTAIN REYES (dialogue)</td><td>Marlow</td><td class=q>“&quot;Then let me prove it, Miss Marlow.&quot;”</td></tr>
+</table></div>
+<h2>Cleared by the model (1)</h2><p><small>Candidates the adjudicator judged compatible, intentional or about different things. They are not flags, but nothing is hidden: riskiest first. To overrule one, add an accept line for it in review/decisions.yaml or tell the team.</small></p><details><summary>show all</summary><table><tr><th>kind</th><th>subject / attribute</th><th>values</th><th>eps</th><th>model said</th></tr>
+<tr><td>NAME</td><td>~boat — place</td><td>Gannet; the Gull</td><td>2, 4</td><td><b>DIFFERENT_ENTITIES</b>: The captain refers to two different boats, the Gull and the Gannet.</td></tr>
+</table></details>
+<h2>Series bible — main characters</h2>
+<details><summary><b>Iris</b> <small>id iris · eps 1–6 · labels: IRIS</small></summary><table>
+<tr><td>trait: hair</td><td>long red hair (ep1)</td></tr>
+<tr><td>trait: eye_colour</td><td>brown (ep6); green (ep5); hazel (ep1); hazel (ep3)</td></tr>
+<tr><td>prop: compass</td><td>silver compass hanging from a chain (ep1); brass compass at Iris&#x27;s throat (ep4)</td></tr>
+<tr><td>prop: logbook</td><td>water-stained (ep3)</td></tr>
+</table></details>
+<details><summary><b>Captain Reyes</b> <small>id captain_reyes · eps 1–6 · labels: CAPTAIN REYES, THE SAILOR</small></summary><table>
+<tr><td>trait: scar</td><td>pale scar on right eyebrow (ep2); scar over his left eyebrow (ep4)</td></tr>
+</table></details>
+<details><summary><b>Tom</b> <small>id tom · eps 1–3 · labels: TOM</small></summary><table>
+<tr><td>trait: other</td><td>right arm bound in sling (ep3)</td></tr>
+<tr><td>injury: left arm location</td><td>left arm (ep2)</td></tr>
+<tr><td>injury: arm sling location</td><td>right arm (ep3)</td></tr>
+<tr><td>relation to iris</td><td>brother (ep1); brother (ep2); cousin (ep4)</td></tr>
+</table></details>
+<details><summary><b>Innkeeper</b> <small>id innkeeper · eps 5–5 · labels: WOMAN</small></summary><table>
+</table></details>
+<details><summary><b>Iris&#x27;s mother</b> <small>id iris_s_mother · eps 2–2 · labels: WOMAN</small></summary><table>
+</table></details>
+<h2>Reference cards (per scene, for shot prompts)</h2><p><small>6 scenes — full list in reference_cards.json. First 6 shown.</small></p>
+<details><summary>ep1 scene 1 — EXT. KESTREL BAY HARBOR – DAWN</summary><table>
+<tr><td><b>Captain Reyes</b><br><small>labels: THE SAILOR</small></td><td>costume: not stated<br>traits: {}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Iris</b><br><small>labels: IRIS</small></td><td>costume: not stated<br>traits: {&quot;hair&quot;: &quot;long red hair (ep1)&quot;, &quot;eye_colour&quot;: &quot;hazel (ep1)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;silver compass hanging from a chain (ep1)&quot;}<br>injuries: none</td></tr>
+<tr><td><b>Tom</b><br><small>labels: TOM</small></td><td>costume: not stated<br>traits: {}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+</table></details>
+<details><summary>ep2 scene 1 — EXT. BOAT DECK – MORNING</summary><table>
+<tr><td><b>Captain Reyes</b><br><small>labels: CAPTAIN REYES</small></td><td>costume: not stated<br>traits: {&quot;scar&quot;: &quot;pale scar on right eyebrow (ep2)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Iris</b><br><small>labels: IRIS</small></td><td>costume: not stated<br>traits: {&quot;hair&quot;: &quot;long red hair (ep1)&quot;, &quot;eye_colour&quot;: &quot;hazel (ep1)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;silver compass hanging from a chain (ep1)&quot;}<br>injuries: none</td></tr>
+<tr><td><b>Iris&#x27;s mother</b><br><small>labels: WOMAN</small></td><td>costume: grey shawl<br>traits: {}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Tom</b><br><small>labels: </small></td><td>costume: not stated<br>traits: {}<br>props (last 3 eps): {}<br>injuries: left arm (left arm, ep2)</td></tr>
+</table></details>
+<details><summary>ep3 scene 1 — INT. BOAT CABIN – NIGHT</summary><table>
+<tr><td><b>Iris</b><br><small>labels: IRIS</small></td><td>costume: not stated<br>traits: {&quot;hair&quot;: &quot;long red hair (ep1)&quot;, &quot;eye_colour&quot;: &quot;hazel (ep3)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;silver compass hanging from a chain (ep1)&quot;, &quot;logbook&quot;: &quot;water-stained (ep3)&quot;}<br>injuries: none</td></tr>
+<tr><td><b>Tom</b><br><small>labels: TOM</small></td><td>costume: not stated<br>traits: {&quot;other&quot;: &quot;right arm bound in sling (ep3)&quot;}<br>props (last 3 eps): {}<br>injuries: left arm (left arm, ep2); right arm (arm sling, ep3)</td></tr>
+</table></details>
+<details><summary>ep4 scene 1 — INT. HARBOR OFFICE – DAY</summary><table>
+<tr><td><b>Captain Reyes</b><br><small>labels: CAPTAIN REYES</small></td><td>costume: not stated<br>traits: {&quot;scar&quot;: &quot;scar over his left eyebrow (ep4)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Iris</b><br><small>labels: IRIS</small></td><td>costume: not stated<br>traits: {&quot;hair&quot;: &quot;long red hair (ep1)&quot;, &quot;eye_colour&quot;: &quot;hazel (ep3)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;brass compass at Iris&#x27;s throat (ep4)&quot;, &quot;logbook&quot;: &quot;water-stained (ep3)&quot;}<br>injuries: none</td></tr>
+</table></details>
+<details><summary>ep5 scene 1 — INT. KESTREL COVE INN – NIGHT</summary><table>
+<tr><td><b>Innkeeper</b><br><small>labels: WOMAN</small></td><td>costume: not stated<br>traits: {}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Iris</b><br><small>labels: IRIS</small></td><td>costume: not stated<br>traits: {&quot;hair&quot;: &quot;long red hair (ep1)&quot;, &quot;eye_colour&quot;: &quot;green (ep5)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;brass compass at Iris&#x27;s throat (ep4)&quot;, &quot;logbook&quot;: &quot;water-stained (ep3)&quot;}<br>injuries: none</td></tr>
+</table></details>
+<details><summary>ep6 scene 1 — EXT. KESTREL BAY PIER – NIGHT</summary><table>
+<tr><td><b>Captain Reyes</b><br><small>labels: CAPTAIN REYES</small></td><td>costume: not stated<br>traits: {&quot;scar&quot;: &quot;scar over his left eyebrow (ep4)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Iris</b><br><small>labels: IRIS</small></td><td>costume: not stated<br>traits: {&quot;hair&quot;: &quot;long red hair (ep1)&quot;, &quot;eye_colour&quot;: &quot;brown (ep6)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;brass compass at Iris&#x27;s throat (ep4)&quot;}<br>injuries: none</td></tr>
+</table></details>

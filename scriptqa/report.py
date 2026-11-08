@@ -107,7 +107,8 @@ def build_cards(eps: list[Episode], facts: list[dict], res: dict, flags: list[di
     flag_by_el = defaultdict(list)
     for fl in flags:
         if fl["severity"] in ("high", "medium"):
-            for e in fl["evidence"]:
+            odd = [e for e in fl["evidence"] if e.get("odd")] or fl["evidence"]
+            for e in odd:  # only the lines that need fixing carry the flag, not the majority-spelling lines
                 flag_by_el[e["element_id"]].append(fl["id"])
     cards = []
     for ep in eps:
@@ -137,7 +138,8 @@ def build_cards(eps: list[Episode], facts: list[dict], res: dict, flags: list[di
                         present.setdefault(c, set())
             people = []
             for canon, labels in sorted(present.items()):
-                active = [f"{a}: {v} (ep{n})" for n, a, v in injuries[canon] if ep.number - 1 <= n <= ep.number]
+                active = [f"{v} ({a.replace(' location', '').replace(' cause', ', cause')}, ep{n})"
+                          for n, a, v in injuries[canon] if ep.number - 1 <= n <= ep.number]
                 recent_props = {o: f"{v} (ep{n})" for o, (n, v) in props[canon].items() if ep.number - n <= 2}
                 # stable traits (eyes, hair, scar...) carry forward; temporary ones (wet hair, scratched cheeks) only
                 # count in the episode they are stated in and the next one
@@ -219,8 +221,8 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                        f"<span class=tag>{f['severity']}</span><span class=tag>{f['kind']}</span>"
                        + ("<span class=tag>audible</span>" if f["audible"] else "")
                        + f"<span class=tag>{e(f['id'])}</span> <small>{e(f['suggested_fix'])} — {e(f['adjudication'].get('reason', ''))}</small>"
-                       + (f"<br><small><b>Per-episode gate would block it at ep{f['gate']['blocked_at_episode']}.</b> Not caught, the odd value(s) {e(', '.join(f['gate']['odd_values']))} reach "
-                          f"{f['gate']['later_dialogue_lines']} later spoken line(s) and {f['gate']['later_camera_shots_in_affected_scenes']} camera shot(s) in affected scenes.</small>"
+                       + (f"<br><small><b>A per-episode check (run.py --gate) would have stopped this at ep{f['gate']['blocked_at_episode']}.</b> Not caught, the minority value(s) {e(', '.join(f['gate']['odd_values'][:5]))} reach "
+                          f"{f['gate']['later_dialogue_lines']} later spoken line(s).</small>"
                           if f.get("gate", {}).get("blocked_at_episode") else "")
                        + "<table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
             for ev in f["evidence"]:

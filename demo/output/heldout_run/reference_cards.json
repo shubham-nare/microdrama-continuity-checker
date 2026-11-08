@@ -45,12 +45,7 @@
     "injuries": []
    }
   ],
-  "open_flags": [
-   "F-0b812b4ee7",
-   "F-0c1e206621",
-   "F-41b9931a56",
-   "F-bc34954e79"
-  ]
+  "open_flags": []
  },
  {
   "episode": 2,
@@ -109,14 +104,11 @@
     "traits": {},
     "props_recent": {},
     "injuries": [
-     "left arm location: left arm (ep2)"
+     "left arm (left arm, ep2)"
     ]
    }
   ],
   "open_flags": [
-   "F-0c1e206621",
-   "F-2d05f64c7f",
-   "F-40cae23b8e",
    "F-c4c71765a2"
   ]
  },
@@ -156,13 +148,12 @@
     },
     "props_recent": {},
     "injuries": [
-     "left arm location: left arm (ep2)",
-     "arm sling location: right arm (ep3)"
+     "left arm (left arm, ep2)",
+     "right arm (arm sling, ep3)"
     ]
    }
   ],
   "open_flags": [
-   "F-0b812b4ee7",
    "F-40cae23b8e"
   ]
  },

@@ -1,0 +1,140 @@
+[
+ {
+  "group_id": "G1",
+  "source": "facts",
+  "kind": "PROP",
+  "subject": "*",
+  "attribute": "compass",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "silver compass hanging from a chain",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "reason": "The compass material changes from silver in ep1 to brass in ep4 without explanation."
+  },
+  "values": [
+   "brass compass at Iris's throat",
+   "silver compass hanging from a chain"
+  ]
+ },
+ {
+  "group_id": "G2",
+  "source": "facts",
+  "kind": "TRAIT",
+  "subject": "Iris",
+  "attribute": "eye_colour",
+  "verdict": {
+   "group_id": "G2",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "hazel",
+   "odd_value_ids": [
+    "V3",
+    "V4"
+   ],
+   "reason": "Iris's eye color shifts from hazel to green then brown across episodes."
+  },
+  "values": [
+   "brown",
+   "green",
+   "hazel"
+  ]
+ },
+ {
+  "group_id": "G3",
+  "source": "facts",
+  "kind": "RELATIONSHIP",
+  "subject": "Tom",
+  "attribute": "relation to iris",
+  "verdict": {
+   "group_id": "G3",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "brother",
+   "odd_value_ids": [
+    "V3"
+   ],
+   "reason": "Tom is initially established as her brother in ep1 and ep2, but referred to as her cousin in ep4."
+  },
+  "values": [
+   "brother",
+   "cousin"
+  ]
+ },
+ {
+  "group_id": "G4",
+  "source": "facts",
+  "kind": "TRAIT",
+  "subject": "Captain Reyes",
+  "attribute": "scar",
+  "verdict": {
+   "group_id": "G4",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "pale scar on right eyebrow",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "reason": "Captain Reyes's scar switches from the right eyebrow in ep2 to the left eyebrow in ep4."
+  },
+  "values": [
+   "pale scar on right eyebrow",
+   "scar over his left eyebrow"
+  ]
+ },
+ {
+  "group_id": "G5",
+  "source": "facts",
+  "kind": "NAME",
+  "subject": "~boat",
+  "attribute": "place",
+  "verdict": {
+   "group_id": "G5",
+   "verdict": "DIFFERENT_ENTITIES",
+   "canonical_value": "",
+   "odd_value_ids": [],
+   "reason": "The captain refers to two different boats, the Gull and the Gannet."
+  },
+  "values": [
+   "Gannet",
+   "the Gull"
+  ]
+ },
+ {
+  "group_id": "G6",
+  "source": "facts",
+  "kind": "INJURY",
+  "subject": "Tom",
+  "attribute": "injury location ep2->ep3",
+  "verdict": {
+   "group_id": "G6",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "left arm",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "reason": "Tom's broken arm shifts from the left arm in ep2 to the right arm in ep3 without a new injury event."
+  },
+  "values": [
+   "left arm",
+   "right arm"
+  ]
+ },
+ {
+  "group_id": "G7",
+  "source": "names",
+  "kind": "NAME",
+  "subject": "(name spelling)",
+  "attribute": "Marlowe/Marlow",
+  "verdict": {
+   "group_id": "G7",
+   "verdict": "COMPATIBLE",
+   "canonical_value": "",
+   "odd_value_ids": [],
+   "reason": "Marlowe and Marlow are spelling variants of the same surname."
+  },
+  "values": [
+   "Marlow",
+   "Marlowe"
+  ]
+ }
+]

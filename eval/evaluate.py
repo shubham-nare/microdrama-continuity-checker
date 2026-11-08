@@ -496,8 +496,8 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     def _model_split(label):
         return len({c for k, c in massign.items() if k.rsplit("|", 1)[0] == label.upper()}) > 1
     coll = bool(coll_ids) and all(_model_split(g["label"]) for g in gold_items if g["id"] in coll_ids)
-    add(4, "alias resolution vs gold, MODEL ONLY before human overrides (pairwise F1 >= 0.85, every gold label collision split)",
-        a["f1"] >= 0.85 and coll, f"P={a['pairwise_precision']} R={a['pairwise_recall']} F1={a['f1']}; collision found={coll}; wrong merges={a['wrong_merges'][:3]}")
+    add(4, "alias resolution vs gold, MODEL ONLY: pairwise F1 >= 0.85, >= 80% of multi-label characters fully merged, every gold collision split",
+        a["f1"] >= 0.85 and coll and a.get("characters_fully_merged", 0) >= 0.8 * max(1, a.get("characters_with_several_labels", 1)), f"P={a['pairwise_precision']} R={a['pairwise_recall']} F1={a['f1']}; characters fully merged {a.get('characters_fully_merged')}/{a.get('characters_with_several_labels')}; collision found={coll}; wrong merges={a['wrong_merges'][:3]}")
     s = ev["seeded"]
     add(5, "seeded-error recall >= 0.70 and <= 2 spurious new flags",
         (s["pipeline_recall"] or 0) >= 0.70 and len(spurious) <= 2,

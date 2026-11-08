@@ -61,10 +61,15 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
 
     # 1. extract (model reads), 2. verify (code checks quotes)
     failed = []
+    done = [0]
 
     def safe_extract(ep):
         try:
-            return extract_episode(llm, ep)
+            r = extract_episode(llm, ep)
+            done[0] += 1
+            if done[0] % 10 == 0 or done[0] == len(eps):
+                log(f"[extract] {done[0]}/{len(eps)} episodes read ({sum(1 for c in llm.calls if not c['cache'])} live calls so far)")
+            return r
         except Exception as e:  # quota, schema, network: keep going, report the episode as not read
             failed.append({"episode": ep.number, "error": str(e)[:200]})
             return {"labels": [], "facts": []}

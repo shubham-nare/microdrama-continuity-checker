@@ -18,7 +18,7 @@
     },
     "props_recent": {},
     "injuries": [
-     "scar left cheek: long scar (ep1)"
+     "long scar (scar left cheek, ep1)"
     ]
    },
    {
@@ -50,9 +50,7 @@
    }
   ],
   "open_flags": [
-   "F-0db87e6834",
-   "F-d3426089f1",
-   "F-e976c6da96"
+   "F-0db87e6834"
   ]
  },
  {
@@ -77,7 +75,7 @@
      "compass": "brass compass (ep2)"
     },
     "injuries": [
-     "scar left cheek: long scar (ep1)"
+     "long scar (scar left cheek, ep1)"
     ]
    },
    {
@@ -95,8 +93,7 @@
    }
   ],
   "open_flags": [
-   "F-d3426089f1",
-   "F-e976c6da96"
+   "F-d3426089f1"
   ]
  },
  {

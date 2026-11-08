@@ -19,9 +19,9 @@
  },
  {
   "n": 4,
-  "check": "alias resolution vs gold, MODEL ONLY before human overrides (pairwise F1 >= 0.85, every gold label collision split)",
+  "check": "alias resolution vs gold, MODEL ONLY: pairwise F1 >= 0.85, >= 80% of multi-label characters fully merged, every gold collision split",
   "pass": true,
-  "detail": "P=1.0 R=1.0 F1=1.0; collision found=True; wrong merges=[]"
+  "detail": "P=1.0 R=1.0 F1=1.0; characters fully merged 1/1; collision found=True; wrong merges=[]"
  },
  {
   "n": 5,

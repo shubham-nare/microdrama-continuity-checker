@@ -29,21 +29,76 @@ def main() -> int:
     ap.add_argument("--eval", action="store_true", help="also run seeded-error eval, gold scoring and checks")
     ap.add_argument("--gold", type=Path, default=ROOT / "eval", help="folder with gold_real.yaml, gold_aliases.yaml, flag_labels.yaml")
     ap.add_argument("--preflight", action="store_true", help="check the input and the model connection, then stop")
+    ap.add_argument("--gate", type=Path, default=None, help="check ONE new episode file against the show in --data")
     a = ap.parse_args()
     if a.preflight:
         return preflight(a.data)
+    if a.gate:
+        return gate(a.data, a.gate, a.out, a.review)
     from scriptqa.llm import LLMError
     try:
         result = run(a.data, a.out, a.show, a.review, a.workers)
     except LLMError as e:
-        print(f"\nModel call failed: {e}\nFix: put the key for LLM_PROVIDER in .env (GEMINI_API_KEY, or LLM_API_KEY + LLM_BASE_URL "
-              "for openai_compat), then run `python run.py --preflight --data <folder>`.")
+        print(f"\nModel call failed: {e}\n" + model_hint(str(e)))
         return 2
     if a.eval:
         from eval.evaluate import evaluate_all
         ok = evaluate_all(a.data, a.out, result, a.gold)
         return 0 if ok else 1
     return 0
+
+
+def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
+    """Per-episode gate: the show so far + one new episode. Old episodes come from the cache, so a gate costs
+    about 1 extraction call plus re-resolution and re-adjudication. Prints BLOCKED for every flag that touches
+    the new episode, with the bible's value and the new line."""
+    import shutil
+    import tempfile
+    from scriptqa.parse import parse_file
+    new = parse_file(new_ep)
+    work = Path(tempfile.mkdtemp(prefix="gate_"))
+    for p in data.glob("*.txt"):
+        if p.resolve() != new_ep.resolve():
+            shutil.copy(p, work / p.name)
+    shutil.copy(new_ep, work / new_ep.name)
+    r = run(work, out, f"gate: episode {new.number}", review, 3, log=lambda *a: None)
+    hits = [f for f in r["flags"] if f["type"] in ("CONTRADICTION", "REVIEW", "LABEL_COLLISION")
+            and any(e["episode"] == new.number for e in f["evidence"])]
+    u = r["runlog"]["usage"]
+    print(f"GATE episode {new.number} ({new_ep.name}) vs {len(list(data.glob('*.txt')))} earlier episodes: "
+          f"{u['calls_live']} live model calls, {r['runlog']['wall_seconds']} s")
+    if not hits:
+        print("PASS: no continuity conflict involving this episode")
+    for f in hits:
+        mine = [e for e in f["evidence"] if e["episode"] == new.number]
+        before = [e for e in f["evidence"] if e["episode"] != new.number]
+        print(f"BLOCKED [{f['severity']}] {f['summary']}")
+        for e in mine[:2]:
+            print(f"   new  ep{e['episode']} line {e.get('line')}: {e['value']!r} \"{e['quote'][:90]}\"")
+        for e in before[:2]:
+            print(f"   show ep{e['episode']} line {e.get('line')}: {e['value']!r} \"{e['quote'][:90]}\"")
+    import json
+    gpath = out / "gate.json"
+    rec = {"episode": new.number, "file": new_ep.name, "earlier_episodes": len(list(data.glob("*.txt"))),
+           "live_calls": u["calls_live"], "seconds": r["runlog"]["wall_seconds"], "blocked": [f["summary"] for f in hits]}
+    if u["calls_live"] == 0 and gpath.exists():  # a cached re-run: keep the last LIVE measurement for cost reporting
+        old = json.loads(gpath.read_text(encoding="utf-8"))
+        rec["live_calls"], rec["seconds"] = old.get("live_calls", 0), old.get("seconds", 0)
+        rec["note"] = "live_calls/seconds are from the last live (uncached) gate run"
+    gpath.write_text(json.dumps(rec, indent=1), encoding="utf-8")
+    shutil.rmtree(work, ignore_errors=True)
+    return 1 if hits else 0
+
+
+def model_hint(msg: str) -> str:
+    m = msg.lower()
+    if "not set" in m or "api key" in m or "401" in m or "403" in m or "permission" in m:
+        return "Fix: put the key for LLM_PROVIDER in .env (GEMINI_API_KEY, or LLM_API_KEY + LLM_BASE_URL for openai_compat)."
+    if "404" in m or "not found" in m:
+        return "Fix: the model name is not available to this key. Check LLM_MODEL (and LLM_BASE_URL for openai_compat)."
+    if "503" in m or "unavailable" in m or "overloaded" in m or "429" in m or "resource_exhausted" in m:
+        return "The provider is busy or the quota is used up. Retry later, or set LLM_FALLBACK_MODEL / another LLM_MODEL. Cached episodes are kept."
+    return "Run `python run.py --preflight --data <folder>` to check the setup."
 
 
 def preflight(data: Path) -> int:
@@ -72,7 +127,7 @@ def preflight(data: Path) -> int:
         llm.complete_json("Reply with JSON.", f"Return ok=true. ({len(eps)})", Probe, tag="preflight")
         print("probe  : OK (one live call)")
     except LLMError as e:
-        print(f"probe  : FAIL {e}")
+        print(f"probe  : FAIL {e}\n         {model_hint(str(e))}")
         return 2
     lr = ROOT / ".cache" / "live_runs.json"
     per_call = 6.6
