@@ -175,7 +175,26 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 @media (prefers-color-scheme: dark){body{background:#121212;color:#eee}.f{border-color:#333}td,th{border-color:#2a2a2a}.odd{background:#3a2a10}.tag{background:#333}.q{color:#bbb}}"""
 
 
-def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: list[dict], summary: dict) -> None:
+RISK = {("names", "DIFFERENT_ENTITIES"): 0, ("facts", "INTENTIONAL_CHANGE"): 1, ("facts", "DIFFERENT_ENTITIES"): 2,
+        ("facts", "COMPATIBLE"): 3}
+
+
+def cleared_groups(groups: list[dict]) -> list[dict]:
+    out = []
+    for g in groups:
+        v = g.get("verdict", {}).get("verdict")
+        if v in ("CONTRADICTION", "UNCLEAR") or (g["source"] == "names" and v in ("INTENTIONAL_CHANGE", "COMPATIBLE")):
+            continue  # those became flags
+        out.append({"source": g["source"], "kind": g["kind"], "subject": str(g["subject"]), "attribute": str(g["attribute"]),
+                    "verdict": v, "reason": g.get("verdict", {}).get("reason", ""),
+                    "values": sorted({i["value"] for i in g["items"]})[:8],
+                    "episodes": sorted({i["episode"] for i in g["items"]})})
+    out.sort(key=lambda c: (RISK.get((c["source"], c["verdict"]), 9), c["kind"]))
+    return out
+
+
+def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: list[dict], summary: dict,
+               cleared: list[dict] | None = None) -> None:
     e = html.escape
     out = [f"<!doctype html><meta charset=utf-8><title>Continuity report — {e(show)}</title><style>{CSS}</style>",
            f"<h1>Continuity report — {e(show)}</h1>",
@@ -205,6 +224,15 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                 out.append(f"<tr class='{'odd' if ev['odd'] else ''}'><td>{ev['episode']}</td><td>{ev['timestamp']}</td>"
                            f"<td>{e(str(ev['where']))}</td><td>{e(ev['value'])}</td><td class=q>“{e(ev['quote'][:200])}”</td></tr>")
             out.append("</table></div>")
+    if cleared is not None:
+        out.append(f"<h2>Cleared by the model ({len(cleared)})</h2><p><small>Candidates the adjudicator judged compatible, intentional or "
+                   "about different things. They are not flags, but nothing is hidden: riskiest first. To overrule one, add an accept "
+                   "line for it in review/decisions.yaml or tell the team.</small></p><details><summary>show all</summary><table>"
+                   "<tr><th>kind</th><th>subject / attribute</th><th>values</th><th>eps</th><th>model said</th></tr>")
+        for c in cleared:
+            out.append(f"<tr><td>{e(c['kind'])}</td><td>{e(c['subject'])} — {e(c['attribute'])}</td><td>{e('; '.join(c['values']))}</td>"
+                       f"<td>{e(', '.join(map(str, c['episodes'][:8])))}</td><td><b>{e(c['verdict'] or '')}</b>: {e(c['reason'][:160])}</td></tr>")
+        out.append("</table></details>")
     out.append("<h2>Series bible — main characters</h2>")
     for canon, d in list(bible["characters"].items())[:12]:
         out.append(f"<details><summary><b>{e(canon)}</b> <small>id {e(d['id'])} · eps {d['episodes'][0] if d['episodes'] else ''}–{d['episodes'][-1] if d['episodes'] else ''} · labels: {e(', '.join(d['labels']))}</small></summary><table>")

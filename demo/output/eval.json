@@ -13,6 +13,18 @@
     "F-0db87e6834"
    ]
   },
+  "coverage": {
+   "surname_spelling": {
+    "found": 2,
+    "of": 2,
+    "missing": []
+   },
+   "eye_colour": {
+    "found": 2,
+    "of": 2,
+    "missing": []
+   }
+  },
   "precision": 1.0,
   "judged": [
    {
@@ -50,7 +62,13 @@
   "ci95": [
    0.3,
    0.95
-  ]
+  ],
+  "loss_stage": {
+   "surname_spelling": "flagged",
+   "scar_side": "not extracted by the model",
+   "eye_colour": "flagged",
+   "old_man_collision": "flagged"
+  }
  },
  "aliases": {
   "pairwise_precision": 1.0,

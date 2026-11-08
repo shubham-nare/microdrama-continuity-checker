@@ -113,7 +113,9 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
                                    | {"values": sorted({i["value"] for i in g["items"]})} for g in groups])
     dump(out / "verify_stats.json", vstats)
     dump(out / "summary.json", summary)
-    report.write_html(out / "report.html", show, flags, bible, cards, summary)
+    cleared = report.cleared_groups(groups)
+    dump(out / "cleared_by_model.json", cleared)
+    report.write_html(out / "report.html", show, flags, bible, cards, summary, cleared)
     usage = llm.usage()
     cost = usage["in_tokens"] / 1e6 * PRICE_IN + usage["out_tokens"] / 1e6 * PRICE_OUT
     runlog = {"usage": usage, "wall_seconds": round(time.time() - t0, 1),

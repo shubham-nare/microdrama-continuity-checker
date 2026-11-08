@@ -202,6 +202,32 @@ def judge_alias_flag(f: dict) -> dict:
     return {"label": "unlabelled", "summary": f["summary"]}
 
 
+def loss_stages(result: dict) -> dict:
+    """For each gold item: the pipeline stage where it was lost (code only, from facts, groups and flags)."""
+    gold = (_gold("gold_real.yaml") or {}).get("items", [])
+    out = {}
+    for g in gold:
+        if any(match_gold(f, g) for f in result["flags"]):
+            out[g["id"]] = "flagged"
+            continue
+        if g.get("flag_type"):
+            out[g["id"]] = "missed by alias resolution"
+            continue
+        pseudo = lambda items: {"type": "CONTRADICTION", "summary": "", "episodes": sorted({i["episode"] for i in items}),
+                                "evidence": [{"value": i["value"], "quote": i["quote"]} for i in items]}
+        grp = next((x for x in result["groups"] if match_gold(pseudo(x["items"]), g)), None)
+        if grp:
+            out[g["id"]] = f"grouped, then cleared by the model as {grp.get('verdict', {}).get('verdict')}: {grp.get('verdict', {}).get('reason', '')[:120]}"
+            continue
+        about = [f for f in result["facts"] if not g.get("subjects") or
+                 any(sj in (f["subject"] + " " + f["attribute"]).lower() for sj in g["subjects"])]
+        if match_gold(pseudo(about), g):
+            out[g["id"]] = "extracted as facts, but never grouped together (different subject/attribute keys)"
+        else:
+            out[g["id"]] = "not extracted by the model"
+    return out
+
+
 def score_real(flags: list[dict]) -> dict:
     gold = (_gold("gold_real.yaml") or {}).get("items", [])
     lab_path = GOLD_DIR / "flag_labels.yaml"
@@ -407,6 +433,7 @@ def evaluate_all(data: Path, out: Path, result: dict, gold_dir: Path | None = No
     # (2)(3) real pack
     real = score_real(flags)
     real["ci95"] = wilson(real.get("distinct_gold_found", 0), real.get("n_gold", 0))
+    real["loss_stage"] = loss_stages(result)
     ev["real"] = real
     # (4) aliases
     ev["aliases"] = score_aliases(result["res"].get("model_assign", result["res"]["assign"]))
