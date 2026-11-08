@@ -373,6 +373,9 @@ def separate_owned_values(flags: list[dict]) -> None:
             for name in moved:
                 f["variant_counts"].pop(name, None)
             rest = ", ".join(f"{k} ×{n}" for k, n in sorted(f["variant_counts"].items(), key=lambda kv: -kv[1]))
+            f["summary"] = (f"Name spelled {len(f['variant_counts'])} ways: " + ", ".join(
+                f"{k} ×{n}" for k, n in sorted(f["variant_counts"].items(), key=lambda kv: -kv[1])[:4])
+                + f" (+{len(moved)} that belong to another flag)")
             f["suggested_fix"] = f"Pick one and fix the others. Variants: {rest}. Also seen: " + \
                 "; ".join(f"{k} (see {fid})" for k, fid in moved.items())
 

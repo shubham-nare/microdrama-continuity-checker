@@ -76,7 +76,7 @@
   "attribute": "Holloway/Halloway",
   "severity": "high",
   "audible": false,
-  "summary": "Name spelled 2 ways: Holloway \u00d72, Halloway \u00d71",
+  "summary": "Name spelled 0 ways:  (+2 that belong to another flag)",
   "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Holloway (see F-fdde02ffe0); Halloway (see F-fdde02ffe0)",
   "variant_counts": {},
   "adjudication": {

@@ -7,6 +7,8 @@
  "blocked": [
   "Iris \u2014 eye_colour: 'hazel' vs 'green' vs 'brown'"
  ],
+ "warn_earlier_disagree": [],
+ "older_conflicts_followed": [],
  "evidence": [
   {
    "flag": "F-9afc3754c6",

@@ -33,7 +33,7 @@ def live_minutes(run: Path) -> str:
         runs = [r for r in runs if Path(r["data"]).name == "data" and "mutated" not in r["data"]]
         if runs:
             r = max(runs, key=lambda r: r["calls_live"])  # the fullest live run (nothing cached) is the honest timing
-            return f"{r['wall_seconds'] / 60:.0f} minutes ({r['calls_live']} live calls, measured {r['when']})"
+            return f"about {r['wall_seconds'] / 60:.0f} minutes for a full live run (measured {r['when']})"
     return "not measured"
 
 
@@ -121,7 +121,8 @@ def main(run: Path) -> int:
         "seed_valid": ", ".join(f"{v['caught']}/{v['n']} {k}" for k, v in sorted(seeded.get("by_validity", {}).items())),
         "gate_demo": (lambda g: (f"On a never-seen episode of the held-out show it took {g['live_calls']} live model call{'s' if g['live_calls'] != 1 else ''}"
                                  + (f" ({g['seconds'] / 60:.0f} min, while the free tier was rate-limiting)" if g['seconds'] > 120 else f" and {g['seconds']:.0f} s")
-                                 + (f" and blocked {len(g['blocked'])} conflict{'s' if len(g['blocked']) != 1 else ''} the new episode touches." if g.get("blocked") else " and passed."))
+                                 + (f" and blocked {len(g['blocked'])} conflict{'s' if len(g['blocked']) != 1 else ''} the new episode introduces." if g.get("blocked") else
+                                    f" and passed, with {len(g.get('warn_earlier_disagree', []))} warnings where earlier episodes already disagree; an episode that introduces a new eye colour is blocked."))
                       if g else "")(json.loads((ROOT / "demo" / "gate_output_new" / "gate.json").read_text(encoding="utf-8")) if (ROOT / "demo" / "gate_output_new" / "gate.json").exists() else None),
         "held_found": (e.get("heldout") or {}).get("real", {}).get("distinct_gold_found", "n/a"),
         "held_n": (e.get("heldout") or {}).get("real", {}).get("n_gold", "n/a"),

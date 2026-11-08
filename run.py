@@ -68,11 +68,41 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
             shutil.copy(p, work / p.name)
     shutil.copy(new_ep, work / new_ep.name)
     r = run(work, out, f"gate: episode {new.number}", review, 3, log=lambda *a: None)
-    hits = [f for f in r["flags"] if f["type"] in ("CONTRADICTION", "REVIEW", "LABEL_COLLISION")
-            and any(e["episode"] == new.number for e in f["evidence"])]
+    from collections import Counter
+    touching = [f for f in r["flags"] if f["type"] in ("CONTRADICTION", "REVIEW", "LABEL_COLLISION")
+                and any(e["episode"] == new.number for e in f["evidence"])]
+    hits, ties, agrees = [], [], []
+    for f in touching:
+        if f["type"] == "LABEL_COLLISION":
+            hits.append(f)
+            continue
+        def sig(v):  # compare the words that make two descriptions disagree (colour, material, side), else the value
+            import re as _re
+            from scriptqa.diff import CLASH_WORDS
+            ws = _re.split(r"[\s,;/-]+", v.lower())
+            key = {CLASH_WORDS[w] for w in ws if w in CLASH_WORDS} | {w for w in ws if w in ("left", "right")}
+            return " ".join(sorted(key)) or v.lower()
+        earlier = Counter(sig(e["value"]) for e in f["evidence"] if e["episode"] != new.number)
+        mine = {sig(e["value"]) for e in f["evidence"] if e["episode"] == new.number}
+        top = earlier.most_common()
+        if not top:
+            hits.append(f)
+            continue
+        best = top[0][1]
+        leaders = {v for v, n in top if n == best}
+        if mine - set(earlier):
+            hits.append(f)            # the new episode introduces a value never used before
+        elif mine <= leaders and len(leaders) == 1:
+            agrees.append(f)          # the new episode follows the established value; the odd line is older
+        else:
+            ties.append(f)            # earlier episodes already disagree; the new episode sides with one of them
     u = r["runlog"]["usage"]
     print(f"GATE episode {new.number} ({new_ep.name}) vs {len(list(data.glob('*.txt')))} earlier episodes: "
           f"{u['calls_live']} live model calls, {r['runlog']['wall_seconds']} s")
+    for f in ties:
+        print(f"WARN (earlier episodes already disagree; this one sides with one of them) {f['summary']}")
+    if agrees:
+        print(f"note: {len(agrees)} older conflict(s) touch this episode, but it follows the established value")
     if not hits:
         print("PASS: no continuity conflict involving this episode")
     for f in hits:
@@ -87,6 +117,8 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     rep = out / "report.html"
     if rep.exists():
         banner = (f"<div style='border:2px solid #c62828;padding:10px;border-radius:8px;margin:10px 0'><b>Gate result for episode {new.number}: "
+                  + (f"{len(ties)} warning(s) where earlier episodes already disagree. " if ties else "")
+                  + "Blocked = this episode introduces a value the show never used. "
                   + (f"BLOCKED by {len(hits)} new conflict(s)</b><ul>" + "".join(f"<li>{_h.escape(f['summary'])}</li>" for f in hits) + "</ul>"
                      if hits else "PASS</b>")
                   + f"<small>{len(r['flags']) - len(hits)} other flag(s) below are carried over from earlier episodes, not caused by this one.</small></div>")
@@ -97,6 +129,7 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     gpath = out / "gate.json"
     rec = {"episode": new.number, "file": new_ep.name, "earlier_episodes": len(list(data.glob("*.txt"))),
            "live_calls": u["calls_live"], "seconds": r["runlog"]["wall_seconds"], "blocked": [f["summary"] for f in hits],
+           "warn_earlier_disagree": [f["summary"] for f in ties], "older_conflicts_followed": [f["summary"] for f in agrees],
            "evidence": [{"flag": f["id"], "new": [{"line": e["line"], "value": e["value"], "quote": e["quote"]} for e in f["evidence"] if e["episode"] == new.number],
                          "earlier": [{"episode": e["episode"], "line": e["line"], "value": e["value"], "quote": e["quote"]} for e in f["evidence"] if e["episode"] != new.number][:3]}
                         for f in hits]}

@@ -91,7 +91,7 @@
   "attribute": "Marlowe/Marlow",
   "severity": "high",
   "audible": true,
-  "summary": "Name spelled 2 ways: Marlowe \u00d73, Marlow \u00d71",
+  "summary": "Name spelled 0 ways:  (+2 that belong to another flag)",
   "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Marlow (see F-2e5f3243d5); Marlowe (see F-2e5f3243d5)",
   "variant_counts": {},
   "adjudication": {
