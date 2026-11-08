@@ -369,6 +369,9 @@ def separate_owned_values(flags: list[dict]) -> None:
                 for name in list((f.get("variant_counts") or {})):
                     if name.lower() == v.lower() or name.lower() in v.lower().split():
                         moved[name] = p["id"]
+        remaining = [n for n in (f.get("variant_counts") or {}) if n not in moved]
+        if moved and len(remaining) < 2:
+            continue  # the whole family is explained by the other flag: leave this one as it is
         if moved:
             for name in moved:
                 f["variant_counts"].pop(name, None)

@@ -61,4 +61,4 @@ The code was written with Claude Code. `CLAUDE.md`, `PROMPTS.md` and `.claude/ag
 - a planning prompt
 - an improvement loop where every iteration ran the full pack, the automatic checks and an independent "critic" reviewer, plus a "fresh-eyes" reviewer and a "contrarian" for ideas
 
-The decisions, failures and fixes from that loop are summarised in the solution doc. The full logs are in the private outputs bundle. `demo/heldout/` is a fictional show written after the rules were final, used only as a held-out test.
+The decisions, failures and fixes from that loop are summarised in the solution doc. The full logs are in the private outputs bundle. `demo/heldout/` is a fictional show written in iteration 7 and never used for tuning (rules added later did not change its score), used only as a held-out test.

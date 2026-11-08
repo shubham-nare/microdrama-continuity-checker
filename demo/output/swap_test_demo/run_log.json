@@ -29,19 +29,19 @@
    "seconds": 0.0
   },
   {
-   "tag": "extract:ep2",
-   "model": "gemini-3.1-flash-lite",
-   "cache": true,
-   "in_tokens": 1617,
-   "out_tokens": 636,
-   "seconds": 0.0
-  },
-  {
    "tag": "extract:ep3",
    "model": "gemini-3.1-flash-lite",
    "cache": true,
    "in_tokens": 1572,
    "out_tokens": 593,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep2",
+   "model": "gemini-3.1-flash-lite",
+   "cache": true,
+   "in_tokens": 1617,
+   "out_tokens": 636,
    "seconds": 0.0
   },
   {
@@ -64,16 +64,16 @@
    "tag": "adjudicate:1",
    "model": "gemini-3.1-flash-lite",
    "cache": true,
-   "in_tokens": 761,
-   "out_tokens": 106,
+   "in_tokens": 771,
+   "out_tokens": 109,
    "seconds": 0.0
   },
   {
    "tag": "adjudicate:1",
    "model": "gemini-3.1-flash-lite",
    "cache": true,
-   "in_tokens": 771,
-   "out_tokens": 109,
+   "in_tokens": 761,
+   "out_tokens": 106,
    "seconds": 0.0
   }
  ]

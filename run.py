@@ -47,6 +47,10 @@ def main() -> int:
     except LLMError as e:
         print(f"\nModel call failed: {e}\n" + model_hint(str(e)))
         return 2
+    s = result["summary"]
+    if s.get("episodes_not_read") and len(s["episodes_not_read"]) == s["episodes"]:
+        print("\nNo episode was read by the model. " + model_hint(str(s.get("extract_errors", [{}])[0].get("error", ""))))
+        return 2
     if a.eval:
         from eval.evaluate import evaluate_all
         ok = evaluate_all(a.data, a.out, result, a.gold)
@@ -116,12 +120,14 @@ def gate(data: Path, new_ep: Path, out: Path, review: Path) -> int:
     import html as _h
     rep = out / "report.html"
     if rep.exists():
-        banner = (f"<div style='border:2px solid #c62828;padding:10px;border-radius:8px;margin:10px 0'><b>Gate result for episode {new.number}: "
+        colour = "#c62828" if hits else "#2e7d32"
+        carried = sum(1 for f in r["flags"] if f["type"] in ("CONTRADICTION", "REVIEW", "LABEL_COLLISION")) - len(hits)
+        banner = (f"<div style='border:2px solid {colour};padding:10px;border-radius:8px;margin:10px 0'><b>Gate result for episode {new.number}: "
                   + (f"{len(ties)} warning(s) where earlier episodes already disagree. " if ties else "")
                   + "Blocked = this episode introduces a value the show never used. "
                   + (f"BLOCKED by {len(hits)} new conflict(s)</b><ul>" + "".join(f"<li>{_h.escape(f['summary'])}</li>" for f in hits) + "</ul>"
                      if hits else "PASS</b>")
-                  + f"<small>{len(r['flags']) - len(hits)} other flag(s) below are carried over from earlier episodes, not caused by this one.</small></div>")
+                  + f"<small>{carried} other flag(s) below are carried over from earlier episodes, not caused by this one.</small></div>")
         t = rep.read_text(encoding="utf-8")
         i = t.find("</h1>")
         rep.write_text(t[:i + 5] + banner + t[i + 5:], encoding="utf-8")
@@ -174,9 +180,10 @@ def preflight(data: Path) -> int:
         ok: bool
 
     try:
-        llm.cache_dir = llm.cache_dir.parent / "probe"
-        llm.cache_dir.mkdir(parents=True, exist_ok=True)
-        llm.complete_json("Reply with JSON.", f"Return ok=true. ({len(eps)})", Probe, tag="preflight")
+        import tempfile
+        import time as _t
+        llm.cache_dir = Path(tempfile.mkdtemp(prefix="probe_"))  # never cached: a real call every time
+        llm.complete_json("Reply with JSON.", f"Return ok=true. ({_t.time()})", Probe, tag="preflight")
         print("probe  : OK (one live call)")
     except LLMError as e:
         print(f"probe  : FAIL {e}\n         {model_hint(str(e))}")

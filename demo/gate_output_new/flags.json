@@ -91,9 +91,12 @@
   "attribute": "Marlowe/Marlow",
   "severity": "high",
   "audible": true,
-  "summary": "Name spelled 0 ways:  (+2 that belong to another flag)",
-  "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Marlow (see F-2e5f3243d5); Marlowe (see F-2e5f3243d5)",
-  "variant_counts": {},
+  "summary": "Name spelled 2 ways: Marlowe \u00d73, Marlow \u00d71",
+  "suggested_fix": "Pick one and fix the others. Variants: Marlowe \u00d73, Marlow \u00d71",
+  "variant_counts": {
+   "Marlowe": 3,
+   "Marlow": 1
+  },
   "adjudication": {
    "verdict": "CONTRADICTION",
    "reason": "The character's surname is consistently spelled 'Marlowe' in episodes 1 and 7, but is misspelled as 'Marlow' in episode 4."
@@ -153,7 +156,16 @@
    "F-2e5f3243d5"
   ],
   "rank": 2,
-  "status": "open"
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 4,
+   "majority_value": "Marlowe",
+   "odd_values": [
+    "Marlow"
+   ],
+   "later_dialogue_lines": 1,
+   "later_camera_shots_in_affected_scenes": 2
+  }
  },
  {
   "id": "F-c4c71765a2",

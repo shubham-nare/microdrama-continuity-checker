@@ -76,9 +76,12 @@
   "attribute": "Holloway/Halloway",
   "severity": "high",
   "audible": false,
-  "summary": "Name spelled 0 ways:  (+2 that belong to another flag)",
-  "suggested_fix": "Pick one and fix the others. Variants: . Also seen: Holloway (see F-fdde02ffe0); Halloway (see F-fdde02ffe0)",
-  "variant_counts": {},
+  "summary": "Name spelled 2 ways: Holloway \u00d72, Halloway \u00d71",
+  "suggested_fix": "Pick one and fix the others. Variants: Holloway \u00d72, Halloway \u00d71",
+  "variant_counts": {
+   "Holloway": 2,
+   "Halloway": 1
+  },
   "adjudication": {
    "verdict": "CONTRADICTION",
    "reason": "The character's surname is spelled 'Holloway' in episode 1 but changes to 'Halloway' in episode 2 without explanation."
@@ -126,7 +129,16 @@
    "F-fdde02ffe0"
   ],
   "rank": 2,
-  "status": "open"
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 2,
+   "majority_value": "Halloway",
+   "odd_values": [
+    "Holloway"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 0
+  }
  },
  {
   "id": "F-e976c6da96",
