@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
-PLAIN = {4: "who-is-who (only 5 of 9 multi-label characters fully merged; bar 80%)",
+PLAIN = {4: "who-is-who (bar: 80% of multi-label characters fully merged)",
          5: "planted errors caught (bar 70%, with at most 2 new false flags)",
          6: "share of flags that are real errors (bar 70%)",
          11: "real errors found (bar 70%)"}
@@ -85,7 +85,7 @@ def fix_vals(run: Path) -> dict:
     left = [g for g in pv.get("spelling_groups_after", []) if g not in unchanged]
     return {"fix_lines": r["lines_changed"], "fix_held": " and ".join(held) or "none",
             "pv_value": pv.get("shared_value", "n/a"), "pv_lines": pv.get("lines_changed", 0),
-            "pv_left": "no flagged spelling remains" if not left else "left: " + "; ".join(left)}
+            "pv_left": "no flagged spelling left" if not left else "still: " + "; ".join(left)}
 
 
 def onecall_vals() -> dict:

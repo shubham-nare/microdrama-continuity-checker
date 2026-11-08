@@ -1,7 +1,8 @@
 """Close the loop for spelling flags: flag -> patch -> re-check, all in code (no model call).
 
-For every open NAME contradiction (not dismissed by the editor), the value to keep is the editor's `canonical`
-from review/decisions.yaml if given, otherwise the tool's suggestion (the spelling that needs the fewest edits).
+Only flags an editor ACCEPTED in review/decisions.yaml are patched (human confirms); the value kept is the editor's
+`canonical` if given, otherwise the tool's suggestion (the spelling that needs the fewest edits). Every other open
+spelling flag goes to a preview (preview_one_spelling/), which is written but never applied.
 Every whole-word occurrence of the other spellings in that flag is replaced, in copies of the scripts.
 Then the pure-code spelling check runs again on the patched copies and reports what is left.
 
@@ -38,6 +39,7 @@ def plan_fixes(flags: list[dict], decisions: dict) -> list[dict]:
         if keep and odd:
             plan.append({"flag": f["id"], "summary": f["summary"], "keep": keep, "replace": odd,
                          "by_editor": bool(d.get("canonical")),
+                         "accepted": d.get("decision") == "accept" or bool(d.get("canonical")),
                          "chosen_by": "editor" if d.get("canonical") else "tool suggestion (not yet accepted by an editor)"})
     # hold flags whose kept spellings are themselves variants of each other, unless an editor chose both
     for i, a in enumerate(plan):
@@ -50,8 +52,10 @@ def plan_fixes(flags: list[dict], decisions: dict) -> list[dict]:
         if p.get("held_with"):
             p["status"] = (f"HELD: keeps '{p['keep']}' while flag {', '.join(p['held_with'])} keeps a variant of it; "
                            "an editor must choose one spelling for both")
-        else:
+        elif p["accepted"]:
             p["status"] = "applied"
+        else:  # human confirms: the tool's suggestion goes to the preview until an editor accepts the flag
+            p["status"] = "suggested: accept the flag in review/decisions.yaml to apply it"
     return plan
 
 
@@ -90,15 +94,17 @@ def apply_fixes(data: Path, flags: list[dict], decisions: dict, out: Path) -> di
     rec = {"plan": plan, "lines_changed": main["lines_changed"],
            "spelling_groups_before": _fmt(before), "spelling_groups_after": _fmt(main["after"]),
            "patched_scripts": "patched_scripts/ (local only: full scripts)", "diff": "fix.diff"}
-    held = [p for p in plan if p["status"] != "applied"]
-    if held:  # preview: one shared spelling for each held cluster (the most frequent of the kept values)
-        shared = max({p["keep"] for p in held}, key=lambda v: counts.get(v, 0))
+    pending = [p for p in plan if p["status"] != "applied"]
+    if pending:  # preview, NOT applied: every suggestion; clashing ones share the most frequent of their kept values
+        held = [p for p in pending if p.get("held_with")]
+        shared = max({p["keep"] for p in held}, key=lambda v: counts.get(v, 0)) if held else None
         prev_plan = [p for p in plan if p["status"] == "applied"] + [
-            {**p, "keep": shared, "replace": sorted(set(p["replace"]) | ({p["keep"]} - {shared}))} for p in held]
+            {**p, "keep": shared, "replace": sorted(set(p["replace"]) | ({p["keep"]} - {shared}))} if p.get("held_with") else p
+            for p in pending]
         prev = _patch(data, prev_plan, out / "preview_one_spelling")
-        rec["preview_one_spelling"] = {"shared_value": shared, "lines_changed": prev["lines_changed"],
+        rec["preview_one_spelling"] = {"shared_value": shared or "n/a", "lines_changed": prev["lines_changed"],
                                        "spelling_groups_after": _fmt(prev["after"]),
-                                       "note": "NOT applied: what the patch would do if an editor chose this one spelling for "
-                                               "the held flags (set it as canonical for each in review/decisions.yaml)"}
+                                       "note": "NOT applied: what the patch would do if an editor accepted every suggestion"
+                                               + (f" and chose '{shared}' for the clashing flags" if shared else "")}
     (out / "fix_and_recheck.json").write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf-8")
     return rec

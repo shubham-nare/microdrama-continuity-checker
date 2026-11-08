@@ -173,15 +173,17 @@ def fix_and_recheck(data: Path, flags: list, out: Path, review: Path) -> int:
     if rep.exists():  # add the result to the editor's report (generated, not hand-written)
         import html as _h
         applied = [p for p in rec["plan"] if p["status"] == "applied"]
-        held = [p for p in rec["plan"] if p["status"] != "applied"]
+        held = [p for p in rec["plan"] if p["status"].startswith("HELD")]
         pv = rec.get("preview_one_spelling")
-        sec = ("<h2>Fix and re-check (spelling flags)</h2><p>Applied: "
+        sec = ("<h2>Fix and re-check (spelling flags)</h2><p>Applied (flags an editor accepted): "
                + (", ".join(f"{_h.escape(', '.join(p['replace']))} &rarr; <b>{_h.escape(p['keep'])}</b>" for p in applied) or "nothing")
                + f" ({rec['lines_changed']} script lines, dialogue and directions: fix/fix.diff).</p>"
                + ("<p><b>Held</b> (the two suggestions are different spellings of what may be one name; patching both would "
                   "write a new contradiction): " + "; ".join(f"{_h.escape(p['flag'])} would keep '{_h.escape(p['keep'])}'" for p in held)
                   + ". Choose one spelling and set it as <i>canonical</i> for both in review/decisions.yaml.</p>" if held else "")
-               + (f"<p>Preview, not applied: with '{_h.escape(pv['shared_value'])}' for both, {pv['lines_changed']} lines change and "
+               + (f"<p>Preview, not applied (every suggestion accepted"
+                  + (f", '{_h.escape(pv['shared_value'])}' for the clashing flags" if pv['shared_value'] != "n/a" else "")
+                  + f"): {pv['lines_changed']} lines change and "
                   f"the spelling check then finds {len(pv['spelling_groups_after'])} group(s) left"
                   + (": " + "; ".join(_h.escape(g) for g in pv["spelling_groups_after"]) if pv["spelling_groups_after"] else "")
                   + " (fix/preview_one_spelling/fix.diff).</p>" if pv else "")
@@ -193,13 +195,13 @@ def fix_and_recheck(data: Path, flags: list, out: Path, review: Path) -> int:
         anchor = "<h2>Cleared by the model" if "<h2>Cleared by the model" in t else "</body>"
         rep.write_text(t.replace(anchor, sec + anchor, 1), encoding="utf-8")
     n_app = sum(p["status"] == "applied" for p in rec["plan"])
-    print(f"[fix] {n_app} spelling flag(s) patched, {len(rec['plan']) - n_app} held, {rec['lines_changed']} script lines changed -> {out / 'fix.diff'}")
+    print(f"[fix] {n_app} accepted spelling flag(s) patched, {len(rec['plan']) - n_app} waiting for an editor, {rec['lines_changed']} script lines changed -> {out / 'fix.diff'}")
     for p in rec["plan"]:
-        if p["status"] != "applied":
+        if p["status"].startswith("HELD"):
             print(f"      {p['status']}")
     if rec.get("preview_one_spelling"):
         pv = rec["preview_one_spelling"]
-        print(f"[fix] preview (not applied) with '{pv['shared_value']}' for the held flags: {pv['lines_changed']} lines, "
+        print(f"[fix] preview (not applied; all suggestions, '{pv['shared_value']}' for clashes): {pv['lines_changed']} lines, "
               f"{len(pv['spelling_groups_after'])} spelling group(s) left")
     print(f"[fix] spelling groups before: {len(rec['spelling_groups_before'])}, after the patch: {len(rec['spelling_groups_after'])}"
           + "".join(f"\n      still spelled several ways: {g}" for g in rec["spelling_groups_after"]))
