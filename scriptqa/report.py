@@ -73,9 +73,8 @@ def gate_replay(eps: list[Episode], flags: list[dict]) -> None:
                             lines += 1
                         hit_scenes.add(el.scene)
                 shots += sum(1 for el in ep.elements if el.kind == "CAMERA" and el.scene in hit_scenes)
-        if f.get("source") == "names" or f.get("kind") == "NAME":
-            for e_ in f["evidence"]:  # highlight against the form we tell the editor to keep
-                e_["odd"] = e_["value"] != major
+        for e_ in f["evidence"]:  # every contradiction: highlight the rows that differ from the value we tell the editor to keep
+            e_["odd"] = e_["value"] != major
         f["gate"] = {"blocked_at_episode": gate, "majority_value": major, "odd_values": odd,
                      "later_dialogue_lines": lines, "later_camera_shots_in_affected_scenes": shots}
 
@@ -288,8 +287,10 @@ def write_html(path: Path, show: str, flags: list[dict], bible: dict, cards: lis
                        + ("<span class=tag>audible</span>" if f["audible"] else "")
                        + f"<span class=tag>{e(f['id'])}</span> <small>{e(f['suggested_fix'])} — {e(f['adjudication'].get('reason', ''))}</small>"
                        + (f"<br><small><b>Would have been caught at ep{f['gate']['blocked_at_episode']} if each episode were checked as it was written (run.py --gate).</b> "
-                          f"Keeping '{e(f['gate']['majority_value'])}' (the spelling that needs the fewest edits) means fixing {f['gate']['later_dialogue_lines']} later spoken "
-                          f"line{'s' if f['gate']['later_dialogue_lines'] != 1 else ''}; orange rows are the ones to change.</small>"
+                          + (f"Keeping '{e(f['gate']['majority_value'])}' (the spelling that needs the fewest edits) means fixing {f['gate']['later_dialogue_lines']} later spoken "
+                             f"line{'s' if f['gate']['later_dialogue_lines'] != 1 else ''}; orange rows are the ones to change.</small>"
+                             if f['gate']['later_dialogue_lines'] else
+                             f"Suggested value to keep: '{e(f['gate']['majority_value'])}' (no spoken line affected); orange rows are the ones to change.</small>")
                           if f.get("gate", {}).get("blocked_at_episode") and f["gate"].get("odd_values") else "")
                        + "<table><tr><th>ep</th><th>line</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>")
             def row(ev):
