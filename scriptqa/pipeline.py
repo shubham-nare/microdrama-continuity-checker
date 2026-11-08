@@ -94,7 +94,10 @@ def run(data: Path, out: Path, show: str = "", review_path: Path | None = None, 
     # 4. candidates (code) -> adjudicate (model labels only) -> flags (code)
     ngroups = variant_groups(eps)
     groups = diff.build_fact_groups(facts, res) + diff.build_name_groups(ngroups, eps_by_num)
-    groups = diff.adjudicate(llm, groups)
+    with ThreadPoolExecutor(max_workers=workers) as ex:  # one call per group, in parallel
+        list(ex.map(lambda g: diff.adjudicate(llm, [g]), groups))
+    for i, g in enumerate(groups):
+        g["group_id"] = f"G{i + 1}"
     flags = diff.dedupe_and_rank(diff.to_flags(groups, (review or {}).get("events")) + diff.label_flags(res, eps_by_num))
     dec_path = (review_path.parent / "decisions.yaml") if review_path else None
     decisions = (yaml.safe_load(dec_path.read_text(encoding="utf-8")) or {}) if dec_path and dec_path.exists() else {}

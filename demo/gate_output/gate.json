@@ -3,7 +3,7 @@
  "file": "episode-006.txt",
  "earlier_episodes": 5,
  "live_calls": 1,
- "seconds": 2.9,
+ "seconds": 2.3,
  "blocked": [
   "Iris \u2014 eye_colour: 'hazel' vs 'green' vs 'brown'"
  ],
@@ -38,6 +38,5 @@
     }
    ]
   }
- ],
- "note": "live_calls/seconds are from the last live (uncached) gate run"
+ ]
 }

@@ -159,14 +159,16 @@ def render_groups(batch: list[tuple[str, dict]]) -> str:
     return "\n".join(out)
 
 
-def adjudicate(llm: LLM, groups: list[dict], batch_size: int = 8) -> list[dict]:
+def adjudicate(llm: LLM, groups: list[dict], batch_size: int = 1) -> list[dict]:
     for i, g in enumerate(groups):
-        g["group_id"] = f"G{i + 1}"
+        g["group_id"] = "G1" if batch_size == 1 else f"G{i + 1}"  # per-group calls: the prompt must not depend on position
         g["items"] = sorted(g["items"], key=lambda it: (it["episode"], it.get("start", 0)))[:24]
     for b in range(0, len(groups), batch_size):
         batch = [(g["group_id"], g) for g in groups[b:b + batch_size]]
         raw = llm.complete_json(ADJ_SYSTEM, "Label every group.\n\n" + render_groups(batch), Verdicts,
                                 tag=f"adjudicate:{b // batch_size + 1}")
+        if batch_size == 1 and raw.get("verdicts"):
+            raw["verdicts"][0]["group_id"] = batch[0][0]
         by_id = {v["group_id"]: v for v in raw["verdicts"]}
         for gid, g in batch:
             g["verdict"] = by_id.get(gid, {"verdict": "UNCLEAR", "canonical_value": "", "odd_value_ids": [],

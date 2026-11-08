@@ -13,7 +13,7 @@
     "V2"
    ],
    "change_value_id": "",
-   "reason": "The surname is spelled 'Holloway' in episode 1 and 'Halloway' in episode 2 without explanation."
+   "reason": "The surname of Maren Holloway is spelled differently in episode 1 and episode 2 without explanation."
   },
   "values": [
    "Halloway",
@@ -27,14 +27,14 @@
   "subject": "Maren Holloway",
   "attribute": "eye_colour",
   "verdict": {
-   "group_id": "G2",
+   "group_id": "G1",
    "verdict": "CONTRADICTION",
    "canonical_value": "grey",
    "odd_value_ids": [
     "V3"
    ],
    "change_value_id": "",
-   "reason": "Maren's eye color is established as grey in episodes 1 and 2, but changes to brown in episode 3."
+   "reason": "Maren's eye color is established as grey in episodes 1 and 2, but changes to brown in episode 3 without explanation."
   },
   "values": [
    "brown",
@@ -48,14 +48,14 @@
   "subject": "(name spelling)",
   "attribute": "Holloway/Halloway",
   "verdict": {
-   "group_id": "G3",
+   "group_id": "G1",
    "verdict": "CONTRADICTION",
    "canonical_value": "Holloway",
    "odd_value_ids": [
     "V3"
    ],
    "change_value_id": "",
-   "reason": "The surname spelling is inconsistent across the series, with 'Holloway' used in episode 1 and 'Halloway' in episode 2."
+   "reason": "The character's surname is spelled 'Holloway' in episode 1 but changes to 'Halloway' in episode 2 without explanation."
   },
   "values": [
    "Halloway",

@@ -45,9 +45,7 @@
     "injuries": []
    }
   ],
-  "open_flags": [
-   "F-41b9931a56"
-  ]
+  "open_flags": []
  },
  {
   "episode": 2,
@@ -199,8 +197,8 @@
   ],
   "open_flags": [
    "F-0c1e206621",
+   "F-0eb13be099",
    "F-2d05f64c7f",
-   "F-41b9931a56",
    "F-bc34954e79"
   ]
  },

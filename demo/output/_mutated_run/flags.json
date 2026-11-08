@@ -81,7 +81,7 @@
   "variant_counts": {},
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Family name spelling changes between Holloway in ep1 and Halloway in ep2."
+   "reason": "The surname of the protagonist is spelled Holloway in ep1 and misspelled as Halloway in ep2."
   },
   "episodes": [
    1,
@@ -145,7 +145,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Eye colour changes from grey in ep1-2 to blue in ep3 without an on-screen explanation."
+   "reason": "Maren's eye color shifts from grey in episodes 1 and 2 to blue in episode 3 without any explanation."
   },
   "episodes": [
    1,

@@ -13,7 +13,7 @@
     "V2"
    ],
    "change_value_id": "",
-   "reason": "Surname spelling changes from Holloway in ep1 to Halloway in ep2 without explanation."
+   "reason": "Surname spelled differently in episode 1 and episode 2 without explanation."
   },
   "values": [
    "Halloway",
@@ -27,14 +27,14 @@
   "subject": "Maren",
   "attribute": "eye_colour",
   "verdict": {
-   "group_id": "G2",
+   "group_id": "G1",
    "verdict": "CONTRADICTION",
    "canonical_value": "grey",
    "odd_value_ids": [
     "V3"
    ],
    "change_value_id": "",
-   "reason": "Eye colour changes from grey in ep1-2 to blue in ep3 without an on-screen explanation."
+   "reason": "Maren's eye color shifts from grey in episodes 1 and 2 to blue in episode 3 without any explanation."
   },
   "values": [
    "blue",
@@ -48,14 +48,14 @@
   "subject": "(name spelling)",
   "attribute": "Holloway/Halloway",
   "verdict": {
-   "group_id": "G3",
+   "group_id": "G1",
    "verdict": "CONTRADICTION",
    "canonical_value": "Holloway",
    "odd_value_ids": [
     "V3"
    ],
    "change_value_id": "",
-   "reason": "Family name spelling changes between Holloway in ep1 and Halloway in ep2."
+   "reason": "The surname of the protagonist is spelled Holloway in ep1 and misspelled as Halloway in ep2."
   },
   "values": [
    "Halloway",

@@ -41,7 +41,7 @@ class LLM:
         self.provider = provider or os.environ.get("LLM_PROVIDER", "gemini")
         self.model = model or os.environ.get("LLM_MODEL", "gemini-3.5-flash-lite")
         self.fallback = os.environ.get("LLM_FALLBACK_MODEL") or None
-        self.cache_dir = cache_dir or ROOT / ".cache" / "llm"
+        self.cache_dir = cache_dir or Path(os.environ.get("LLM_CACHE_DIR") or ROOT / ".cache" / "llm")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.calls: list[dict] = []
         self._client = None

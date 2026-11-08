@@ -84,7 +84,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Tom is referred to as her brother in ep1 and ep2, then as her cousin in ep4."
+   "reason": "Tom is initially established as Iris's brother in ep1 and ep2, but later referred to as her cousin in ep4 without explanation."
   },
   "episodes": [
    1,
@@ -130,82 +130,12 @@
   "status": "open",
   "gate": {
    "blocked_at_episode": 4,
-   "majority_value": "brother",
+   "majority_value": "cousin",
    "odd_values": [
-    "cousin"
+    "brother"
    ],
-   "later_dialogue_lines": 1,
-   "later_camera_shots_in_affected_scenes": 2
-  }
- },
- {
-  "id": "F-41b9931a56",
-  "type": "CONTRADICTION",
-  "kind": "NAME",
-  "source": "names",
-  "subject": "(name spelling)",
-  "attribute": "Marlowe/Marlow",
-  "severity": "high",
-  "audible": false,
-  "summary": "Name spelled 2 ways: Marlowe \u00d72, Marlow \u00d71",
-  "suggested_fix": "Pick one and fix the others. Variants: Marlowe \u00d72, Marlow \u00d71",
-  "variant_counts": {
-   "Marlowe": 2,
-   "Marlow": 1
-  },
-  "adjudication": {
-   "verdict": "CONTRADICTION",
-   "reason": "The surname spelling changes from Marlowe in ep1 to Marlow in ep4."
-  },
-  "episodes": [
-   1,
-   4
-  ],
-  "evidence": [
-   {
-    "episode": 1,
-    "element_id": "E001-HEADER",
-    "timestamp": "00:00.00",
-    "where": "HEADER",
-    "value": "Marlowe",
-    "quote": "Iris Marlowe returns to the fishing village of Kestr",
-    "odd": false,
-    "file": "episode-001.txt",
-    "line": 2
-   },
-   {
-    "episode": 1,
-    "element_id": "E001-0006",
-    "timestamp": "00:18.50",
-    "where": "THE SAILOR (dialogue)",
-    "value": "Marlowe",
-    "quote": "sells this boat while I'm aboard, Miss Marlowe.\"",
-    "odd": false,
-    "file": "episode-001.txt",
-    "line": 36
-   },
-   {
-    "episode": 4,
-    "element_id": "E004-0006",
-    "timestamp": "00:20.50",
-    "where": "CAPTAIN REYES (dialogue)",
-    "value": "Marlow",
-    "quote": "\"Then let me prove it, Miss Marlow.\"",
-    "odd": false,
-    "file": "episode-004.txt",
-    "line": 36
-   }
-  ],
-  "rank": 3,
-  "status": "open",
-  "gate": {
-   "blocked_at_episode": 4,
-   "majority_value": "Marlowe",
-   "odd_values": [
-    "Marlow"
-   ],
-   "later_dialogue_lines": 1,
-   "later_camera_shots_in_affected_scenes": 2
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 0
   }
  },
  {
@@ -225,7 +155,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "The boat name changes between the Gull in ep2 and the Gannet in ep4."
+   "reason": "Captain Reyes names two different boats across episodes without any explanation."
   },
   "episodes": [
    2,
@@ -255,16 +185,16 @@
     "line": 20
    }
   ],
-  "rank": 4,
+  "rank": 3,
   "status": "open",
   "gate": {
    "blocked_at_episode": 4,
-   "majority_value": "the Gull",
+   "majority_value": "Gannet",
    "odd_values": [
-    "Gannet"
+    "the Gull"
    ],
-   "later_dialogue_lines": 1,
-   "later_camera_shots_in_affected_scenes": 2
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 0
   }
  },
  {
@@ -285,7 +215,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Iris's eye color shifts from hazel to green then brown across episodes without explanation."
+   "reason": "Iris's eye color shifts from hazel in ep1 and ep3 to green in ep5 and brown in ep6 without explanation."
   },
   "episodes": [
    1,
@@ -339,7 +269,7 @@
     "line": 16
    }
   ],
-  "rank": 5,
+  "rank": 4,
   "status": "open",
   "gate": {
    "blocked_at_episode": 5,
@@ -369,7 +299,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "The compass changes material from silver in ep1 to brass in ep4."
+   "reason": "The material of the compass changes from silver in ep1 to brass in ep4 without explanation."
   },
   "episodes": [
    1,
@@ -399,7 +329,7 @@
     "line": 28
    }
   ],
-  "rank": 6,
+  "rank": 5,
   "status": "open",
   "gate": {
    "blocked_at_episode": 4,
@@ -428,7 +358,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Captain Reyes's scar jumps from his right eyebrow in ep2 to his left eyebrow in ep4."
+   "reason": "The scar location changes from the right eyebrow in ep2 to the left eyebrow in ep4 without explanation."
   },
   "episodes": [
    2,
@@ -458,7 +388,7 @@
     "line": 16
    }
   ],
-  "rank": 7,
+  "rank": 6,
   "status": "open",
   "gate": {
    "blocked_at_episode": 4,
@@ -487,7 +417,7 @@
   },
   "adjudication": {
    "verdict": "CONTRADICTION",
-   "reason": "Tom's injury switches from the left arm in ep2 to the right arm in ep3."
+   "reason": "Tom's injury moves from his left arm in episode 2 to his right arm in episode 3 without a narrative reason."
   },
   "episodes": [
    2,
@@ -517,7 +447,7 @@
     "line": 16
    }
   ],
-  "rank": 8,
+  "rank": 7,
   "status": "open",
   "gate": {
    "blocked_at_episode": 3,
@@ -528,6 +458,67 @@
    "later_dialogue_lines": 0,
    "later_camera_shots_in_affected_scenes": 2
   }
+ },
+ {
+  "id": "F-41b9931a56",
+  "type": "REVIEW",
+  "kind": "NAME",
+  "source": "names",
+  "subject": "(name spelling)",
+  "attribute": "Marlowe/Marlow",
+  "severity": "low",
+  "audible": true,
+  "summary": "Name spelled 2 ways: Marlowe \u00d72, Marlow \u00d71",
+  "suggested_fix": "Check by hand. Variants: Marlowe \u00d72, Marlow \u00d71",
+  "variant_counts": {
+   "Marlowe": 2,
+   "Marlow": 1
+  },
+  "adjudication": {
+   "verdict": "UNCLEAR",
+   "reason": "model says compatible: Marlowe and Marlow are simply spelling variants of the same surname used by different characters. \u2014 kept for a human, spelling groups are never auto-dropped"
+  },
+  "episodes": [
+   1,
+   4
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-HEADER",
+    "timestamp": "00:00.00",
+    "where": "HEADER",
+    "value": "Marlowe",
+    "quote": "Iris Marlowe returns to the fishing village of Kestr",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 2
+   },
+   {
+    "episode": 1,
+    "element_id": "E001-0006",
+    "timestamp": "00:18.50",
+    "where": "THE SAILOR (dialogue)",
+    "value": "Marlowe",
+    "quote": "sells this boat while I'm aboard, Miss Marlowe.\"",
+    "odd": false,
+    "file": "episode-001.txt",
+    "line": 36
+   },
+   {
+    "episode": 4,
+    "element_id": "E004-0006",
+    "timestamp": "00:20.50",
+    "where": "CAPTAIN REYES (dialogue)",
+    "value": "Marlow",
+    "quote": "\"Then let me prove it, Miss Marlow.\"",
+    "odd": false,
+    "file": "episode-004.txt",
+    "line": 36
+   }
+  ],
+  "rank": 8,
+  "status": "open"
  },
  {
   "id": "F-4cabc6e91d",

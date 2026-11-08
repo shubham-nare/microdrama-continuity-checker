@@ -51,6 +51,15 @@ def gate_replay(eps: list[Episode], flags: list[dict]) -> None:
         major = max(before, key=lambda v: (before[v], counts.get(v, 0)))
         odd = [v for v in counts if v != major and len(v) >= 3 and len(owned.get(v.lower(), [])) <= 1]
         lines = shots = 0
+        cands = [v for v in counts if len(owned.get(v.lower(), [])) <= 1]
+        if gate and len(cands) >= 2:
+            def later_lines(keep):
+                ps = [re.compile(rf"\b{re.escape(o.lower())}\b") for o in cands if o != keep]
+                return sum(1 for ep in eps if ep.number >= gate for el in ep.elements
+                           if el.kind == "DIALOGUE" and any(p_.search(el.text.lower()) for p_ in ps))
+            costs = {c: later_lines(c) for c in cands}
+            major = min(costs, key=costs.get)  # the cheapest correct value to standardise on
+            odd = [v for v in cands if v != major]
         if gate and odd:
             pat = [re.compile(rf"\b{re.escape(o.lower())}\b") for o in odd]
             for ep in eps:

@@ -30,7 +30,13 @@ def main() -> int:
     ap.add_argument("--gold", type=Path, default=ROOT / "eval", help="folder with gold_real.yaml, gold_aliases.yaml, flag_labels.yaml")
     ap.add_argument("--preflight", action="store_true", help="check the input and the model connection, then stop")
     ap.add_argument("--gate", type=Path, default=None, help="check ONE new episode file against the show in --data")
+    ap.add_argument("--fresh", action="store_true", help="ignore the saved cache: a real live run into a throwaway cache")
     a = ap.parse_args()
+    if a.fresh:
+        import os
+        import tempfile
+        os.environ["LLM_CACHE_DIR"] = tempfile.mkdtemp(prefix="scriptqa_fresh_")
+        print(f"[fresh] live run, throwaway cache at {os.environ['LLM_CACHE_DIR']}")
     if a.preflight:
         return preflight(a.data)
     if a.gate:

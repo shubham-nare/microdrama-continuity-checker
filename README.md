@@ -48,7 +48,7 @@ Earlier episodes come from the cache, so a gate costs about 1 extraction call pl
 LLM_PROVIDER=gemini        LLM_MODEL=gemini-3.5-flash-lite
 LLM_PROVIDER=openai_compat LLM_MODEL=<model> LLM_BASE_URL=<https://host/v1> LLM_API_KEY=<key>   # Groq, OpenRouter, vLLM, a company gateway
 ```
-Responses are cached in `.cache/`, so a re-run is free and gives identical output.
+Responses are cached in `.cache/`, so a re-run is free and gives identical output. Add `--fresh` for a real live run that ignores the cache.
 
 ## Human review
 `review/aliases.yaml` holds confirmed decisions, for example "label OLD MAN in ep 1 is the grandfather". They override the model on the next run.

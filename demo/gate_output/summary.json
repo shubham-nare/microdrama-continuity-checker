@@ -7,18 +7,18 @@
  "facts_repointed": 0,
  "candidate_groups": 7,
  "verdicts": {
-  "CONTRADICTION": 7,
-  "COMPATIBLE": 0,
+  "CONTRADICTION": 6,
+  "COMPATIBLE": 1,
   "INTENTIONAL_CHANGE": 0,
   "DIFFERENT_ENTITIES": 0,
   "UNCLEAR": 0
  },
  "flags_total": 9,
- "flags_contradiction": 7,
- "flags_high": 3,
+ "flags_contradiction": 6,
+ "flags_high": 2,
  "flags_collision": 1,
  "flags_alias": 1,
- "flags_review": 0,
+ "flags_review": 1,
  "characters": 5,
  "review": {
   "dismissed": 0,

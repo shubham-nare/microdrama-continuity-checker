@@ -63,13 +63,13 @@
   "n": 13,
   "check": "held-out fictional show runs end to end; recall reported as-is (not a tuning target)",
   "pass": true,
-  "detail": "found 7/9 planted errors (95% CI [0.45, 0.94]), actionable precision 1.0, alias F1 1.0; missed ['village_name', 'ship_name']"
+  "detail": "found 8/9 planted errors (95% CI [0.56, 0.98]), actionable precision 1.0, alias F1 1.0; missed ['village_name']"
  },
  {
   "n": 10,
   "check": "run log records calls, tokens, wall time, est. cost",
   "pass": true,
-  "detail": "5 calls, 4088+2545 tokens, 0.0 s, $0.0014"
+  "detail": "7 calls, 4678+2570 tokens, 5.6 s, $0.0015"
  },
  {
   "n": 11,

@@ -1,18 +1,1 @@
-[
- {
-  "source": "facts",
-  "kind": "NAME",
-  "subject": "~boat",
-  "attribute": "place",
-  "verdict": "DIFFERENT_ENTITIES",
-  "reason": "The captain references two different boats, the Gull and the Gannet.",
-  "values": [
-   "Gannet",
-   "the Gull"
-  ],
-  "episodes": [
-   2,
-   4
-  ]
- }
-]
+[]

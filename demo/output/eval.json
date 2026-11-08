@@ -146,7 +146,7 @@
  },
  "heldout": {
   "real": {
-   "recall": 0.778,
+   "recall": 0.889,
    "found": {
     "surname_spelling": [
      "F-41b9931a56"
@@ -164,7 +164,9 @@
     "brother_cousin": [
      "F-0c1e206621"
     ],
-    "ship_name": [],
+    "ship_name": [
+     "F-0eb13be099"
+    ],
     "scar_side": [
      "F-2d05f64c7f"
     ],
@@ -198,6 +200,11 @@
      "of": 2,
      "missing": []
     },
+    "ship_name": {
+     "found": 2,
+     "of": 2,
+     "missing": []
+    },
     "scar_side": {
      "found": 2,
      "of": 2,
@@ -219,10 +226,10 @@
      "why": "matches gold ['brother_cousin']"
     },
     {
-     "id": "F-41b9931a56",
+     "id": "F-0eb13be099",
      "type": "CONTRADICTION",
      "label": "true",
-     "why": "matches gold ['surname_spelling']"
+     "why": "matches gold ['ship_name']"
     },
     {
      "id": "F-0b812b4ee7",
@@ -249,18 +256,24 @@
      "why": "matches gold ['broken_arm_side']"
     },
     {
+     "id": "F-41b9931a56",
+     "type": "REVIEW",
+     "label": "true",
+     "why": "matches gold ['surname_spelling']"
+    },
+    {
      "id": "F-4cabc6e91d",
      "type": "LABEL_ALIAS",
      "label": "true",
      "why": "all labels are gold Reyes"
     }
    ],
-   "n_flags_scored": 7,
+   "n_flags_scored": 8,
    "n_unlabelled": 0,
    "alias_flag_precision": 1.0,
    "n_alias_flags": 1,
    "n_alias_unlabelled": 0,
-   "distinct_gold_found": 7,
+   "distinct_gold_found": 8,
    "n_gold": 9,
    "loss_stage": {
     "surname_spelling": "flagged",
@@ -269,7 +282,7 @@
     "broken_arm_side": "flagged",
     "compass_material": "flagged",
     "brother_cousin": "flagged",
-    "ship_name": "grouped, then cleared by the model as DIFFERENT_ENTITIES: The captain references two different boats, the Gull and the Gannet.",
+    "ship_name": "flagged",
     "scar_side": "flagged",
     "woman_collision": "flagged"
    }
@@ -297,30 +310,30 @@
    "candidate_groups": 7,
    "verdicts": {
     "CONTRADICTION": 6,
-    "COMPATIBLE": 0,
+    "COMPATIBLE": 1,
     "INTENTIONAL_CHANGE": 0,
-    "DIFFERENT_ENTITIES": 1,
+    "DIFFERENT_ENTITIES": 0,
     "UNCLEAR": 0
    },
-   "flags_total": 8,
+   "flags_total": 9,
    "flags_contradiction": 6,
    "flags_high": 2,
    "flags_collision": 1,
    "flags_alias": 1,
-   "flags_review": 0,
+   "flags_review": 1,
    "characters": 5,
    "review": {
     "dismissed": 0,
     "accepted": 0,
-    "open": 8
+    "open": 9
    },
    "human_alias_overrides": 0,
    "episodes_not_read": [],
    "extract_errors": []
   },
   "ci95": [
-   0.45,
-   0.94
+   0.56,
+   0.98
   ]
  }
 }
