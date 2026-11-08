@@ -73,6 +73,19 @@ def extra_vals(real, seeded, flags) -> dict:
     }
 
 
+def onecall_vals() -> dict:
+    """The one-call baseline (eval/onecall_baseline.py): read from its saved outputs, never typed in."""
+    got = {}
+    for k, d in (("oc1", "onecall"), ("oc2", "onecall_exhaustive")):
+        p = ROOT / "outputs" / d / "onecall.json"
+        r = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+        got[k] = r.get("gold_found", "not run")
+        if r:
+            got["oc_tokens"] = round(r["in_tokens"] / 1000)
+    got.setdefault("oc_tokens", "?")
+    return got
+
+
 def main(run: Path) -> int:
     s = json.loads((run / "summary.json").read_text(encoding="utf-8"))
     e = json.loads((run / "eval.json").read_text(encoding="utf-8"))
@@ -113,6 +126,7 @@ def main(run: Path) -> int:
         "seed_distinct": seeded.get("distinct_detecting_flags", "n/a"), "seed_caught": seeded.get("caught", "n/a"),
         "canary": canary,
         **extra_vals(real, seeded, flags),
+        **onecall_vals(),
         "code_found": real.get("code_only", {}).get("found", "?"),
         "model_added": real.get("distinct_gold_found", 0) - real.get("code_only", {}).get("found", 0),
         "tier_text": "; ".join(f"{t} {d['true']}/{d['n']}" for t, d in sorted(real.get("precision_by_tier", {}).items(),

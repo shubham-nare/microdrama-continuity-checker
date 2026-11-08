@@ -44,6 +44,9 @@ python run.py --data demo/heldout/show --gate demo/gate/episode-006.txt --out de
 ```
 Earlier episodes come from the cache, so a gate costs about 1 extraction call plus re-checking. Verdicts: BLOCKED (the episode introduces a value the show never used), NEEDS SIGN-OFF (it repeats a value earlier episodes already disagree on), PASS. Exit code 1 unless PASS, so it can sit in a pipeline.
 
+## Compare with the obvious build (one long-context call)
+`python eval/onecall_baseline.py --data path/to/show --out outputs/onecall [--exhaustive]` sends the whole show to the model in one call ("list every continuity error"), then scores it with the same answer key and the same quote check as the pipeline. Output: `onecall.json` (errors found, quotes that really are on the cited line, tokens).
+
 ## Swap the model (env vars only, no code change)
 ```bash
 LLM_PROVIDER=gemini        LLM_MODEL=gemini-3.5-flash-lite
