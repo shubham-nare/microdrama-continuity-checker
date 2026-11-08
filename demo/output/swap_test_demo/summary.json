@@ -1,0 +1,29 @@
+{
+ "show": "swap-canary",
+ "episodes": 3,
+ "elements": 19,
+ "facts_verified": 19,
+ "facts_dropped": 1,
+ "facts_repointed": 0,
+ "candidate_groups": 3,
+ "verdicts": {
+  "CONTRADICTION": 3,
+  "COMPATIBLE": 0,
+  "INTENTIONAL_CHANGE": 0,
+  "DIFFERENT_ENTITIES": 0,
+  "UNCLEAR": 0
+ },
+ "flags_total": 4,
+ "flags_contradiction": 2,
+ "flags_high": 1,
+ "flags_collision": 1,
+ "flags_alias": 1,
+ "flags_review": 0,
+ "characters": 4,
+ "review": {
+  "dismissed": 0,
+  "accepted": 0,
+  "open": 4
+ },
+ "human_alias_overrides": 0
+}

@@ -1,0 +1,69 @@
+{
+ "characters": {
+  "Elias": {
+   "id": "elias",
+   "canonical": "Elias",
+   "reason": "The scarred stranger in ep1 is revealed to be Elias in ep2 and ep3.",
+   "labels": {
+    "ELIAS": [
+     2
+    ],
+    "THE STRANGER": [
+     1
+    ]
+   }
+  },
+  "Harbor Master": {
+   "id": "harbor_master",
+   "canonical": "Harbor Master",
+   "reason": "In ep3, the old man label refers to the harbor master.",
+   "labels": {
+    "OLD MAN": [
+     3
+    ]
+   }
+  },
+  "Maren": {
+   "id": "maren",
+   "canonical": "Maren",
+   "reason": "Maren is consistently Maren Holloway across episodes.",
+   "labels": {
+    "MAREN": [
+     1,
+     2,
+     3
+    ]
+   }
+  },
+  "Maren's Grandfather": {
+   "id": "maren_s_grandfather",
+   "canonical": "Maren's Grandfather",
+   "reason": "In ep1, the old man is identified as Maren's grandfather.",
+   "labels": {
+    "OLD MAN": [
+     1
+    ]
+   }
+  }
+ },
+ "collisions": [
+  {
+   "label": "OLD MAN",
+   "characters": {
+    "Maren's Grandfather": [
+     1
+    ],
+    "Harbor Master": [
+     3
+    ]
+   }
+  }
+ ],
+ "subject_map": {
+  "maren": "Maren",
+  "maren holloway": "Maren",
+  "elias": "Elias",
+  "maren's grandfather": "Maren's Grandfather"
+ },
+ "problems": []
+}

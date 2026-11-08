@@ -1,0 +1,18 @@
+# Kuku's screenplays are confidential: never commit them
+data/
+.env
+__pycache__/
+.venv/
+# outputs quote the confidential scripts: shared privately with Kuku, never in a public repo
+outputs/
+.cache/
+brief.pdf
+# derived from the confidential scripts (quotes, line refs): part of the PRIVATE bundle for Kuku, not the public repo
+eval/gold_real.yaml
+eval/gold_aliases.yaml
+eval/flag_labels.yaml
+state/
+docs/solution.html
+docs/solution.pdf
+docs/solution_template.html
+review/aliases.yaml

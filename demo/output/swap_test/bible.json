@@ -1,0 +1,247 @@
+{
+ "characters": {
+  "Maren Holloway": {
+   "id": "maren_holloway",
+   "canonical": "Maren Holloway",
+   "labels": {
+    "MAREN": [
+     1,
+     2,
+     3
+    ]
+   },
+   "episodes": [
+    1,
+    2,
+    3
+   ],
+   "traits": {
+    "eye_colour": [
+     {
+      "episode": 1,
+      "element_id": "E001-0007",
+      "value": "grey",
+      "quote": "Close-up of Maren's grey eyes narrowing at him."
+     },
+     {
+      "episode": 2,
+      "element_id": "E002-0004",
+      "value": "grey",
+      "quote": "Close-up of Maren's grey eyes"
+     },
+     {
+      "episode": 3,
+      "element_id": "E003-0004",
+      "value": "brown",
+      "quote": "Close-up of Maren's brown eyes filling with doubt."
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {},
+   "injuries": [],
+   "relationships": {
+    "relation to maren": [
+     {
+      "episode": 3,
+      "element_id": "E003-0003",
+      "value": "grandfather",
+      "quote": "He's been nothing but kind to my grandfather."
+     }
+    ]
+   },
+   "names": {
+    "given_name": [
+     {
+      "episode": 1,
+      "element_id": "E001-0002",
+      "value": "Maren",
+      "quote": "You came back, Maren."
+     }
+    ],
+    "surname": [
+     {
+      "episode": 1,
+      "element_id": "E001-0006",
+      "value": "Holloway",
+      "quote": "The deed belongs to whoever keeps the light, Miss Holloway."
+     },
+     {
+      "episode": 2,
+      "element_id": "E002-0005",
+      "value": "Halloway",
+      "quote": "He trusts the Halloway name."
+     }
+    ]
+   }
+  },
+  "Elias": {
+   "id": "elias",
+   "canonical": "Elias",
+   "labels": {
+    "ELIAS": [
+     2
+    ],
+    "THE STRANGER": [
+     1
+    ]
+   },
+   "episodes": [
+    1,
+    2
+   ],
+   "traits": {
+    "build": [
+     {
+      "episode": 1,
+      "element_id": "E001-0005",
+      "value": "tall",
+      "quote": "A tall stranger steps out of the keeper's cottage."
+     }
+    ],
+    "scar": [
+     {
+      "episode": 2,
+      "element_id": "E002-0001",
+      "value": "scar on his right cheek",
+      "quote": "the scar on his right cheek catching the light"
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {
+    "compass": [
+     {
+      "episode": 2,
+      "element_id": "E002-0004",
+      "value": "brass compass",
+      "quote": "studies the brass compass on the table"
+     }
+    ]
+   },
+   "injuries": [
+    {
+     "attribute": "scar left cheek",
+     "episode": 1,
+     "element_id": "E001-0005",
+     "value": "long scar",
+     "quote": "A long scar runs down his left cheek."
+    }
+   ],
+   "relationships": {
+    "relation to maren": [
+     {
+      "episode": 2,
+      "element_id": "E002-0002",
+      "value": "keeper hired by grandfather",
+      "quote": "Your grandfather hired me two winters ago."
+     }
+    ]
+   },
+   "names": {
+    "given_name": [
+     {
+      "episode": 2,
+      "element_id": "E002-0002",
+      "value": "Elias",
+      "quote": "My name is Elias."
+     }
+    ]
+   }
+  },
+  "Harbor Master": {
+   "id": "harbor_master",
+   "canonical": "Harbor Master",
+   "labels": {
+    "OLD MAN": [
+     3
+    ]
+   },
+   "episodes": [
+    3
+   ],
+   "traits": {
+    "other": [
+     {
+      "episode": 3,
+      "element_id": "E003-0001",
+      "value": "bald",
+      "quote": "A bald harbor master in a yellow oilskin"
+     }
+    ]
+   },
+   "costumes": [
+    {
+     "episode": 3,
+     "element_id": "E003-0001",
+     "value": "yellow oilskin",
+     "quote": "A bald harbor master in a yellow oilskin"
+    }
+   ],
+   "props": {},
+   "injuries": [],
+   "relationships": {},
+   "names": {
+    "given_name": [
+     {
+      "episode": 3,
+      "element_id": "E003-0002",
+      "value": "Portland",
+      "quote": "I've seen his face on a wanted poster in Portland."
+     }
+    ]
+   }
+  },
+  "Maren's Grandfather": {
+   "id": "maren_s_grandfather",
+   "canonical": "Maren's Grandfather",
+   "labels": {
+    "OLD MAN": [
+     1
+    ]
+   },
+   "episodes": [
+    1
+   ],
+   "traits": {},
+   "costumes": [],
+   "props": {
+    "cane": [
+     {
+      "episode": 1,
+      "element_id": "E001-0003",
+      "value": "driftwood",
+      "quote": "leaning on a driftwood cane"
+     }
+    ],
+    "compass": [
+     {
+      "episode": 1,
+      "element_id": "E001-0003",
+      "value": "brass",
+      "quote": "a brass compass hanging from his neck"
+     }
+    ]
+   },
+   "injuries": [],
+   "relationships": {
+    "relation to maren": [
+     {
+      "episode": 1,
+      "element_id": "E001-0003",
+      "value": "grandfather",
+      "quote": "Close-up of her grandfather leaning on a driftwood cane"
+     }
+    ]
+   },
+   "names": {}
+  }
+ },
+ "non_character_facts": {},
+ "name_spelling_groups": [
+  [
+   "Holloway",
+   "Halloway"
+  ]
+ ]
+}

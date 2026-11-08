@@ -1,0 +1,136 @@
+[
+ {
+  "episode": 1,
+  "scene": 1,
+  "heading": "EXT. LIGHTHOUSE CLIFF \u2013 DUSK",
+  "start": "00:00.00",
+  "end": "00:40.00",
+  "characters": [
+   {
+    "character": "Elias",
+    "id": "elias",
+    "labels_in_scene": [
+     "THE STRANGER"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Maren",
+    "id": "maren",
+    "labels_in_scene": [
+     "MAREN"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "eye_colour": "grey (ep1)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Maren's Grandfather",
+    "id": "maren_s_grandfather",
+    "labels_in_scene": [
+     "OLD MAN"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {
+     "cane": "driftwood cane (ep1)",
+     "compass": "brass compass (ep1)"
+    },
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0db87e6834",
+   "F-113ee2b696",
+   "F-d3426089f1"
+  ]
+ },
+ {
+  "episode": 2,
+  "scene": 1,
+  "heading": "INT. KEEPER'S COTTAGE \u2013 NIGHT",
+  "start": "00:00.00",
+  "end": "00:35.00",
+  "characters": [
+   {
+    "character": "Elias",
+    "id": "elias",
+    "labels_in_scene": [
+     "ELIAS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "scar": "scar on right cheek (ep2)"
+    },
+    "props_recent": {
+     "brass compass": "brass compass on the table (ep2)"
+    },
+    "injuries": []
+   },
+   {
+    "character": "Maren",
+    "id": "maren",
+    "labels_in_scene": [
+     "MAREN"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "eye_colour": "grey (ep2)"
+    },
+    "props_recent": {},
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-113ee2b696",
+   "F-d3426089f1"
+  ]
+ },
+ {
+  "episode": 3,
+  "scene": 1,
+  "heading": "EXT. HARBOR \u2013 MORNING",
+  "start": "00:00.00",
+  "end": "00:30.00",
+  "characters": [
+   {
+    "character": "Harbor Master",
+    "id": "harbor_master",
+    "labels_in_scene": [
+     "OLD MAN"
+    ],
+    "costume_this_scene": [
+     "yellow oilskin"
+    ],
+    "traits": {
+     "hair": "bald (ep3)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Maren",
+    "id": "maren",
+    "labels_in_scene": [
+     "MAREN"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "eye_colour": "brown (ep3)"
+    },
+    "props_recent": {},
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0db87e6834",
+   "F-113ee2b696"
+  ]
+ }
+]

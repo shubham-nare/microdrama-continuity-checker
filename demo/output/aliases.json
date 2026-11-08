@@ -1,0 +1,70 @@
+{
+ "characters": {
+  "Elias": {
+   "id": "elias",
+   "canonical": "Elias",
+   "reason": "In ep1 THE STRANGER is introduced, and in ep2 he reveals his name is Elias.",
+   "labels": {
+    "ELIAS": [
+     2
+    ],
+    "THE STRANGER": [
+     1
+    ]
+   }
+  },
+  "Harbor Master": {
+   "id": "harbor_master",
+   "canonical": "Harbor Master",
+   "reason": "In ep3, OLD MAN is identified as the harbor master.",
+   "labels": {
+    "OLD MAN": [
+     3
+    ]
+   }
+  },
+  "Maren": {
+   "id": "maren",
+   "canonical": "Maren",
+   "reason": "MAREN consistently refers to Maren Holloway across all episodes.",
+   "labels": {
+    "MAREN": [
+     1,
+     2,
+     3
+    ]
+   }
+  },
+  "Maren's Grandfather": {
+   "id": "maren_s_grandfather",
+   "canonical": "Maren's Grandfather",
+   "reason": "In ep1, OLD MAN is identified as Maren's grandfather.",
+   "labels": {
+    "OLD MAN": [
+     1
+    ]
+   }
+  }
+ },
+ "collisions": [
+  {
+   "label": "OLD MAN",
+   "characters": {
+    "Maren's Grandfather": [
+     1
+    ],
+    "Harbor Master": [
+     3
+    ]
+   }
+  }
+ ],
+ "subject_map": {
+  "maren": "Maren",
+  "maren holloway": "Maren",
+  "elias": "Elias",
+  "the harbor master": "Harbor Master",
+  "maren's grandfather": "Maren's Grandfather"
+ },
+ "problems": []
+}

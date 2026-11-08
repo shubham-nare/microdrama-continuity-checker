@@ -1,0 +1,34 @@
+EPISODE NUMBER: Episode 3
+EPISODE LOGLINE: At the harbor, the harbor master warns Maren that Elias is not who he claims to be.
+CONTINUITY NOTES: Follows Episode 2; next morning at the harbor.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: EXT. HARBOR – MORNING
+Scene start: 00:00.00
+Scene end: 00:30.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Wide shot of fishing boats. A bald harbor master in a yellow oilskin coils rope on the dock.
+
+**OLD MAN (Wary):**
+Start: (00:04.50) | End: (00:08.00)
+"That keeper of yours, girl. I've seen his face on a wanted poster in Portland."
+
+**MAREN (Shaken):**
+Start: (00:08.50) | End: (00:11.00)
+"Elias? He's been nothing but kind to my grandfather."
+
+**CAMERA:**
+Start: (00:11.00) | End: (00:14.00)
+Close-up of Maren's brown eyes filling with doubt.
+
+**SOUND FX:**
+Start: (00:28.00) | End: (00:30.00)
+Gull screech, cliffhanger sting.
+
+--- SCRIPT END ---

@@ -1,0 +1,46 @@
+EPISODE NUMBER: Episode 1
+EPISODE LOGLINE: Maren Holloway returns to her grandfather's lighthouse and finds a scarred stranger living in the keeper's cottage.
+CONTINUITY NOTES: First episode. Fictional demo show written for this tool; not Kuku content.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: EXT. LIGHTHOUSE CLIFF – DUSK
+Scene start: 00:00.00
+Scene end: 00:40.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:04.00)
+Wide shot of Maren dragging a red suitcase up the cliff path toward the white lighthouse.
+
+**OLD MAN (Gruff, Tired):**
+Start: (00:04.50) | End: (00:07.00)
+"You came back, Maren. Your mother never did."
+
+**CAMERA:**
+Start: (00:07.00) | End: (00:10.00)
+Close-up of her grandfather leaning on a driftwood cane, a brass compass hanging from his neck.
+
+**MAREN (Cold):**
+Start: (00:10.20) | End: (00:13.00)
+"I came for the deed, Grandpa. Not for you."
+
+**ACTION:**
+Start: (00:13.00) | End: (00:18.00)
+A tall stranger steps out of the keeper's cottage. A long scar runs down his left cheek.
+
+**THE STRANGER (Low, Calm):**
+Start: (00:18.50) | End: (00:21.00)
+"The deed belongs to whoever keeps the light, Miss Holloway."
+
+**CAMERA:**
+Start: (00:21.00) | End: (00:25.00)
+Close-up of Maren's grey eyes narrowing at him.
+
+**SOUND FX:**
+Start: (00:38.00) | End: (00:40.00)
+Foghorn blast, cliffhanger sting.
+
+--- SCRIPT END ---

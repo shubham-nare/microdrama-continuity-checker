@@ -1,0 +1,143 @@
+[
+ {
+  "episode": 1,
+  "scene": 1,
+  "heading": "EXT. LIGHTHOUSE CLIFF \u2013 DUSK",
+  "start": "00:00.00",
+  "end": "00:40.00",
+  "characters": [
+   {
+    "character": "Elias",
+    "id": "elias",
+    "labels_in_scene": [
+     "THE STRANGER"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "build": "tall (ep1)"
+    },
+    "props_recent": {},
+    "injuries": [
+     "scar left cheek: long scar (ep1)"
+    ]
+   },
+   {
+    "character": "Maren Holloway",
+    "id": "maren_holloway",
+    "labels_in_scene": [
+     "MAREN"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "eye_colour": "grey (ep1)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Maren's Grandfather",
+    "id": "maren_s_grandfather",
+    "labels_in_scene": [
+     "OLD MAN"
+    ],
+    "costume_this_scene": [],
+    "traits": {},
+    "props_recent": {
+     "cane": "driftwood (ep1)",
+     "compass": "brass (ep1)"
+    },
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0db87e6834",
+   "F-d3426089f1",
+   "F-e976c6da96"
+  ]
+ },
+ {
+  "episode": 2,
+  "scene": 1,
+  "heading": "INT. KEEPER'S COTTAGE \u2013 NIGHT",
+  "start": "00:00.00",
+  "end": "00:35.00",
+  "characters": [
+   {
+    "character": "Elias",
+    "id": "elias",
+    "labels_in_scene": [
+     "ELIAS"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "build": "tall (ep1)",
+     "scar": "scar on his right cheek (ep2)"
+    },
+    "props_recent": {
+     "compass": "brass compass (ep2)"
+    },
+    "injuries": [
+     "scar left cheek: long scar (ep1)"
+    ]
+   },
+   {
+    "character": "Maren Holloway",
+    "id": "maren_holloway",
+    "labels_in_scene": [
+     "MAREN"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "eye_colour": "grey (ep2)"
+    },
+    "props_recent": {},
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-d3426089f1",
+   "F-e976c6da96"
+  ]
+ },
+ {
+  "episode": 3,
+  "scene": 1,
+  "heading": "EXT. HARBOR \u2013 MORNING",
+  "start": "00:00.00",
+  "end": "00:30.00",
+  "characters": [
+   {
+    "character": "Harbor Master",
+    "id": "harbor_master",
+    "labels_in_scene": [
+     "OLD MAN"
+    ],
+    "costume_this_scene": [
+     "yellow oilskin"
+    ],
+    "traits": {
+     "other": "bald (ep3)"
+    },
+    "props_recent": {},
+    "injuries": []
+   },
+   {
+    "character": "Maren Holloway",
+    "id": "maren_holloway",
+    "labels_in_scene": [
+     "MAREN"
+    ],
+    "costume_this_scene": [],
+    "traits": {
+     "eye_colour": "brown (ep3)"
+    },
+    "props_recent": {},
+    "injuries": []
+   }
+  ],
+  "open_flags": [
+   "F-0db87e6834",
+   "F-e976c6da96"
+  ]
+ }
+]

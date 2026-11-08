@@ -1,0 +1,74 @@
+[
+ {
+  "n": 1,
+  "check": "every flag has >=2 evidence quotes, each found verbatim at the cited element",
+  "pass": true,
+  "detail": "8 evidence quotes checked, 0 failures []"
+ },
+ {
+  "n": 2,
+  "check": "every kept fact's quote verified; drop rate reported",
+  "pass": true,
+  "detail": "15 kept facts re-verified, 0 failures; dropped at verify: 1"
+ },
+ {
+  "n": 3,
+  "check": "parser element counts match + known quirks handled",
+  "pass": true,
+  "detail": "elements parsed 19 vs timestamp lines 19"
+ },
+ {
+  "n": 4,
+  "check": "alias resolution vs gold, MODEL ONLY before human overrides (pairwise F1 >= 0.85, every gold label collision split)",
+  "pass": true,
+  "detail": "P=1.0 R=1.0 F1=1.0; collision found=True; wrong merges=[]"
+ },
+ {
+  "n": 5,
+  "check": "seeded-error recall >= 0.70 and <= 2 spurious new flags",
+  "pass": true,
+  "detail": "recall 1.0 on 1 seeded errors; per type eye_colour 1/1; spurious 0"
+ },
+ {
+  "n": 6,
+  "check": "real-pack ACTIONABLE precision (contradiction/review/collision flags, all judged) >= 0.70",
+  "pass": true,
+  "detail": "actionable precision 1.0 over 3 flags (0 unlabelled); alias-list flags 1.0 over 1; distinct gold errors found 3/4"
+ },
+ {
+  "n": 7,
+  "check": "pipeline beats code-only baseline on seeded errors",
+  "pass": true,
+  "detail": "pipeline 1.0 vs baseline 0.0"
+ },
+ {
+  "n": 8,
+  "check": "model-swap test (different provider adapter + model, held-out episodes)",
+  "pass": true,
+  "detail": "provider=openai_compat model=gemini-3.1-flash-lite on 3 held-out eps: 19 facts, 4 flags, schema ok, 8 evidence quotes checked, 0 failures []; canary: swapped model catches 3/4 planted errors in the demo show (surname_spelling, eye_colour, old_man_collision)"
+ },
+ {
+  "n": 9,
+  "check": "re-run from cache is byte-identical (flags.json) with 0 live calls",
+  "pass": true,
+  "detail": "identical=True, live calls on re-run=0"
+ },
+ {
+  "n": 12,
+  "check": "human loop: an editor's dismiss decision is applied on the next run (stable flag ids, 0 live calls)",
+  "pass": true,
+  "detail": "dismissed F-d3426089f1 -> status dismissed; other flags unchanged=True"
+ },
+ {
+  "n": 10,
+  "check": "run log records calls, tokens, wall time, est. cost",
+  "pass": true,
+  "detail": "5 calls, 4088+2515 tokens, 4.7 s, $0.0014"
+ },
+ {
+  "n": 11,
+  "check": "real-pack recall vs hand-verified gold >= 0.70",
+  "pass": true,
+  "detail": "recall 0.75: found ['surname_spelling', 'eye_colour', 'old_man_collision'], missed ['scar_side']"
+ }
+]

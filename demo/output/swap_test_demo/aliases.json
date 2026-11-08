@@ -1,0 +1,71 @@
+{
+ "characters": {
+  "Elias": {
+   "id": "elias",
+   "canonical": "Elias",
+   "reason": "The tall stranger with a scar in episode 1 reveals his name is Elias in episode 2.",
+   "labels": {
+    "ELIAS": [
+     2
+    ],
+    "THE STRANGER": [
+     1
+    ]
+   }
+  },
+  "Harbor Master": {
+   "id": "harbor_master",
+   "canonical": "Harbor Master",
+   "reason": "The Old Man in episode 3 is identified as the harbor master.",
+   "labels": {
+    "OLD MAN": [
+     3
+    ]
+   }
+  },
+  "Maren Holloway": {
+   "id": "maren_holloway",
+   "canonical": "Maren Holloway",
+   "reason": "Maren is the protagonist identified as Maren Holloway in episode 1.",
+   "labels": {
+    "MAREN": [
+     1,
+     2,
+     3
+    ]
+   }
+  },
+  "Maren's Grandfather": {
+   "id": "maren_s_grandfather",
+   "canonical": "Maren's Grandfather",
+   "reason": "The Old Man in episode 1 is explicitly identified as Maren's grandfather.",
+   "labels": {
+    "OLD MAN": [
+     1
+    ]
+   }
+  }
+ },
+ "collisions": [
+  {
+   "label": "OLD MAN",
+   "characters": {
+    "Maren's Grandfather": [
+     1
+    ],
+    "Harbor Master": [
+     3
+    ]
+   }
+  }
+ ],
+ "subject_map": {
+  "maren": "Maren Holloway",
+  "elias": "Elias",
+  "maren's grandfather": "Maren's Grandfather",
+  "harbor master": "Harbor Master",
+  "maren holloway": "Maren Holloway",
+  "the tall stranger": "Elias"
+ },
+ "problems": []
+}

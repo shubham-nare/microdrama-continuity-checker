@@ -1,0 +1,64 @@
+{
+ "usage": {
+  "provider": "openai_compat",
+  "model": "gemini-3.1-flash-lite",
+  "fallback": "gemini-3.1-flash-lite",
+  "calls_total": 5,
+  "calls_live": 0,
+  "calls_cached": 5,
+  "in_tokens": 6959,
+  "out_tokens": 2977,
+  "live_seconds": 0,
+  "models_used": [
+   "gemini-3.1-flash-lite"
+  ]
+ },
+ "wall_seconds": 0.0,
+ "est_cost_usd_paid_tier": 0.0019,
+ "price_assumption_per_M": [
+  0.1,
+  0.4
+ ],
+ "calls": [
+  {
+   "tag": "extract:ep1",
+   "model": "gemini-3.1-flash-lite",
+   "cache": true,
+   "in_tokens": 1702,
+   "out_tokens": 992,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep2",
+   "model": "gemini-3.1-flash-lite",
+   "cache": true,
+   "in_tokens": 1617,
+   "out_tokens": 636,
+   "seconds": 0.0
+  },
+  {
+   "tag": "extract:ep3",
+   "model": "gemini-3.1-flash-lite",
+   "cache": true,
+   "in_tokens": 1572,
+   "out_tokens": 593,
+   "seconds": 0.0
+  },
+  {
+   "tag": "resolve",
+   "model": "gemini-3.1-flash-lite",
+   "cache": true,
+   "in_tokens": 1179,
+   "out_tokens": 498,
+   "seconds": 0.0
+  },
+  {
+   "tag": "adjudicate:1",
+   "model": "gemini-3.1-flash-lite",
+   "cache": true,
+   "in_tokens": 889,
+   "out_tokens": 258,
+   "seconds": 0.0
+  }
+ ]
+}

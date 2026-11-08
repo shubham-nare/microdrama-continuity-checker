@@ -1,0 +1,5 @@
+characters:
+  Elias: [{label: THE STRANGER, episodes: all}, {label: ELIAS, episodes: all}]
+  Maren: [{label: MAREN, episodes: all}]
+  Grandfather: [{label: OLD MAN, episodes: [1]}]
+  Harbor master: [{label: OLD MAN, episodes: [3]}]

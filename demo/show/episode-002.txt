@@ -1,0 +1,38 @@
+EPISODE NUMBER: Episode 2
+EPISODE LOGLINE: The stranger reveals his name is Elias, the keeper hired in secret by Maren's grandfather.
+CONTINUITY NOTES: Picks up from Episode 1 at the lighthouse door.
+
+--- SCRIPT START ---
+
+SCENE 01
+Scene heading: INT. KEEPER'S COTTAGE – NIGHT
+Scene start: 00:00.00
+Scene end: 00:35.00
+
+Actions and dialogue:
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:03.00)
+Medium shot of the stranger lighting an oil lamp, the scar on his right cheek catching the light.
+
+**ELIAS (Quiet):**
+Start: (00:03.50) | End: (00:06.00)
+"My name is Elias. Your grandfather hired me two winters ago."
+
+**MAREN (Suspicious):**
+Start: (00:06.50) | End: (00:09.00)
+"Grandpa never hires anyone. He doesn't even trust the mailman."
+
+**CAMERA:**
+Start: (00:09.00) | End: (00:12.00)
+Close-up of Maren's grey eyes as she studies the brass compass on the table.
+
+**ELIAS (Firm):**
+Start: (00:12.50) | End: (00:16.00)
+"He trusts the Halloway name. That's why he wants you here."
+
+**SOUND FX:**
+Start: (00:33.00) | End: (00:35.00)
+Thunder rolls over the sea.
+
+--- SCRIPT END ---

@@ -1,0 +1,62 @@
+[
+ {
+  "group_id": "G1",
+  "source": "facts",
+  "kind": "NAME",
+  "subject": "Maren Holloway",
+  "attribute": "surname",
+  "verdict": {
+   "group_id": "G1",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "Holloway",
+   "odd_value_ids": [
+    "V2"
+   ],
+   "reason": "The surname is spelled differently in ep1 and ep2 without explanation."
+  },
+  "values": [
+   "Halloway",
+   "Holloway"
+  ]
+ },
+ {
+  "group_id": "G2",
+  "source": "facts",
+  "kind": "TRAIT",
+  "subject": "Maren Holloway",
+  "attribute": "eye_colour",
+  "verdict": {
+   "group_id": "G2",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "grey",
+   "odd_value_ids": [
+    "V3"
+   ],
+   "reason": "The character's eye colour changes from grey in ep1/ep2 to brown in ep3."
+  },
+  "values": [
+   "brown",
+   "grey"
+  ]
+ },
+ {
+  "group_id": "G3",
+  "source": "names",
+  "kind": "NAME",
+  "subject": "(name spelling)",
+  "attribute": "Holloway/Halloway",
+  "verdict": {
+   "group_id": "G3",
+   "verdict": "CONTRADICTION",
+   "canonical_value": "Holloway",
+   "odd_value_ids": [
+    "V3"
+   ],
+   "reason": "The spelling of the surname is inconsistent across the series documentation and dialogue."
+  },
+  "values": [
+   "Halloway",
+   "Holloway"
+  ]
+ }
+]

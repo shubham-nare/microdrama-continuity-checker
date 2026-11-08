@@ -1,0 +1,218 @@
+[
+ {
+  "id": "F-d3426089f1",
+  "type": "CONTRADICTION",
+  "kind": "NAME",
+  "source": "names",
+  "subject": "(name spelling)",
+  "attribute": "Holloway/Halloway",
+  "severity": "high",
+  "audible": true,
+  "summary": "(name spelling) \u2014 Holloway/Halloway: 'Holloway' vs 'Halloway'",
+  "suggested_fix": "Pick one and fix the others. Variants: Holloway \u00d72, Halloway \u00d71",
+  "variant_counts": {
+   "Holloway": 2,
+   "Halloway": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "The surname spelling changes from Holloway in ep1 to Halloway in ep2."
+  },
+  "episodes": [
+   1,
+   2
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-HEADER",
+    "timestamp": "00:00.00",
+    "where": "HEADER",
+    "value": "Holloway",
+    "quote": "Maren Holloway returns to her grandfather's lighthouse",
+    "odd": false
+   },
+   {
+    "episode": 1,
+    "element_id": "E001-0006",
+    "timestamp": "00:18.50",
+    "where": "THE STRANGER (dialogue)",
+    "value": "Holloway",
+    "quote": "elongs to whoever keeps the light, Miss Holloway.\"",
+    "odd": false
+   },
+   {
+    "episode": 2,
+    "element_id": "E002-0005",
+    "timestamp": "00:12.50",
+    "where": "ELIAS (dialogue)",
+    "value": "Halloway",
+    "quote": "\"He trusts the Halloway name. That's why he wants you here.\"",
+    "odd": true
+   }
+  ],
+  "merged": [
+   "F-cf04a0a2bf"
+  ],
+  "rank": 1,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 2,
+   "majority_value": "Holloway",
+   "odd_values": [
+    "Halloway"
+   ],
+   "later_dialogue_lines": 1,
+   "later_camera_shots_in_affected_scenes": 2
+  }
+ },
+ {
+  "id": "F-0db87e6834",
+  "type": "LABEL_COLLISION",
+  "kind": "LABEL",
+  "source": "resolve",
+  "subject": "OLD MAN",
+  "attribute": "speaker label",
+  "severity": "high",
+  "audible": false,
+  "summary": "Label 'OLD MAN' is used for different characters: Maren's Grandfather (ep 1); Harbor Master (ep 3)",
+  "suggested_fix": "Give each character its own label so reference images and voices map correctly",
+  "adjudication": {
+   "verdict": "CODE",
+   "reason": "from alias resolution"
+  },
+  "episodes": [
+   1,
+   3
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-0002",
+    "timestamp": "00:04.50",
+    "where": "OLD MAN (dialogue)",
+    "value": "Maren's Grandfather",
+    "quote": "\"You came back, Maren. Your mother never did.\"",
+    "odd": false
+   },
+   {
+    "episode": 3,
+    "element_id": "E003-0002",
+    "timestamp": "00:04.50",
+    "where": "OLD MAN (dialogue)",
+    "value": "Harbor Master",
+    "quote": "\"That keeper of yours, girl. I've seen his face on a wanted poster in Portland.\"",
+    "odd": false
+   }
+  ],
+  "rank": 2,
+  "status": "open"
+ },
+ {
+  "id": "F-113ee2b696",
+  "type": "CONTRADICTION",
+  "kind": "TRAIT",
+  "source": "facts",
+  "subject": "Maren",
+  "attribute": "eye_colour",
+  "severity": "medium",
+  "audible": false,
+  "summary": "Maren \u2014 eye_colour: 'grey' vs 'brown'",
+  "suggested_fix": "Pick one and fix the others. Variants: grey \u00d72, brown \u00d71",
+  "variant_counts": {
+   "grey": 2,
+   "brown": 1
+  },
+  "adjudication": {
+   "verdict": "CONTRADICTION",
+   "reason": "Maren's eye colour is grey in ep1 and ep2, but changes to brown in ep3 without explanation."
+  },
+  "episodes": [
+   1,
+   2,
+   3
+  ],
+  "evidence": [
+   {
+    "episode": 1,
+    "element_id": "E001-0007",
+    "timestamp": "00:21.00",
+    "where": "CAMERA",
+    "value": "grey",
+    "quote": "Maren's grey eyes narrowing at him",
+    "odd": false
+   },
+   {
+    "episode": 2,
+    "element_id": "E002-0004",
+    "timestamp": "00:09.00",
+    "where": "CAMERA",
+    "value": "grey",
+    "quote": "Close-up of Maren's grey eyes",
+    "odd": false
+   },
+   {
+    "episode": 3,
+    "element_id": "E003-0004",
+    "timestamp": "00:11.00",
+    "where": "CAMERA",
+    "value": "brown",
+    "quote": "Close-up of Maren's brown eyes",
+    "odd": true
+   }
+  ],
+  "rank": 3,
+  "status": "open",
+  "gate": {
+   "blocked_at_episode": 3,
+   "majority_value": "grey",
+   "odd_values": [
+    "brown"
+   ],
+   "later_dialogue_lines": 0,
+   "later_camera_shots_in_affected_scenes": 2
+  }
+ },
+ {
+  "id": "F-f20c7d8088",
+  "type": "LABEL_ALIAS",
+  "kind": "LABEL",
+  "source": "resolve",
+  "subject": "Elias",
+  "attribute": "speaker labels",
+  "severity": "info",
+  "audible": false,
+  "summary": "Elias appears under 2 labels: ELIAS (ep 2\u20132); THE STRANGER (ep 1\u20131)",
+  "suggested_fix": "Map all labels to one character ID 'elias' for reference images",
+  "adjudication": {
+   "verdict": "CODE",
+   "reason": "In ep1 THE STRANGER is introduced, and in ep2 he reveals his name is Elias."
+  },
+  "episodes": [
+   1,
+   2
+  ],
+  "evidence": [
+   {
+    "episode": 2,
+    "element_id": "E002-0002",
+    "timestamp": "00:03.50",
+    "where": "ELIAS (dialogue)",
+    "value": "ELIAS",
+    "quote": "\"My name is Elias. Your grandfather hired me two winters ago.\"",
+    "odd": false
+   },
+   {
+    "episode": 1,
+    "element_id": "E001-0006",
+    "timestamp": "00:18.50",
+    "where": "THE STRANGER (dialogue)",
+    "value": "THE STRANGER",
+    "quote": "\"The deed belongs to whoever keeps the light, Miss Holloway.\"",
+    "odd": false
+   }
+  ],
+  "rank": 4,
+  "status": "open"
+ }
+]

@@ -1,0 +1,37 @@
+{
+ "1": {
+  "facts_in": 9,
+  "facts_ok": 8,
+  "facts_repointed": 0,
+  "facts_dropped": 1,
+  "labels_in": 3,
+  "labels_ok": 3,
+  "labels_dropped": 0,
+  "dropped_examples": [
+   {
+    "element_id": "E001-0002",
+    "quote": "OLD MAN (Gruff, Tired)"
+   }
+  ]
+ },
+ "2": {
+  "facts_in": 6,
+  "facts_ok": 6,
+  "facts_repointed": 0,
+  "facts_dropped": 0,
+  "labels_in": 2,
+  "labels_ok": 2,
+  "labels_dropped": 0,
+  "dropped_examples": []
+ },
+ "3": {
+  "facts_in": 5,
+  "facts_ok": 5,
+  "facts_repointed": 0,
+  "facts_dropped": 0,
+  "labels_in": 2,
+  "labels_ok": 2,
+  "labels_dropped": 0,
+  "dropped_examples": []
+ }
+}

@@ -1,0 +1,6 @@
+# Answer key for the fictional demo show (public). Same format as the private Kuku gold file.
+items:
+  - {id: surname_spelling, what: "Holloway (ep1) vs Halloway (ep2)", values: [Holloway, Halloway], min_values: 2, episodes_any: [2]}
+  - {id: scar_side, what: "Elias's scar: left cheek (ep1) vs right cheek (ep2)", values: [left, right], min_values: 2, episodes_all: [1, 2]}
+  - {id: eye_colour, what: "Maren's eyes grey (ep1-2) vs brown (ep3)", values: [grey, brown], min_values: 2, episodes_any: [3]}
+  - {id: old_man_collision, what: "OLD MAN = grandfather (ep1) but harbor master (ep3)", flag_type: LABEL_COLLISION, label: OLD MAN}

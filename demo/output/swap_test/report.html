@@ -1,0 +1,67 @@
+<!doctype html><meta charset=utf-8><title>Continuity report — swap-test</title><style>body{font-family:system-ui,Segoe UI,sans-serif;margin:24px auto;max-width:1100px;padding:0 16px;color:#1d1d1f;background:#fff}
+h1{font-size:22px}h2{font-size:18px;margin-top:32px;border-bottom:1px solid #ddd;padding-bottom:4px}
+.f{border:1px solid #ddd;border-radius:8px;padding:10px 14px;margin:10px 0}.high{border-left:6px solid #c62828}
+.medium{border-left:6px solid #ef6c00}.low{border-left:6px solid #9e9e9e}.info{border-left:6px solid #1565c0}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:10px;background:#eee;margin-right:4px}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #eee;padding:4px 6px;text-align:left;vertical-align:top}
+.odd{background:#fff3e0}.q{color:#444;font-style:italic}details{margin:6px 0}small{color:#666}
+@media (prefers-color-scheme: dark){body{background:#121212;color:#eee}.f{border-color:#333}td,th{border-color:#2a2a2a}.odd{background:#3a2a10}.tag{background:#333}.q{color:#bbb}}</style>
+<h1>Continuity report — swap-test</h1>
+<p>3 episodes · 19 timed elements · 19 verified facts · <b>2 contradictions</b> (1 high) · 1 label collisions · 1 characters with several labels · 0 to review</p>
+<p><small>Every quote below was checked by code against the script. Severity: high = audible (dialogue) or breaks who-is-who; medium = visual state (trait, prop, injury); info = alias list for reference images. Reviewer: mark each flag accept / dismiss in flags.csv (column reviewer_decision).</small></p>
+<h2>Contradictions (2)</h2>
+<div class='f high'><b>#1 (name spelling) — Holloway/Halloway: &#x27;Holloway&#x27; vs &#x27;Halloway&#x27;</b><br><span class=tag>high</span><span class=tag>NAME</span><span class=tag>audible</span><span class=tag>F-d3426089f1</span> <small>Pick one and fix the others. Variants: Holloway ×2, Halloway ×1 — The spelling of the surname is inconsistent across the series documentation and dialogue.</small><br><small><b>Per-episode gate would block it at ep2.</b> Not caught, the odd value(s) Halloway reach 1 later spoken line(s) and 2 camera shot(s) in affected scenes.</small><table><tr><th>ep</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>00:00.00</td><td>HEADER</td><td>Holloway</td><td class=q>“Maren Holloway returns to her grandfather&#x27;s lighthouse”</td></tr>
+<tr class=''><td>1</td><td>00:18.50</td><td>THE STRANGER (dialogue)</td><td>Holloway</td><td class=q>“elongs to whoever keeps the light, Miss Holloway.&quot;”</td></tr>
+<tr class='odd'><td>2</td><td>00:12.50</td><td>ELIAS (dialogue)</td><td>Halloway</td><td class=q>“&quot;He trusts the Halloway name. That&#x27;s why he wants you here.&quot;”</td></tr>
+</table></div>
+<div class='f medium'><b>#3 Maren Holloway — eye_colour: &#x27;grey&#x27; vs &#x27;brown&#x27;</b><br><span class=tag>medium</span><span class=tag>TRAIT</span><span class=tag>F-e976c6da96</span> <small>Pick one and fix the others. Variants: grey ×2, brown ×1 — The character&#x27;s eye colour changes from grey in ep1/ep2 to brown in ep3.</small><br><small><b>Per-episode gate would block it at ep3.</b> Not caught, the odd value(s) brown reach 0 later spoken line(s) and 2 camera shot(s) in affected scenes.</small><table><tr><th>ep</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>00:21.00</td><td>CAMERA</td><td>grey</td><td class=q>“Close-up of Maren&#x27;s grey eyes narrowing at him.”</td></tr>
+<tr class=''><td>2</td><td>00:09.00</td><td>CAMERA</td><td>grey</td><td class=q>“Close-up of Maren&#x27;s grey eyes”</td></tr>
+<tr class='odd'><td>3</td><td>00:11.00</td><td>CAMERA</td><td>brown</td><td class=q>“Close-up of Maren&#x27;s brown eyes filling with doubt.”</td></tr>
+</table></div>
+<h2>Speaker-label collisions (1)</h2>
+<div class='f high'><b>#2 Label &#x27;OLD MAN&#x27; is used for different characters: Maren&#x27;s Grandfather (ep 1); Harbor Master (ep 3)</b><br><span class=tag>high</span><span class=tag>LABEL</span><span class=tag>F-0db87e6834</span> <small>Give each character its own label so reference images and voices map correctly — from alias resolution</small><table><tr><th>ep</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>1</td><td>00:04.50</td><td>OLD MAN (dialogue)</td><td>Maren&#x27;s Grandfather</td><td class=q>“&quot;You came back, Maren. Your mother never did.&quot;”</td></tr>
+<tr class=''><td>3</td><td>00:04.50</td><td>OLD MAN (dialogue)</td><td>Harbor Master</td><td class=q>“&quot;That keeper of yours, girl. I&#x27;ve seen his face on a wanted poster in Portland.&quot;”</td></tr>
+</table></div>
+<h2>Characters under several labels (1)</h2>
+<div class='f info'><b>#4 Elias appears under 2 labels: ELIAS (ep 2–2); THE STRANGER (ep 1–1)</b><br><span class=tag>info</span><span class=tag>LABEL</span><span class=tag>F-f20c7d8088</span> <small>Map all labels to one character ID &#x27;elias&#x27; for reference images — The tall stranger with a scar in episode 1 reveals his name is Elias in episode 2.</small><table><tr><th>ep</th><th>time</th><th>where</th><th>value</th><th>quote</th></tr>
+<tr class=''><td>2</td><td>00:03.50</td><td>ELIAS (dialogue)</td><td>ELIAS</td><td class=q>“&quot;My name is Elias. Your grandfather hired me two winters ago.&quot;”</td></tr>
+<tr class=''><td>1</td><td>00:18.50</td><td>THE STRANGER (dialogue)</td><td>THE STRANGER</td><td class=q>“&quot;The deed belongs to whoever keeps the light, Miss Holloway.&quot;”</td></tr>
+</table></div>
+<h2>Needs a human look (0)</h2>
+<h2>Series bible — main characters</h2>
+<details><summary><b>Maren Holloway</b> <small>id maren_holloway · eps 1–3 · labels: MAREN</small></summary><table>
+<tr><td>trait: eye_colour</td><td>brown (ep3); grey (ep1); grey (ep2)</td></tr>
+<tr><td>relation to maren</td><td>grandfather (ep3)</td></tr>
+</table></details>
+<details><summary><b>Elias</b> <small>id elias · eps 1–2 · labels: ELIAS, THE STRANGER</small></summary><table>
+<tr><td>trait: build</td><td>tall (ep1)</td></tr>
+<tr><td>trait: scar</td><td>scar on his right cheek (ep2)</td></tr>
+<tr><td>prop: compass</td><td>brass compass (ep2)</td></tr>
+<tr><td>injury: scar left cheek</td><td>long scar (ep1)</td></tr>
+<tr><td>relation to maren</td><td>keeper hired by grandfather (ep2)</td></tr>
+</table></details>
+<details><summary><b>Harbor Master</b> <small>id harbor_master · eps 3–3 · labels: OLD MAN</small></summary><table>
+<tr><td>trait: other</td><td>bald (ep3)</td></tr>
+</table></details>
+<details><summary><b>Maren&#x27;s Grandfather</b> <small>id maren_s_grandfather · eps 1–1 · labels: OLD MAN</small></summary><table>
+<tr><td>prop: cane</td><td>driftwood (ep1)</td></tr>
+<tr><td>prop: compass</td><td>brass (ep1)</td></tr>
+<tr><td>relation to maren</td><td>grandfather (ep1)</td></tr>
+</table></details>
+<h2>Reference cards (per scene, for shot prompts)</h2><p><small>3 scenes — full list in reference_cards.json. First 6 shown.</small></p>
+<details><summary>ep1 scene 1 — EXT. LIGHTHOUSE CLIFF – DUSK</summary><table>
+<tr><td><b>Elias</b><br><small>labels: THE STRANGER</small></td><td>costume: not stated<br>traits: {&quot;build&quot;: &quot;tall (ep1)&quot;}<br>props (last 3 eps): {}<br>injuries: scar left cheek: long scar (ep1)</td></tr>
+<tr><td><b>Maren Holloway</b><br><small>labels: MAREN</small></td><td>costume: not stated<br>traits: {&quot;eye_colour&quot;: &quot;grey (ep1)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Maren&#x27;s Grandfather</b><br><small>labels: OLD MAN</small></td><td>costume: not stated<br>traits: {}<br>props (last 3 eps): {&quot;cane&quot;: &quot;driftwood (ep1)&quot;, &quot;compass&quot;: &quot;brass (ep1)&quot;}<br>injuries: none</td></tr>
+</table></details>
+<details><summary>ep2 scene 1 — INT. KEEPER&#x27;S COTTAGE – NIGHT</summary><table>
+<tr><td><b>Elias</b><br><small>labels: ELIAS</small></td><td>costume: not stated<br>traits: {&quot;build&quot;: &quot;tall (ep1)&quot;, &quot;scar&quot;: &quot;scar on his right cheek (ep2)&quot;}<br>props (last 3 eps): {&quot;compass&quot;: &quot;brass compass (ep2)&quot;}<br>injuries: scar left cheek: long scar (ep1)</td></tr>
+<tr><td><b>Maren Holloway</b><br><small>labels: MAREN</small></td><td>costume: not stated<br>traits: {&quot;eye_colour&quot;: &quot;grey (ep2)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+</table></details>
+<details><summary>ep3 scene 1 — EXT. HARBOR – MORNING</summary><table>
+<tr><td><b>Harbor Master</b><br><small>labels: OLD MAN</small></td><td>costume: yellow oilskin<br>traits: {&quot;other&quot;: &quot;bald (ep3)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+<tr><td><b>Maren Holloway</b><br><small>labels: MAREN</small></td><td>costume: not stated<br>traits: {&quot;eye_colour&quot;: &quot;brown (ep3)&quot;}<br>props (last 3 eps): {}<br>injuries: none</td></tr>
+</table></details>

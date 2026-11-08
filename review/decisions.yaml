@@ -1,0 +1,1 @@
+decisions: {}   # flag_id: {decision: dismiss|accept, canonical: '...'}; fill via: python -m scriptqa.review_import outputs/<run>/flags.csv

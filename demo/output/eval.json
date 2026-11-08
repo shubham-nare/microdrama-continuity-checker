@@ -1,0 +1,107 @@
+{
+ "real": {
+  "recall": 0.75,
+  "found": {
+   "surname_spelling": [
+    "F-d3426089f1"
+   ],
+   "scar_side": [],
+   "eye_colour": [
+    "F-113ee2b696"
+   ],
+   "old_man_collision": [
+    "F-0db87e6834"
+   ]
+  },
+  "precision": 1.0,
+  "judged": [
+   {
+    "id": "F-d3426089f1",
+    "type": "CONTRADICTION",
+    "label": "true",
+    "why": "matches gold ['surname_spelling']"
+   },
+   {
+    "id": "F-0db87e6834",
+    "type": "LABEL_COLLISION",
+    "label": "true",
+    "why": "matches gold ['old_man_collision']"
+   },
+   {
+    "id": "F-113ee2b696",
+    "type": "CONTRADICTION",
+    "label": "true",
+    "why": "matches gold ['eye_colour']"
+   },
+   {
+    "id": "F-f20c7d8088",
+    "type": "LABEL_ALIAS",
+    "label": "true",
+    "why": "all labels are gold Elias"
+   }
+  ],
+  "n_flags_scored": 3,
+  "n_unlabelled": 0,
+  "alias_flag_precision": 1.0,
+  "n_alias_flags": 1,
+  "n_alias_unlabelled": 0,
+  "distinct_gold_found": 3,
+  "n_gold": 4,
+  "ci95": [
+   0.3,
+   0.95
+  ]
+ },
+ "aliases": {
+  "pairwise_precision": 1.0,
+  "pairwise_recall": 1.0,
+  "f1": 1.0,
+  "n_label_episodes": 7,
+  "split_errors": [],
+  "wrong_merges": []
+ },
+ "aliases_after_review": {
+  "pairwise_precision": 1.0,
+  "pairwise_recall": 1.0,
+  "f1": 1.0,
+  "n_label_episodes": 7,
+  "split_errors": [],
+  "wrong_merges": []
+ },
+ "seeded": {
+  "seed": 7,
+  "n": 1,
+  "caught": 1,
+  "ci95": [
+   0.21,
+   1.0
+  ],
+  "distinct_detecting_flags": 1,
+  "baseline_note": "baseline = code-only spelling detector; it cannot catch non-spelling error types by design",
+  "pipeline_recall": 1.0,
+  "baseline_recall": 0.0,
+  "per_type": {
+   "eye_colour": {
+    "n": 1,
+    "pipeline": 1,
+    "baseline": 0
+   }
+  },
+  "spurious_new_flags": [],
+  "mutations": [
+   {
+    "type": "eye_colour",
+    "episode": 3,
+    "element_id": "E003-0004",
+    "line": 26,
+    "old": "brown",
+    "new": "blue",
+    "after_line": "Close-up of Maren's blue eyes filling with doubt.",
+    "pipeline_hit": [
+     "F-eb833cd912"
+    ],
+    "baseline_hit": false
+   }
+  ]
+ }
+}

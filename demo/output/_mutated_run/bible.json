@@ -1,0 +1,197 @@
+{
+ "characters": {
+  "Maren": {
+   "id": "maren",
+   "canonical": "Maren",
+   "labels": {
+    "MAREN": [
+     1,
+     2,
+     3
+    ]
+   },
+   "episodes": [
+    1,
+    2,
+    3
+   ],
+   "traits": {
+    "eye_colour": [
+     {
+      "episode": 1,
+      "element_id": "E001-0007",
+      "value": "grey",
+      "quote": "Maren's grey eyes narrowing at him"
+     },
+     {
+      "episode": 2,
+      "element_id": "E002-0004",
+      "value": "grey",
+      "quote": "Close-up of Maren's grey eyes"
+     },
+     {
+      "episode": 3,
+      "element_id": "E003-0004",
+      "value": "blue",
+      "quote": "Maren's blue eyes filling with doubt."
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {},
+   "injuries": [],
+   "relationships": {
+    "relation to maren's grandfather": [
+     {
+      "episode": 1,
+      "element_id": "E001-0004",
+      "value": "grandfather",
+      "quote": "I came for the deed, Grandpa."
+     },
+     {
+      "episode": 3,
+      "element_id": "E003-0003",
+      "value": "grandfather",
+      "quote": "kind to my grandfather."
+     }
+    ]
+   },
+   "names": {
+    "surname": [
+     {
+      "episode": 1,
+      "element_id": "E001-0006",
+      "value": "Holloway",
+      "quote": "Miss Holloway"
+     },
+     {
+      "episode": 2,
+      "element_id": "E002-0005",
+      "value": "Halloway",
+      "quote": "He trusts the Halloway name."
+     }
+    ]
+   }
+  },
+  "Elias": {
+   "id": "elias",
+   "canonical": "Elias",
+   "labels": {
+    "ELIAS": [
+     2
+    ],
+    "THE STRANGER": [
+     1
+    ]
+   },
+   "episodes": [
+    1,
+    2
+   ],
+   "traits": {
+    "scar": [
+     {
+      "episode": 2,
+      "element_id": "E002-0001",
+      "value": "scar on right cheek",
+      "quote": "the scar on his right cheek catching the light"
+     }
+    ]
+   },
+   "costumes": [],
+   "props": {
+    "brass compass": [
+     {
+      "episode": 2,
+      "element_id": "E002-0004",
+      "value": "brass compass on the table",
+      "quote": "studies the brass compass on the table"
+     }
+    ]
+   },
+   "injuries": [],
+   "relationships": {},
+   "names": {
+    "given_name": [
+     {
+      "episode": 2,
+      "element_id": "E002-0002",
+      "value": "Elias",
+      "quote": "My name is Elias."
+     }
+    ]
+   }
+  },
+  "Harbor Master": {
+   "id": "harbor_master",
+   "canonical": "Harbor Master",
+   "labels": {
+    "OLD MAN": [
+     3
+    ]
+   },
+   "episodes": [
+    3
+   ],
+   "traits": {},
+   "costumes": [],
+   "props": {},
+   "injuries": [],
+   "relationships": {},
+   "names": {}
+  },
+  "Maren's Grandfather": {
+   "id": "maren_s_grandfather",
+   "canonical": "Maren's Grandfather",
+   "labels": {
+    "OLD MAN": [
+     1
+    ]
+   },
+   "episodes": [
+    1
+   ],
+   "traits": {},
+   "costumes": [],
+   "props": {
+    "cane": [
+     {
+      "episode": 1,
+      "element_id": "E001-0003",
+      "value": "driftwood cane",
+      "quote": "leaning on a driftwood cane"
+     }
+    ],
+    "compass": [
+     {
+      "episode": 1,
+      "element_id": "E001-0003",
+      "value": "brass compass",
+      "quote": "a brass compass hanging from his neck"
+     }
+    ]
+   },
+   "injuries": [],
+   "relationships": {},
+   "names": {}
+  }
+ },
+ "non_character_facts": {
+  "~portland": [
+   {
+    "kind": "NAME",
+    "attribute": "place",
+    "episode": 3,
+    "element_id": "E003-0002",
+    "value": "Portland",
+    "quote": "wanted poster in Portland."
+   }
+  ]
+ },
+ "name_spelling_groups": [
+  [
+   "Holloway",
+   "Halloway"
+  ]
+ ]
+}
