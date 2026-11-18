@@ -10,6 +10,9 @@ Each flag quotes the script with the episode, element ID and timestamp, and code
 
 What it catches today, and what it misses, is measured and reported in `outputs/<run>/eval.json` and in the solution doc. It does not catch everything.
 
+## Try it in the browser
+Live demo: **https://microdrama-continuity-checker.streamlit.app**. Run a fictional sample show, check one new episode against a show (the gate), or upload or paste your own episodes (up to 12 per run; text goes to the Gemini free tier, so don't upload confidential scripts). Kuku's scripts are not on the site. To run the same page locally: `streamlit run app.py`. It calls `run.py` unchanged, so the page and the command line give the same output.
+
 ## Before a live run (e.g. a new show)
 ```bash
 python run.py --preflight --data path/to/new_show     # checks format, model, key with one probe call, estimates calls/time
